@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="valmal-library:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="valmal-library-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="valmal-library:war exploded" />
+    </root>
+  </artifact>
+</component>
