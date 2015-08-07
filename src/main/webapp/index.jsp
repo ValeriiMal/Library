@@ -124,9 +124,27 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label" for="inputReaderAddress">Address</label>
+                            <label class="col-sm-4 control-label" for="inputReaderCountry">Country</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" placeholder="Address" id="inputReaderAddress"/>
+                                <input type="text" class="form-control" placeholder="Country" id="inputReaderCountry"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label" for="inputReaderCity">City</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" placeholder="City" id="inputReaderCity"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label" for="inputReaderStreet">Street</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" placeholder="Street" id="inputReaderStreet"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label" for="inputReaderHouse">House</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" placeholder="House" id="inputReaderHouse"/>
                             </div>
                         </div>
                     </form>
