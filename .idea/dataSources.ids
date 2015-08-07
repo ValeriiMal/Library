@@ -7,21 +7,24 @@
     </database-info>
     <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
     <schema name="" catalog="library"/>
+    <table name="address" schema="" catalog="library" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="country" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="city" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="street" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="house" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="readers_ibfk_1" table="readers" schema="" catalog="library" columns="address_id"/>
+    </table>
     <table name="readers" schema="" catalog="library" type="TABLE">
       <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="fName" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
       <column name="mName" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
       <column name="lName" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
       <column name="phone" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="address_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <primary-key name="PRIMARY" columns="id"/>
-    </table>
-    <table name="stock" schema="" catalog="library" type="TABLE">
-      <column name="STOCK_ID" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
-      <column name="STOCK_CODE" sqlType="VARCHAR" precision="10" scale="0" nullable="false" jdbcType="12"/>
-      <column name="STOCK_NAME" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
-      <primary-key name="PRIMARY" columns="STOCK_ID"/>
-      <index name="UNI_STOCK_ID" unique="true" columns="STOCK_CODE"/>
-      <index name="UNI_STOCK_NAME" unique="true" columns="STOCK_NAME"/>
+      <foreign-key name="readers_ibfk_1" columns="address_id" ref-table="address" ref-schema="" ref-catalog="library" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
     </table>
   </data-source>
 </component>

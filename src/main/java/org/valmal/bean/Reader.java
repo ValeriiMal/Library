@@ -1,13 +1,13 @@
 package org.valmal.bean;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.Date;
 
 @Entity()
 @Table(name = "readers")
 public class Reader {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
     @Column(name = "fName")
@@ -18,7 +18,9 @@ public class Reader {
     private String lName;
     @Column(name = "phone")
     private String phone;
+    @OneToOne
     private Address address;
+
 
     public Reader() {
     }
@@ -31,6 +33,7 @@ public class Reader {
         reader.phone = "";
         return reader;
     }
+
 
     public Integer getId() {
         return id;
@@ -72,8 +75,6 @@ public class Reader {
         this.phone = phone;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "address_id")
     public Address getAddress() {
         return address;
     }
@@ -81,6 +82,7 @@ public class Reader {
     public void setAddress(Address address) {
         this.address = address;
     }
+
 
     @Override
     public String toString() {
