@@ -8,27 +8,33 @@ import java.util.Set;
 @Table(name = "address")
 public class Address {
 
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int reader_id;
+    @Column(name = "country")
     private String country;
+    @Column(name = "city")
     private String city;
+    @Column(name = "street")
     private String street;
+    @Column(name = "house")
     private String house;
-    private Set<Reader> readers = new HashSet<>();
+    @OneToOne
+    @PrimaryKeyJoinColumn
+    private Reader reader;
 
     public Address() {
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     public int getId() {
-        return id;
+        return reader_id;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.reader_id = id;
     }
 
-    @Column(name = "country")
     public String getCountry() {
         return country;
     }
@@ -37,7 +43,6 @@ public class Address {
         this.country = country;
     }
 
-    @Column(name = "city")
     public String getCity() {
         return city;
     }
@@ -46,7 +51,6 @@ public class Address {
         this.city = city;
     }
 
-    @Column(name = "street")
     public String getStreet() {
         return street;
     }
@@ -55,7 +59,6 @@ public class Address {
         this.street = street;
     }
 
-    @Column(name = "house")
     public String getHouse() {
         return house;
     }
@@ -64,13 +67,12 @@ public class Address {
         this.house = house;
     }
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "address")
-    public Set<Reader> getReaders() {
-        return this.readers;
+    public Reader getReader() {
+        return this.reader;
     }
 
-    public void setReaders(Set<Reader> readers) {
-        this.readers = readers;
+    public void setReader(Reader reader) {
+        this.reader = reader;
     }
 
     @Override
