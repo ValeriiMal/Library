@@ -1,10 +1,14 @@
 package org.valmal.bean;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity()
 @Table(name = "readers")
+@OnDelete(action = OnDeleteAction.CASCADE)
 public class Reader {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

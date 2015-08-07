@@ -1,4 +1,3 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -39,16 +38,26 @@
 <!--reader section-->
 <section id="readers-section" style="text-align: center">
     <h3>Readers</h3>
+
     <div>
-        <button id="readers-add-button" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#readersAddModal">Add</button>
-        <button id="readers-edit-button" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#readersEditModal">Edit</button>
-        <button id="readers-remove-button" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#readersRemoveModal">Remove</button>
+        <button id="readers-add-button" type="button" class="btn btn-info btn-lg" data-toggle="modal"
+                data-target="#readersAddModal">Add
+        </button>
+        <button id="readers-edit-button" type="button" class="btn btn-info btn-lg" data-toggle="modal"
+                data-target="#readersEditModal">Edit
+        </button>
+        <button id="readers-remove-button" type="button" class="btn btn-info btn-lg" data-toggle="modal"
+                data-target="#readersRemoveModal">Remove
+        </button>
         <button id="readers-find-button" type="button" class="btn btn-info btn-lg">Find</button>
-        <button id="readers-details-button" type="button" class="btn btn-info btn-lg">Details</button>
+
+        <button id="readers-details-button" type="button" class="btn btn-info btn-lg" data-toggle="modal"
+                data-target="#readersDetailsModal">Details</button>
     </div>
+    <%--поля пошуку --%>
     <div id="readers-find-input" style="display: none;">
-        <form class="form-horizontal">
-            <div class="form-group">
+        <form class="form-horizontal" >
+            <div class="form-group" >
                 <div class="col-sm-2">
                     <input type="text" class="form-control" placeholder="ID">
                 </div>
@@ -64,13 +73,13 @@
                 <div class="col-sm-2">
                     <input type="text" class="form-control" placeholder="Phone">
                 </div>
-                <div class="col-sm-2">
-                    <input type="text" class="form-control" placeholder="Address">
-                </div>
+                <%--<div class="col-sm-2">--%>
+                    <%--<input type="text" class="form-control" placeholder="Address">--%>
+                <%--</div>--%>
             </div>
-
         </form>
     </div>
+    <%--таблиця читачів--%>
     <div id="readers-container">
         <table class="table table-hover" id="reader-table">
             <thead>
@@ -80,7 +89,7 @@
                 <th class="col-sm-2">Middle name</th>
                 <th class="col-sm-2">Last name</th>
                 <th class="col-sm-2">Phone</th>
-                <th class="col-sm-2">Address</th>
+                <%--<th class="col-sm-2">Address</th>--%>
             </tr>
             </thead>
             <tbody>
@@ -89,7 +98,7 @@
     </div>
 
     <%--Modal--%>
-
+    <%--модальне вікно для кнопки Add--%>
     <div id="readersAddModal" class="modal fade" role="dialog" style="top: 100px; ">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -101,50 +110,65 @@
                     <form class="form-horizontal">
                         <div class="form-group">
                             <label for="inputReaderFName" class="col-sm-4 control-label">First name</label>
+
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" id="inputReaderFName" placeholder="First name">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputReaderMName" class="col-sm-4 control-label">Middle name</label>
+
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" id="inputReaderMName" placeholder="Middle name">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-4 control-label" for="inputReaderLName">Last name</label>
+
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" placeholder="Last name" id="inputReaderLName"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-4 control-label" for="inputReaderPhone">Phone</label>
+
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" placeholder="Phone" id="inputReaderPhone"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-4 control-label" for="inputReaderCountry">Country</label>
+
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" placeholder="Country" id="inputReaderCountry"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-4 control-label" for="inputReaderCity">City</label>
+
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" placeholder="City" id="inputReaderCity"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-4 control-label" for="inputReaderStreet">Street</label>
+
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" placeholder="Street" id="inputReaderStreet"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-4 control-label" for="inputReaderHouse">House</label>
+
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" placeholder="House" id="inputReaderHouse"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label" for="inputReaderBirth">Date of birth</label>
+
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" placeholder="Date of birth" id="inputReaderBirth"/>
                             </div>
                         </div>
                     </form>
@@ -156,7 +180,7 @@
             </div>
         </div>
     </div>
-
+    <%--модальне вікно для кнопки Edit--%>
     <div id="readersEditModal" class="modal fade" role="dialog" style="top: 100px; ">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -168,38 +192,73 @@
                     <form class="form-horizontal">
                         <div class="form-group">
                             <label for="editReaderSearchId" class="col-sm-4 control-label">ID</label>
+
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="editReaderSearchId" placeholder="Enter reader id">
+                                <input type="text" class="form-control" id="editReaderSearchId"
+                                       placeholder="Enter reader id">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="editReaderFName" class="col-sm-4 control-label">First name</label>
+
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" id="editReaderFName" placeholder="First name">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="editReaderMName" class="col-sm-4 control-label">Middle name</label>
+
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" id="editReaderMName" placeholder="Middle name">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-4 control-label" for="editReaderLName">Last name</label>
+
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" placeholder="Last name" id="editReaderLName"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-4 control-label" for="editReaderPhone">Phone</label>
+
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" placeholder="Phone" id="editReaderPhone"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label" for="editReaderAddress">Address</label>
+                            <label class="col-sm-4 control-label" for="editReaderCountry">Country</label>
+
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" placeholder="Address" id="editReaderAddress"/>
+                                <input type="text" class="form-control" placeholder="Country" id="editReaderCountry"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label" for="editReaderCity">City</label>
+
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" placeholder="City" id="editReaderCity"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label" for="editReaderStreet">Street</label>
+
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" placeholder="Street" id="editReaderStreet"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label" for="editReaderHouse">House</label>
+
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" placeholder="House" id="editReaderHouse"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label" for="editReaderBirth">Date of birth</label>
+
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" placeholder="Date of birth" id="editReaderBirth"/>
                             </div>
                         </div>
                     </form>
@@ -211,7 +270,7 @@
             </div>
         </div>
     </div>
-
+    <%--модальне вікно для кнопки Remove--%>
     <div id="readersRemoveModal" class="modal fade" role="dialog" style="top: 100px; ">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -223,24 +282,30 @@
                     <form class="form-horizontal">
                         <div class="form-group">
                             <label for="removeReaderSearchId" class="col-sm-4 control-label">ID</label>
+
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="removeReaderSearchId" placeholder="Enter reader id">
+                                <input type="text" class="form-control" id="removeReaderSearchId"
+                                       placeholder="Enter reader id">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="removeReaderFName" class="col-sm-4 control-label">First name</label>
+
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" id="removeReaderFName" placeholder="First name">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="removeReaderMName" class="col-sm-4 control-label">Middle name</label>
+
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="removeReaderMName" placeholder="Middle name">
+                                <input type="text" class="form-control" id="removeReaderMName"
+                                       placeholder="Middle name">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-4 control-label" for="removeReaderLName">Last name</label>
+
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" placeholder="Last name" id="removeReaderLName"/>
                             </div>
@@ -254,6 +319,104 @@
             </div>
         </div>
     </div>
+    <%--модальне вікно для кнопки Details--%>
+    <div id="readersDetailsModal" class="modal fade" role="dialog" style="top: 100px; ">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Reader details</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label for="detailsReaderSearchId" class="col-sm-4 control-label">ID</label>
+
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="detailsReaderSearchId"
+                                       placeholder="Enter reader id">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="detailsReaderFName" class="col-sm-4 control-label">First name</label>
+
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="detailsReaderFName" placeholder="First name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="detailsReaderMName" class="col-sm-4 control-label">Middle name</label>
+
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="detailsReaderMName" placeholder="Middle name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label" for="detailsReaderLName">Last name</label>
+
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" placeholder="Last name" id="detailsReaderLName"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label" for="detailsReaderPhone">Phone</label>
+
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" placeholder="Phone" id="detailsReaderPhone"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label" for="detailsReaderCountry">Country</label>
+
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" placeholder="Country" id="detailsReaderCountry"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label" for="detailsReaderCity">City</label>
+
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" placeholder="City" id="detailsReaderCity"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label" for="detailsReaderStreet">Street</label>
+
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" placeholder="Street" id="detailsReaderStreet"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label" for="detailsReaderHouse">House</label>
+
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" placeholder="House" id="detailsReaderHouse"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label" for="detailsReaderBirth">Date of birth</label>
+
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" placeholder="Date of birth" id="detailsReaderBirth"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label" for="detailsReaderRegistrationDate">Registration date</label>
+
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" placeholder="Registration date" id="detailsReaderRegistrationDate"/>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <div></div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <%--рядок додаткової інформації--%>
     <div id="readersStatus"></div>
 </section>
 <%--end reader section--%>
@@ -261,6 +424,7 @@
 <!--contacts section-->
 <section id="contacts-section" style="text-align: center; height: 700px; ">
     <h3>Contacts</h3>
+
     <div class="form-horizontal ">
         <div class="form-group">
             <div class="col-sm-2"><h4> Phone: </h4></div>
