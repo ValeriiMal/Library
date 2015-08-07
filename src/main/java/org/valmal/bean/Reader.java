@@ -8,15 +8,14 @@ import java.util.Date;
 public class Reader {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private int id;
-    @Column(name = "fName")
+
     private String fName;
-    @Column(name = "mName")
+
     private String mName;
-    @Column(name = "lName")
+
     private String lName;
-    @Column(name = "phone")
+
     private String phone;
     @OneToOne
     private Address address;

@@ -11,13 +11,13 @@ public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int reader_id;
-    @Column(name = "country")
+
     private String country;
-    @Column(name = "city")
+
     private String city;
-    @Column(name = "street")
+
     private String street;
-    @Column(name = "house")
+
     private String house;
     @OneToOne
     @PrimaryKeyJoinColumn

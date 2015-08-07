@@ -1,0 +1,7 @@
+org\valmal\controller\ReaderController.class
+org\valmal\service\impl\ReaderServiceImpl.class
+org\valmal\dao\impl\ReaderDaoImpl.class
+org\valmal\bean\Address.class
+org\valmal\dao\ReaderDao.class
+org\valmal\service\ReaderService.class
+org\valmal\bean\Reader.class

@@ -44,6 +44,7 @@
         <button id="readers-edit-button" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#readersEditModal">Edit</button>
         <button id="readers-remove-button" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#readersRemoveModal">Remove</button>
         <button id="readers-find-button" type="button" class="btn btn-info btn-lg">Find</button>
+        <button id="readers-details-button" type="button" class="btn btn-info btn-lg">Details</button>
     </div>
     <div id="readers-find-input" style="display: none;">
         <form class="form-horizontal">
