@@ -83,8 +83,8 @@
       <file leaf-file-name="index.jsp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/index.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.1627907">
-              <caret line="126" column="98" selection-start-line="126" selection-start-column="98" selection-end-line="126" selection-end-column="98" />
+            <state vertical-scroll-proportion="0.60465115">
+              <caret line="142" column="30" selection-start-line="142" selection-start-column="30" selection-end-line="142" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -1013,12 +1013,12 @@
       <workItem from="1438853462480" duration="16983000" />
       <workItem from="1438881593474" duration="3945000" />
       <workItem from="1438931544400" duration="6539000" />
-      <workItem from="1438951060924" duration="1545000" />
+      <workItem from="1438951060924" duration="1611000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="67286000" />
+    <option name="totallyTimeSpent" value="67352000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1483,8 +1483,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/index.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.1627907">
-          <caret line="126" column="98" selection-start-line="126" selection-start-column="98" selection-end-line="126" selection-end-column="98" />
+        <state vertical-scroll-proportion="0.60465115">
+          <caret line="142" column="30" selection-start-line="142" selection-start-column="30" selection-end-line="142" selection-end-column="30" />
           <folding />
         </state>
       </provider>
