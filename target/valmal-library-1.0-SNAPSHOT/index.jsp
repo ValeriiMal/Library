@@ -51,12 +51,13 @@
         </button>
         <button id="readers-find-button" type="button" class="btn btn-info btn-lg">Find</button>
 
-        <button id="readers-details-button" type="button" class="btn btn-info btn-lg" data-toogle="modal"
+        <button id="readers-details-button" type="button" class="btn btn-info btn-lg" data-toggle="modal"
                 data-target="#readersDetailsModal">Details</button>
     </div>
+    <%--поля пошуку --%>
     <div id="readers-find-input" style="display: none;">
-        <form class="form-horizontal" style="text-align: center;">
-            <div class="form-group">
+        <form class="form-horizontal" >
+            <div class="form-group" >
                 <div class="col-sm-2">
                     <input type="text" class="form-control" placeholder="ID">
                 </div>
@@ -76,9 +77,9 @@
                     <%--<input type="text" class="form-control" placeholder="Address">--%>
                 <%--</div>--%>
             </div>
-
         </form>
     </div>
+    <%--таблиця читачів--%>
     <div id="readers-container">
         <table class="table table-hover" id="reader-table">
             <thead>
@@ -97,8 +98,8 @@
     </div>
 
     <%--Modal--%>
-
-    <div id="readersAddModal" class="modal fade" role="dialog" style="top: 100px; ">
+    <%--модальне вікно для кнопки Add--%>
+    <div id="readersAddModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -179,8 +180,8 @@
             </div>
         </div>
     </div>
-
-    <div id="readersEditModal" class="modal fade" role="dialog" style="top: 100px; ">
+    <%--модальне вікно для кнопки Edit--%>
+    <div id="readersEditModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -269,8 +270,8 @@
             </div>
         </div>
     </div>
-
-    <div id="readersRemoveModal" class="modal fade" role="dialog" style="top: 100px; ">
+    <%--модальне вікно для кнопки Remove--%>
+    <div id="readersRemoveModal" class="modal fade" role="dialog" >
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -318,8 +319,8 @@
             </div>
         </div>
     </div>
-
-    <div id="readersDetailsModal" class="modal fade" role="dialog" style="top: 100px; ">
+    <%--модальне вікно для кнопки Details--%>
+    <div id="readersDetailsModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -403,7 +404,7 @@
                             <label class="col-sm-4 control-label" for="detailsReaderRegistrationDate">Registration date</label>
 
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" placeholder="Date of birth" id="detailsReaderRegistrationDate"/>
+                                <input type="text" class="form-control" placeholder="Registration date" id="detailsReaderRegistrationDate"/>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -415,7 +416,7 @@
             </div>
         </div>
     </div>
-
+    <%--рядок додаткової інформації--%>
     <div id="readersStatus"></div>
 </section>
 <%--end reader section--%>

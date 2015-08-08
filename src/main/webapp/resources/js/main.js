@@ -41,7 +41,7 @@ function readersFind() {
         readersFindInputs[2].value == "" ? params += "&mName=" : params += "&mName=" + readersFindInputs[2].value ;
         readersFindInputs[3].value == "" ? params += "&lName=" : params += "&lName=" + readersFindInputs[3].value ;
         readersFindInputs[4].value == "" ? params += "&phone=" : params += "&phone=" + readersFindInputs[4].value ;
-        readersFindInputs[5].value == "" ? params += "&address=" : params += "&address=" + readersFindInputs[5].value ;
+        //readersFindInputs[5].value == "" ? params += "&address=" : params += "&address=" + readersFindInputs[5].value ;
 
         showReadersFind(params);
     }
@@ -59,7 +59,12 @@ $('body').on('click', '#add-reader', function() {
         "&mName=" + document.getElementById('inputReaderMName').value +
         "&lName=" + document.getElementById('inputReaderLName').value +
         "&phone=" + document.getElementById('inputReaderPhone').value +
-        "&address=" + document.getElementById('inputReaderAddress').value;
+        "&country=" + document.getElementById('inputReaderCountry').value +
+        "&city=" + document.getElementById('inputReaderCity').value +
+        "&street=" + document.getElementById('inputReaderStreet').value +
+        "&house=" + document.getElementById('inputReaderHouse').value +
+        //"&registrationDate=" + document.getElementById('inputReaderRegistrationDate').value +
+        "&birth=" + document.getElementById('inputReaderBirth').value;
 
     $('#addReaderResult').load('reader/add?' + params);
 });
@@ -76,7 +81,11 @@ $('#editReaderSearchId').keyup(function() {
             $('#editReaderMName').val(editObj.mName);
             $('#editReaderLName').val(editObj.lName);
             $('#editReaderPhone').val(editObj.phone);
-            $('#editReaderAddress').val(editObj.address);
+            $('#editReaderCountry').val(editObj.counrty);
+            $('#editReaderCity').val(editObj.city);
+            $('#editReaderStreet').val(editObj.street);
+            $('#editReaderHouse').val(editObj.house);
+            $('#editReaderBirth').val(editObj.dateOfBirth);
         });
     }else{
         $('#readersEditModal input').each(function(){
@@ -84,14 +93,18 @@ $('#editReaderSearchId').keyup(function() {
         })
     }
 });
-
+// обробник кнопки модального вікна для зміни даних читача
 $('#edit-reader').click(function() {
     var params = 'id=' + $('#editReaderSearchId').val() +
         '&fName=' + $('#editReaderFName').val() +
         '&mName=' + $('#editReaderMName').val() +
         '&lName=' + $('#editReaderLName').val() +
         '&phone=' + $('#editReaderPhone').val() +
-        '&address=' + $('#editReaderAddress').val();
+        '&country=' + $('#editReaderCountry').val() +
+        '&city=' + $('#editReaderCity').val() +
+        '&street=' + $('#editReaderStreet').val() +
+        '&house=' + $('#editReaderHouse').val() +
+        '&birth=' + $('#editReaderBirth').val();
     $.get('reader/edit?' + params, function (data) {
         $('#editReaderResult').text(data);
     })
@@ -122,6 +135,31 @@ $('#remove-reader').click(function() {
     $.get('reader/remove?' + params, function (data) {
         $('#removeReaderResult').text(data);
     })
+});
+
+// details button
+$('#detailsReaderSearchId').keyup(function() {
+    var idInput = $('#detailsReaderSearchId').val();
+    if(!!idInput){
+        var params = "id=" + idInput;
+        $.get('reader/findReaderJSON?' + params, function(data){
+            var obj = $.parseJSON(data);
+            $('#detailsReaderFName').val(obj.fName);
+            $('#detailsReaderMName').val(obj.mName);
+            $('#detailsReaderLName').val(obj.lName);
+            $('#detailsReaderPhone').val(obj.phone);
+            $('#detailsReaderCountry').val(obj.counrty);
+            $('#detailsReaderCity').val(obj.city);
+            $('#detailsReaderStreet').val(obj.street);
+            $('#detailsReaderHouse').val(obj.house);
+            $('#detailsReaderBirth').val(obj.dateOfBirth);
+            $('#detailsReaderRegistrationDate').val(obj.registrationDate);
+        })
+    }else{
+        $('#readersDetailsModal input').each(function(){
+            $(this).val("");
+        })
+    }
 });
 
 // показ дефолтної таблички readers при записку сторінки

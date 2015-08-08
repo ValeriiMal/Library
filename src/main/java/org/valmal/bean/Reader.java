@@ -4,26 +4,24 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.util.*;
 
 @Entity()
 @Table(name = "readers")
-@OnDelete(action = OnDeleteAction.CASCADE)
 public class Reader {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
     private String fName;
-
     private String mName;
-
     private String lName;
-
     private String phone;
-    @OneToOne
+    private String registrationDate;
+    private String dateOfBirth;
+    @Embedded
     private Address address;
-
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Set<Book> books = new HashSet<>();
 
     public Reader() {
     }
@@ -37,6 +35,21 @@ public class Reader {
         return reader;
     }
 
+    public String getRegistrationDate() {
+        return registrationDate;
+    }
+
+    public void setRegistrationDate(String registrationDate) {
+        this.registrationDate = registrationDate;
+    }
+
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
 
     public Integer getId() {
         return id;
@@ -86,6 +99,13 @@ public class Reader {
         this.address = address;
     }
 
+    public Set<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(Set<Book> books) {
+        this.books = books;
+    }
 
     @Override
     public String toString() {
@@ -95,7 +115,6 @@ public class Reader {
                 "<td>" + getmName() + "</td>" +
                 "<td>" + getlName() + "</td>" +
                 "<td>" + getPhone() + "</td>" +
-                "<td>" + "some address" + "</td>" +
                 "</tr>"
                 ;
     }

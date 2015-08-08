@@ -99,7 +99,7 @@
 
     <%--Modal--%>
     <%--модальне вікно для кнопки Add--%>
-    <div id="readersAddModal" class="modal fade" role="dialog" style="top: 100px; ">
+    <div id="readersAddModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -181,7 +181,7 @@
         </div>
     </div>
     <%--модальне вікно для кнопки Edit--%>
-    <div id="readersEditModal" class="modal fade" role="dialog" style="top: 100px; ">
+    <div id="readersEditModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -271,7 +271,7 @@
         </div>
     </div>
     <%--модальне вікно для кнопки Remove--%>
-    <div id="readersRemoveModal" class="modal fade" role="dialog" style="top: 100px; ">
+    <div id="readersRemoveModal" class="modal fade" role="dialog" >
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -320,7 +320,7 @@
         </div>
     </div>
     <%--модальне вікно для кнопки Details--%>
-    <div id="readersDetailsModal" class="modal fade" role="dialog" style="top: 100px; ">
+    <div id="readersDetailsModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">

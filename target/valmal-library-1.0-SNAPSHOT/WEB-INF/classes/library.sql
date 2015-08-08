@@ -93,9 +93,9 @@ insert into library.subjects values
 (9, 'subject9'),
 (10, 'subject10');
 
+use library; 
 select * from address;
 select * from readers;
 select * from books;
 select * from subjects;
 select * from readers left join address on readers.address_id = address.reader_id;
- 
