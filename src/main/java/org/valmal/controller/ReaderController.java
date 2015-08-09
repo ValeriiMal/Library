@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.valmal.bean.Address;
 import org.valmal.bean.Book;
+import org.valmal.bean.Genre;
 import org.valmal.bean.Reader;
 import org.valmal.service.BookService;
 import org.valmal.service.ReaderService;
@@ -43,8 +44,10 @@ public class ReaderController {
         r2.setfName("r4");
         Book b = new Book() ;
         b.setTitle("b1");
+//        b.setGenre(Genre.genre1);
         Book b2 = new Book() ;
         b2.setTitle("bnew");
+//        b2.setGenre(Genre.genre2);
 
         b.getReaders().add(r1);
         b.getReaders().add(r2);

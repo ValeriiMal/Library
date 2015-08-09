@@ -11,3 +11,4 @@ org\valmal\service\BookService.class
 org\valmal\service\impl\BookServiceImpl.class
 org\valmal\dao\BookDao.class
 org\valmal\bean\Address.class
+org\valmal\controller\BookController.class

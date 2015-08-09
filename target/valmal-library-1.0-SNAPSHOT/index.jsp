@@ -35,8 +35,60 @@
 
 <div id="empty_row" style="height: 50px;"></div>
 
+<%--book section--%>
+<section id="books-section">
+    <h3>Books</h3>
+    <%--кнопки--%>
+    <div>
+        <button id="books-add" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#booksAddModal">Add</button>
+        <button id="books-edit" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#booksEditModal">Edit</button>
+        <button id="books-remove" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#booksRemoveModal">Remove</button>
+        <button id="books-details" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#booksDetailsModal">Details</button>
+    </div>
+    <%--поля пошуку--%>
+    <div id="books-find-input">
+        <form class="form-horizontal" >
+            <div class="form-group" >
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" placeholder="ID">
+                </div>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" placeholder="Title">
+                </div>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" placeholder="Authors">
+                </div>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" placeholder="Year">
+                </div>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" placeholder="Genre">
+                </div>
+            </div>
+        </form>
+    </div>
+    <%--таблиця книг--%>
+    <div id="books-container">
+        <table class="table table-hover" id="books-table">
+            <thead>
+            <tr>
+                <th class="col-sm-2">Id</th>
+                <th class="col-sm-2">Title</th>
+                <th class="col-sm-2">Authors</th>
+                <th class="col-sm-2">Year</th>
+                <th class="col-sm-2">Genre</th>
+            </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+
+</section>
+<%--end book section--%>
+
 <!--reader section-->
-<section id="readers-section" style="text-align: center">
+<section id="readers-section">
     <h3>Readers</h3>
 
     <div>
@@ -73,9 +125,6 @@
                 <div class="col-sm-2">
                     <input type="text" class="form-control" placeholder="Phone">
                 </div>
-                <%--<div class="col-sm-2">--%>
-                    <%--<input type="text" class="form-control" placeholder="Address">--%>
-                <%--</div>--%>
             </div>
         </form>
     </div>

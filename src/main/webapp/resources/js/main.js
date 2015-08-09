@@ -167,30 +167,27 @@ showReaders();
 //$('#readersStatus').load('http://localhost:8080/servlet?action=readersCount');
 
 //відкриття/приховування блоку з полями пошуку для readers
-document.getElementById('readers-find-button').onclick = function () {
-    var el = document.getElementById('readers-find-input');
-    if(el.style.display == 'none'){
-        el.style.display = 'block';
-        el.style.marginTop = '10px';
-    }else{
-        el.style.display = 'none';
-    }
-};
-
-// прокрутка до Readers
-$('#menu_item_readers').click(function() {
-    window.location.href = '#readers-section';
-    document.body.scrollTop = 20;
-});
+//document.getElementById('readers-find-button').onclick = function () {
+//    var el = document.getElementById('readers-find-input');
+//    if(el.style.display == 'none'){
+//        el.style.display = 'block';
+//        el.style.marginTop = '10px';
+//    }else{
+//        el.style.display = 'none';
+//    }
+//};
 
 // READERS-SECTION-END
 
-// CONTACTS-SECTION-BEGIN
+//прокрутки
+function scroll2(whoID, whereID){
+    $(whoID).click(function() {
+        $('html body').animate({
+            scrollTop: $(whereID).offset().top - 50
+        }, 1000)
+    });
+}
 
-// прокрутка до Contacts
-$('#menu_item_contacts').click(function () {
-    window.location.href = '#contacts-section';
-    document.body.scrollTop = window.pageYOffset - 50;
-});
-
-// CONTACTS-SECTION-END
+scroll2('#menu_item_readers', '#readers-section');
+scroll2('#menu_item_books', '#books-section');
+scroll2('#menu_item_contacts', '#contacts-section');

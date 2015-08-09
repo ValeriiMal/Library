@@ -10,6 +10,10 @@ h1 {
     font-size: 50px;
 }
 
+section {
+    text-align: center;
+}
+
 .menu_container {
     font-size: 30px;
 }
@@ -68,9 +72,13 @@ h1 {
     height: 410px;
 }
 
-.readers_input {
-    width: 120px;
+#books-container {
+    height: 410px;
 }
+
+/*.readers_input {*/
+    /*width: 120px;*/
+/*}*/
 
 .modal {
     top: 28px;

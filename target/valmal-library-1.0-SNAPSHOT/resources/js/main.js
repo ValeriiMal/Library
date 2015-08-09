@@ -183,6 +183,13 @@ $('#menu_item_readers').click(function() {
     document.body.scrollTop = 20;
 });
 
+// прокрутка до books
+$('#menu_item_books').click(function() {
+    $('html body').animate({
+        scrollTop: $('#books-section').offset().top
+    }, 2000);
+});
+
 // READERS-SECTION-END
 
 // CONTACTS-SECTION-BEGIN

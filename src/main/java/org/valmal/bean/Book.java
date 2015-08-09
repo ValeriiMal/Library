@@ -14,7 +14,7 @@ public class Book {
     private int id;
     private String title;
     private String authors;
-    private Genre genre;
+    private String genre;
     private String year;
     private int amount;
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -47,11 +47,11 @@ public class Book {
         this.authors = authors;
     }
 
-    public Genre getGenre() {
+    public String getGenre() {
         return genre;
     }
 
-    public void setGenre(Genre genre) {
+    public void setGenre(String genre) {
         this.genre = genre;
     }
 
