@@ -1,0 +1,14 @@
+org\valmal\bean\Genre.class
+org\valmal\controller\ReaderController.class
+org\valmal\service\impl\ReaderServiceImpl.class
+org\valmal\dao\impl\ReaderDaoImpl.class
+org\valmal\dao\ReaderDao.class
+org\valmal\service\ReaderService.class
+org\valmal\dao\impl\BookDaoImpl.class
+org\valmal\bean\Book.class
+org\valmal\bean\Reader.class
+org\valmal\service\BookService.class
+org\valmal\service\impl\BookServiceImpl.class
+org\valmal\dao\BookDao.class
+org\valmal\bean\Address.class
+org\valmal\controller\BookController.class
