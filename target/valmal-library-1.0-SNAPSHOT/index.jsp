@@ -13,7 +13,7 @@
     <title>Library</title>
 </head>
 <body>
-<nav class="header" style="position: fixed; width: 1000px; top: 0px;">
+<nav class="header" style="position: fixed; width: 1000px; top: 0;">
     <ul class="menu_container">
         <li class="menu_item" id="menu_item_report">
             Report
@@ -40,15 +40,24 @@
     <h3>Books</h3>
     <%--кнопки--%>
     <div>
-        <button id="books-add" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#booksAddModal">Add</button>
-        <button id="books-edit" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#booksEditModal">Edit</button>
-        <button id="books-remove" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#booksRemoveModal">Remove</button>
-        <button id="books-details" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#booksDetailsModal">Details</button>
+        <button id="books-add" type="button" class="btn btn-info btn-lg" data-toggle="modal"
+                data-target="#booksAddModal">Add
+        </button>
+        <button id="books-edit" type="button" class="btn btn-info btn-lg" data-toggle="modal"
+                data-target="#booksEditModal">Edit
+        </button>
+        <button id="books-remove" type="button" class="btn btn-info btn-lg" data-toggle="modal"
+                data-target="#booksRemoveModal">Remove
+        </button>
+        <button id="books-details" type="button" class="btn btn-info btn-lg" data-toggle="modal"
+                data-target="#booksDetailsModal">Details
+        </button>
     </div>
+    <br/>
     <%--поля пошуку--%>
     <div id="books-find-input">
-        <form class="form-horizontal" >
-            <div class="form-group" >
+        <form class="form-horizontal">
+            <div class="form-group">
                 <div class="col-sm-2">
                     <input type="text" class="form-control" placeholder="ID">
                 </div>
@@ -83,12 +92,219 @@
             </tbody>
         </table>
     </div>
+    <%--add modal--%>
+    <div id="booksAddModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3 class="modal-title">Add book</h3>
+                </div>
+                <div class="modal-body">
+                    <form action="" class="form-horizontal">
+                        <div class="form-group">
+                            <label for="inputBookTitle" class="col-sm-4 control-label">Title</label>
 
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="inputBookTitle" placeholder="Title"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputBookAuthors" class="col-sm-4 control-label">Authors</label>
+
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="inputBookAuthors" placeholder="Authors"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputBookYear" class="col-sm-4 control-label">Year</label>
+
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="inputBookYear" placeholder="Year"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputBookGenre" class="col-sm-4 control-label">Genre</label>
+
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="inputBookGenre" placeholder="Genre"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputBookCount" class="col-sm-4 control-label">Count</label>
+
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="inputBookCount" placeholder="Count"/>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <div id="addBookResult" style="display: inline-block"></div>
+                    <button id="add-book" type="button" class="btn btn-default">Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%--edit modal--%>
+    <div id="booksEditModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3 class="modal-title">Edit book</h3>
+                </div>
+                <div class="modal-body">
+                    <form action="" class="form-horizontal">
+                        <div class="form-group">
+                            <label for="editBookSearchId" class="col-sm-4 control-label">ID</label>
+                            <div class="col-sm-8">
+                                <input id="editBookSearchId" type="text" class="form-control" placeholder="Enter book Id here"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="editBookTitle" class="col-sm-4 control-label">Title</label>
+                            <div class="col-sm-8">
+                                <input id="editBookTitle" type="text" class="form-control" placeholder="Title"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="editBookAuthors" class="col-sm-4 control-label">Authors</label>
+                            <div class="col-sm-8">
+                                <input id="editBookAuthors" type="text" class="form-control" placeholder="Authors"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="editBookYear" class="col-sm-4 control-label">Year</label>
+                            <div class="col-sm-8">
+                                <input id="editBookYear" type="text" class="form-control" placeholder="Year"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="editBookGenre" class="col-sm-4 control-label">Genre</label>
+                            <div class="col-sm-8">
+                                <input id="editBookGenre" type="text" class="form-control" placeholder="Genre"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="editBookCount" class="col-sm-4 control-label">Count</label>
+                            <div class="col-sm-8">
+                                <input id="editBookCount" type="text" class="form-control" placeholder="Count"/>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <div id="editBookResult" style="display: inline-block"></div>
+                    <button id="edit_book" class="btn btn-default" type="button">Edit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%--remove modal--%>
+    <div id="booksRemoveModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3 class="modal-title">Remove book</h3>
+                </div>
+                <div class="modal-body">
+                    <form action="" class="form-horizontal">
+                        <div class="form-group">
+                            <label for="removeBookSearchId" class="col-sm-4 control-label">ID</label>
+                            <div class="col-sm-8 ">
+                                <input type="text" id="removeBookSearchId" class="form-control" placeholder="Enter book Id here"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="removeBookTitle" class="col-sm-4 control-label">Title</label>
+                            <div class="col-sm-8 ">
+                                <input type="text" id="removeBookTitle" class="form-control" placeholder="Title"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="removeBookAuthors" class="col-sm-4 control-label">Authors</label>
+                            <div class="col-sm-8 ">
+                                <input type="text" id="removeBookAuthors" class="form-control" placeholder="Authors"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="removeBookYear" class="col-sm-4 control-label">Year</label>
+                            <div class="col-sm-8 ">
+                                <input type="text" id="removeBookYear" class="form-control" placeholder="Year"/>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <div id="removeBookResult" style="display: inline-block"></div>
+                    <button id="remove-book" type="button" class="btn btn-default">Remove</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%--details modal--%>
+    <div id="booksDetailsModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3 class="modal-title">Book details</h3>
+                </div>
+                <div class="modal-body">
+                    <form action="" class="form-horizontal">
+                        <div class="form-group">
+                            <label for="detailsBookSearchId" class="col-sm-4 control-label">ID</label>
+                            <div class="col-sm-8">
+                                <input id="detailsBookSearchId" type="text" class="form-control" placeholder="Enter book Id here"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="detailsBookTitle" class="col-sm-4 control-label">Title</label>
+                            <div class="col-sm-8">
+                                <input id="detailsBookTitle" type="text" class="form-control" placeholder="Title"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="detailsBookAuthors" class="col-sm-4 control-label">Authors</label>
+                            <div class="col-sm-8">
+                                <input id="detailsBookAuthors" type="text" class="form-control" placeholder="Authors"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="detailsBookYear" class="col-sm-4 control-label">Year</label>
+                            <div class="col-sm-8">
+                                <input id="detailsBookYear" type="text" class="form-control" placeholder="Year"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="detailsBookGenre" class="col-sm-4 control-label">Genre</label>
+                            <div class="col-sm-8">
+                                <input id="detailsBookGenre" type="text" class="form-control" placeholder="Genre"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="detailsBookCount" class="col-sm-4 control-label">Count</label>
+                            <div class="col-sm-8">
+                                <input id="detailsBookCount" type="text" class="form-control" placeholder="Count"/>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <%----%>
 </section>
 <%--end book section--%>
 
 <!--reader section-->
-<section id="readers-section">
+<section id="readers-section" style="text-align: center;">
     <h3>Readers</h3>
 
     <div>
@@ -104,12 +320,13 @@
         <button id="readers-find-button" type="button" class="btn btn-info btn-lg">Find</button>
 
         <button id="readers-details-button" type="button" class="btn btn-info btn-lg" data-toggle="modal"
-                data-target="#readersDetailsModal">Details</button>
+                data-target="#readersDetailsModal">Details
+        </button>
     </div>
     <%--поля пошуку --%>
-    <div id="readers-find-input" style="display: none;">
-        <form class="form-horizontal" >
-            <div class="form-group" >
+    <div id="readers-find-input" <%--style="display: none;"--%>>
+        <form class="form-horizontal">
+            <div class="form-group">
                 <div class="col-sm-2">
                     <input type="text" class="form-control" placeholder="ID">
                 </div>
@@ -217,7 +434,8 @@
                             <label class="col-sm-4 control-label" for="inputReaderBirth">Date of birth</label>
 
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" placeholder="Date of birth" id="inputReaderBirth"/>
+                                <input type="text" class="form-control" placeholder="Date of birth"
+                                       id="inputReaderBirth"/>
                             </div>
                         </div>
                     </form>
@@ -307,7 +525,8 @@
                             <label class="col-sm-4 control-label" for="editReaderBirth">Date of birth</label>
 
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" placeholder="Date of birth" id="editReaderBirth"/>
+                                <input type="text" class="form-control" placeholder="Date of birth"
+                                       id="editReaderBirth"/>
                             </div>
                         </div>
                     </form>
@@ -320,7 +539,7 @@
         </div>
     </div>
     <%--модальне вікно для кнопки Remove--%>
-    <div id="readersRemoveModal" class="modal fade" role="dialog" >
+    <div id="readersRemoveModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -390,21 +609,24 @@
                             <label for="detailsReaderFName" class="col-sm-4 control-label">First name</label>
 
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="detailsReaderFName" placeholder="First name">
+                                <input type="text" class="form-control" id="detailsReaderFName"
+                                       placeholder="First name">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="detailsReaderMName" class="col-sm-4 control-label">Middle name</label>
 
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="detailsReaderMName" placeholder="Middle name">
+                                <input type="text" class="form-control" id="detailsReaderMName"
+                                       placeholder="Middle name">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-4 control-label" for="detailsReaderLName">Last name</label>
 
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" placeholder="Last name" id="detailsReaderLName"/>
+                                <input type="text" class="form-control" placeholder="Last name"
+                                       id="detailsReaderLName"/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -418,7 +640,8 @@
                             <label class="col-sm-4 control-label" for="detailsReaderCountry">Country</label>
 
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" placeholder="Country" id="detailsReaderCountry"/>
+                                <input type="text" class="form-control" placeholder="Country"
+                                       id="detailsReaderCountry"/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -446,14 +669,17 @@
                             <label class="col-sm-4 control-label" for="detailsReaderBirth">Date of birth</label>
 
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" placeholder="Date of birth" id="detailsReaderBirth"/>
+                                <input type="text" class="form-control" placeholder="Date of birth"
+                                       id="detailsReaderBirth"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label" for="detailsReaderRegistrationDate">Registration date</label>
+                            <label class="col-sm-4 control-label" for="detailsReaderRegistrationDate">Registration
+                                date</label>
 
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" placeholder="Registration date" id="detailsReaderRegistrationDate"/>
+                                <input type="text" class="form-control" placeholder="Registration date"
+                                       id="detailsReaderRegistrationDate"/>
                             </div>
                         </div>
                         <div class="modal-footer">

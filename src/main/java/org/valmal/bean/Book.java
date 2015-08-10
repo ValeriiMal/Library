@@ -78,4 +78,15 @@ public class Book {
     public void setReaders(Set<Reader> readers) {
         this.readers = readers;
     }
+
+    @Override
+    public String toString() {
+        return "<tr>" +
+                "<td>" + getId() + "</td>" +
+                "<td>" + getTitle() + "</td>" +
+                "<td>" + getAuthors() + "</td>" +
+                "<td>" + getYear() + "</td>" +
+                "<td>" + getGenre() + "</td>" +
+                "</tr>";
+    }
 }

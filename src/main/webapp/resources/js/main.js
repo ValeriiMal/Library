@@ -3,14 +3,17 @@
 
 // variables
 var readersFindInputs = document.getElementById('readers-find-input').getElementsByTagName('input');
-//var readersFindInputs = document.getElementById('readers-section').getElementsByTagName('input');
-var readersAddInputs = document.getElementById('readersAddModal').getElementsByTagName('input');
+var booksFindInputs = document.getElementById('books-find-input').getElementsByTagName('input');
 
 // functions
 
 // вивід невідфільтрованого набору записів
 function showReaders(){
     $('#reader-table tbody').load("reader/load");
+}
+
+function showBooks(){
+    $('#books-table tbody').load("book/load");
 }
 
 // вивід відфільтрованого за id набору записів
@@ -27,7 +30,7 @@ function isInputsEmpty(inputs){
     return true;
 }
 
-// обробник onkeyup для кожного input
+// обробник onkeyup для кожного reader input
 function readersFind() {
     var params = "";
     if(isInputsEmpty(readersFindInputs)){
@@ -41,7 +44,6 @@ function readersFind() {
         readersFindInputs[2].value == "" ? params += "&mName=" : params += "&mName=" + readersFindInputs[2].value ;
         readersFindInputs[3].value == "" ? params += "&lName=" : params += "&lName=" + readersFindInputs[3].value ;
         readersFindInputs[4].value == "" ? params += "&phone=" : params += "&phone=" + readersFindInputs[4].value ;
-        //readersFindInputs[5].value == "" ? params += "&address=" : params += "&address=" + readersFindInputs[5].value ;
 
         showReadersFind(params);
     }
@@ -52,7 +54,25 @@ for(var i = 0; i < readersFindInputs.length; i++){
     readersFindInputs[i].onkeyup = readersFind;
 }
 
-//add button
+// books finding
+
+for(var i = 0; i < booksFindInputs.length; i++){
+    booksFindInputs[i].onkeyup = function() {
+        if(isInputsEmpty(booksFindInputs)){
+            showBooks();
+        } else {
+            var params = "";
+            booksFindInputs[0].value == "" ? params += "id=" : params += "id=" + booksFindInputs[0].value;
+            booksFindInputs[1].value == "" ? params += "&title=" : params += "&title=" + booksFindInputs[1].value;
+            booksFindInputs[2].value == "" ? params += "&authors=" : params += "&authors=" + booksFindInputs[2].value;
+            booksFindInputs[3].value == "" ? params += "&year=" : params += "&year=" + booksFindInputs[3].value;
+            booksFindInputs[4].value == "" ? params += "&genre=" : params += "&genre=" + booksFindInputs[4].value;
+            $('#books-table tbody').load('book/find?' + params);
+        }
+    }
+}
+
+//add reader button
 $('body').on('click', '#add-reader', function() {
     var params = "" +
         "&fName=" + document.getElementById('inputReaderFName').value +
@@ -63,13 +83,23 @@ $('body').on('click', '#add-reader', function() {
         "&city=" + document.getElementById('inputReaderCity').value +
         "&street=" + document.getElementById('inputReaderStreet').value +
         "&house=" + document.getElementById('inputReaderHouse').value +
-        //"&registrationDate=" + document.getElementById('inputReaderRegistrationDate').value +
         "&birth=" + document.getElementById('inputReaderBirth').value;
 
     $('#addReaderResult').load('reader/add?' + params);
 });
 
-//edit button
+//add book button
+$('html body #add-book').click(function () {
+    $('#addBookResult').load('book/add?' +
+    "title=" + $('#inputBookTitle').val() +
+    "&authors=" + $('#inputBookAuthors').val() +
+    "&year=" + $('#inputBookYear').val() +
+    "&genre=" + $('#inputBookGenre').val() +
+    "&count=" + $('#inputBookCount').val()
+    );
+});
+
+//edit reader button
 $('#editReaderSearchId').keyup(function() {
     var searchIdInput = $('#editReaderSearchId').val();
     if(!!searchIdInput){
@@ -110,7 +140,37 @@ $('#edit-reader').click(function() {
     })
 });
 
-// remove button
+//edit book
+// пошук за ID при keyup
+$('#editBookSearchId').keyup(function () {
+    if(!!$('#editBookSearchId').val()){
+        $.get("book/findBookByIdJSON?id=" + $('#editBookSearchId').val(), function (data) {
+            var obj = $.parseJSON(data);
+            $('#editBookTitle').val(obj.title);
+            $('#editBookYear').val(obj.year);
+            $('#editBookAuthors').val(obj.authors);
+            $('#editBookGenre').val(obj.genre);
+            $('#editBookCount').val(obj.amount);
+        })
+    }else{
+        $('#booksEditModal input').each(function () {
+            $(this).val("");
+        })
+    }
+});
+// відправка редагованих даних для апдейту
+$('#edit_book').click(function () {
+    $.get('book/edit?' +
+        "id=" + $('#editBookSearchId').val() +
+        "&title=" + $('#editBookTitle').val() +
+        "&authors=" + $('#editBookAuthors').val() +
+        "&year=" + $('#editBookYear').val() +
+        "&genre=" + $('#editBookGenre').val() +
+        "&count=" + $('#editBookCount').val()
+    );
+});
+
+// remove reader button
 
 $('#removeReaderSearchId').keyup(function () {
 var removeId = $('#removeReaderSearchId').val();
@@ -137,7 +197,28 @@ $('#remove-reader').click(function() {
     })
 });
 
-// details button
+//remove book
+// пошук за ID при keyup
+$('#removeBookSearchId').keyup(function () {
+    if(!!$('#removeBookSearchId').val()){
+        $.get("book/findBookByIdJSON?id=" + $('#removeBookSearchId').val(), function (data) {
+            var obj = $.parseJSON(data);
+            $('#removeBookTitle').val(obj.title);
+            $('#removeBookYear').val(obj.year);
+            $('#removeBookAuthors').val(obj.authors);
+        })
+    }else{
+        $('#booksRemoveModal input').each(function () {
+            $(this).val("");
+        })
+    }
+});
+
+$('#remove-book').click(function () {
+    $('#removeBookResult').load("/book/remove?id=" + $('#removeBookSearchId').val())
+});
+
+// readers details
 $('#detailsReaderSearchId').keyup(function() {
     var idInput = $('#detailsReaderSearchId').val();
     if(!!idInput){
@@ -162,20 +243,26 @@ $('#detailsReaderSearchId').keyup(function() {
     }
 });
 
-// показ дефолтної таблички readers при записку сторінки
-showReaders();
-//$('#readersStatus').load('http://localhost:8080/servlet?action=readersCount');
+// books details
+$('#detailsBookSearchId').keyup(function () {
+    if(!!$('#detailsBookSearchId').val()){
+        $.get("book/findBookByIdJSON?id=" + $('#detailsBookSearchId').val(), function (data) {
+            var obj = $.parseJSON(data);
+            $('#detailsBookTitle').val(obj.title);
+            $('#detailsBookYear').val(obj.year);
+            $('#detailsBookAuthors').val(obj.authors);
+            $('#detailsBookGenre').val(obj.genre);
+            $('#detailsBookCount').val(obj.amount);
+        })
+    }else{
+        $('#booksDetailsModal input').val("")
+    }
+});
 
-//відкриття/приховування блоку з полями пошуку для readers
-//document.getElementById('readers-find-button').onclick = function () {
-//    var el = document.getElementById('readers-find-input');
-//    if(el.style.display == 'none'){
-//        el.style.display = 'block';
-//        el.style.marginTop = '10px';
-//    }else{
-//        el.style.display = 'none';
-//    }
-//};
+// показ дефолтної таблички readers
+showReaders();
+// показ дефолтної таблички books
+showBooks();
 
 // READERS-SECTION-END
 

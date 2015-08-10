@@ -69,6 +69,7 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
         return;
       out.write(" \"></script>\r\n");
       out.write("\r\n");
+      out.write("    <link rel=\"icon\" href=\"resources/img/favicon.ico\"/>\r\n");
       out.write("    <link rel=\"stylesheet\" href=\"");
       if (_jspx_meth_c_005furl_005f2(_jspx_page_context))
         return;
@@ -81,7 +82,7 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("    <title>Library</title>\r\n");
       out.write("</head>\r\n");
       out.write("<body>\r\n");
-      out.write("<nav class=\"header\" style=\"position: fixed; width: 1000px; top: 0px;\">\r\n");
+      out.write("<nav class=\"header\" style=\"position: fixed; width: 1000px; top: 0;\">\r\n");
       out.write("    <ul class=\"menu_container\">\r\n");
       out.write("        <li class=\"menu_item\" id=\"menu_item_report\">\r\n");
       out.write("            Report\r\n");
@@ -399,9 +400,11 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                data-target=\"#readersDetailsModal\">Details\r\n");
       out.write("        </button>\r\n");
       out.write("    </div>\r\n");
+      out.write("    <br/>\r\n");
       out.write("    ");
       out.write("\r\n");
-      out.write("    <div id=\"readers-find-input\" style=\"display: none;\">\r\n");
+      out.write("    <div id=\"readers-find-input\" ");
+      out.write(">\r\n");
       out.write("        <form class=\"form-horizontal\">\r\n");
       out.write("            <div class=\"form-group\">\r\n");
       out.write("                <div class=\"col-sm-2\">\r\n");
@@ -864,7 +867,7 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
     org.apache.taglibs.standard.tag.rt.core.UrlTag _jspx_th_c_005furl_005f2 = (org.apache.taglibs.standard.tag.rt.core.UrlTag) _005fjspx_005ftagPool_005fc_005furl_0026_005fvalue_005fnobody.get(org.apache.taglibs.standard.tag.rt.core.UrlTag.class);
     _jspx_th_c_005furl_005f2.setPageContext(_jspx_page_context);
     _jspx_th_c_005furl_005f2.setParent(null);
-    // /index.jsp(10,33) name = value type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    // /index.jsp(11,33) name = value type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
     _jspx_th_c_005furl_005f2.setValue("resources/css/bootstrap.css");
     int _jspx_eval_c_005furl_005f2 = _jspx_th_c_005furl_005f2.doStartTag();
     if (_jspx_th_c_005furl_005f2.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
@@ -883,7 +886,7 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
     org.apache.taglibs.standard.tag.rt.core.UrlTag _jspx_th_c_005furl_005f3 = (org.apache.taglibs.standard.tag.rt.core.UrlTag) _005fjspx_005ftagPool_005fc_005furl_0026_005fvalue_005fnobody.get(org.apache.taglibs.standard.tag.rt.core.UrlTag.class);
     _jspx_th_c_005furl_005f3.setPageContext(_jspx_page_context);
     _jspx_th_c_005furl_005f3.setParent(null);
-    // /index.jsp(11,33) name = value type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    // /index.jsp(12,33) name = value type = null reqTime = true required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
     _jspx_th_c_005furl_005f3.setValue("resources/css/index.css");
     int _jspx_eval_c_005furl_005f3 = _jspx_th_c_005furl_005f3.doStartTag();
     if (_jspx_th_c_005furl_005f3.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {

@@ -7,13 +7,14 @@
     <script src="<c:url value="resources/js/jquery-1.11.3.js"/> "></script>
     <script src="<c:url value="resources/js/bootstrap.js"/> "></script>
 
+    <link rel="icon" href="resources/img/favicon.ico"/>
     <link rel="stylesheet" href="<c:url value="resources/css/bootstrap.css"/>"/>
     <link rel="stylesheet" href="<c:url value="resources/css/index.css"/>"/>
 
     <title>Library</title>
 </head>
 <body>
-<nav class="header" style="position: fixed; width: 1000px; top: 0px;">
+<nav class="header" style="position: fixed; width: 1000px; top: 0;">
     <ul class="menu_container">
         <li class="menu_item" id="menu_item_report">
             Report
@@ -323,6 +324,7 @@
                 data-target="#readersDetailsModal">Details
         </button>
     </div>
+    <br/>
     <%--поля пошуку --%>
     <div id="readers-find-input" <%--style="display: none;"--%>>
         <form class="form-horizontal">
