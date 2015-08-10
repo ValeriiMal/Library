@@ -16,6 +16,10 @@ function showBooks(){
     $('#books-table tbody').load("book/load");
 }
 
+function showReport(){
+    $('#records-table tbody').load("report/load");
+}
+
 // вивід відфільтрованого за id набору записів
 function showReadersFind(params){
     $('#reader-table tbody').load('reader/find?' + params);
@@ -90,6 +94,10 @@ $('body').on('click', '#add-reader', function() {
 
 //add book button
 $('html body #add-book').click(function () {
+    if($('#inputBookCount').val() == ""){
+        $('#inputBookCount').val(0);
+    }
+
     $('#addBookResult').load('book/add?' +
     "title=" + $('#inputBookTitle').val() +
     "&authors=" + $('#inputBookAuthors').val() +
@@ -98,6 +106,17 @@ $('html body #add-book').click(function () {
     "&count=" + $('#inputBookCount').val()
     );
 });
+
+//add report button
+function reportAddClick() {
+    $('#addRecordResult').load("report/add?" +
+        "bookId=" + $('#inputBookId').val() +
+        "&readerId=" + $('#inputReaderId').val() +
+        "&returnDate=" + $('#inputReturnDate').val()
+    );
+}
+
+$('#add_record').click(reportAddClick);
 
 //edit reader button
 $('#editReaderSearchId').keyup(function() {
@@ -167,7 +186,9 @@ $('#edit_book').click(function () {
         "&year=" + $('#editBookYear').val() +
         "&genre=" + $('#editBookGenre').val() +
         "&count=" + $('#editBookCount').val()
-    );
+    , function (data) {
+            $('#editBookResult').text(data);
+        });
 });
 
 // remove reader button
@@ -263,6 +284,8 @@ $('#detailsBookSearchId').keyup(function () {
 showReaders();
 // показ дефолтної таблички books
 showBooks();
+// показ дефолтної таблички report
+showReport();
 
 // READERS-SECTION-END
 
@@ -275,6 +298,7 @@ function scroll2(whoID, whereID){
     });
 }
 
+scroll2('#menu_item_report', '#report_section');
 scroll2('#menu_item_readers', '#readers-section');
 scroll2('#menu_item_books', '#books-section');
 scroll2('#menu_item_contacts', '#contacts-section');

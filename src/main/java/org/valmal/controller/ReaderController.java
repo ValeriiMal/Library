@@ -36,27 +36,6 @@ public class ReaderController {
     @Autowired
     BookService bookService;
 
-    @RequestMapping("/test")
-    public void test(){
-        Reader r1 = new Reader();
-        r1.setfName("r3");
-        Reader r2 = new Reader();
-        r2.setfName("r4");
-        Book b = new Book() ;
-        b.setTitle("b1");
-//        b.setGenre(Genre.genre1);
-        Book b2 = new Book() ;
-        b2.setTitle("bnew");
-//        b2.setGenre(Genre.genre2);
-
-        b.getReaders().add(r1);
-        b.getReaders().add(r2);
-        b2.getReaders().add(r1);
-
-        bookService.insert(b);
-        bookService.insert(b2);
-    }
-
     @RequestMapping("/load")
     @ResponseBody
     public String loadReaders() {

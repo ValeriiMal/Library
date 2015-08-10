@@ -23,6 +23,7 @@ public class Reader {
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Book> books = new HashSet<>();
 
+
     public Reader() {
     }
 
@@ -100,12 +101,16 @@ public class Reader {
     }
 
     public Set<Book> getBooks() {
+        if(books == null){
+            books = new HashSet<>();
+        }
         return books;
     }
 
     public void setBooks(Set<Book> books) {
         this.books = books;
     }
+
 
     @Override
     public String toString() {

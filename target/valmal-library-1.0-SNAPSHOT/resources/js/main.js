@@ -3,9 +3,7 @@
 
 // variables
 var readersFindInputs = document.getElementById('readers-find-input').getElementsByTagName('input');
-var booksFindInputs = $('#books-find-input input');
-//var readersFindInputs = document.getElementById('readers-section').getElementsByTagName('input');
-var readersAddInputs = document.getElementById('readersAddModal').getElementsByTagName('input');
+var booksFindInputs = document.getElementById('books-find-input').getElementsByTagName('input');
 
 // functions
 
@@ -15,7 +13,7 @@ function showReaders(){
 }
 
 function showBooks(){
-    $('#books-table tbody').load("/book/load");
+    $('#books-table tbody').load("book/load");
 }
 
 // вивід відфільтрованого за id набору записів
@@ -46,7 +44,6 @@ function readersFind() {
         readersFindInputs[2].value == "" ? params += "&mName=" : params += "&mName=" + readersFindInputs[2].value ;
         readersFindInputs[3].value == "" ? params += "&lName=" : params += "&lName=" + readersFindInputs[3].value ;
         readersFindInputs[4].value == "" ? params += "&phone=" : params += "&phone=" + readersFindInputs[4].value ;
-        //readersFindInputs[5].value == "" ? params += "&address=" : params += "&address=" + readersFindInputs[5].value ;
 
         showReadersFind(params);
     }
@@ -59,31 +56,21 @@ for(var i = 0; i < readersFindInputs.length; i++){
 
 // books finding
 
-function isBookInputsEmpty(inputs){
-    inputs.each(function () {
-        if($(this).val() != ""){
-            return false;
-        }
-        return true;
-    })
-}
-
-booksFindInputs.each(function () {
-    $(this).keyup(function () {
-        if(isBookInputsEmpty(booksFindInputs)){
+for(var i = 0; i < booksFindInputs.length; i++){
+    booksFindInputs[i].onkeyup = function() {
+        if(isInputsEmpty(booksFindInputs)){
             showBooks();
-        }else{
+        } else {
             var params = "";
-            !booksFindInputs.get(0).value ? params += "id=" : params =+ "id=" + booksFindInputs.get(0).value;
-            !booksFindInputs.get(1).value ? params += "&title=" : params =+ "&title=" + booksFindInputs.get(1).value;
-            !booksFindInputs.get(2).value ? params += "&authors=" : params =+ "&authors=" + booksFindInputs.get(2).value;
-            !booksFindInputs.get(3).value ? params += "&year=" : params =+ "&year=" + booksFindInputs.get(3).value;
-            !booksFindInputs.get(4).value ? params += "&genre=" : params =+ "&genre=" + booksFindInputs.get(4).value;
+            booksFindInputs[0].value == "" ? params += "id=" : params += "id=" + booksFindInputs[0].value;
+            booksFindInputs[1].value == "" ? params += "&title=" : params += "&title=" + booksFindInputs[1].value;
+            booksFindInputs[2].value == "" ? params += "&authors=" : params += "&authors=" + booksFindInputs[2].value;
+            booksFindInputs[3].value == "" ? params += "&year=" : params += "&year=" + booksFindInputs[3].value;
+            booksFindInputs[4].value == "" ? params += "&genre=" : params += "&genre=" + booksFindInputs[4].value;
             $('#books-table tbody').load('book/find?' + params);
-
         }
-    })
-});
+    }
+}
 
 //add reader button
 $('body').on('click', '#add-reader', function() {
@@ -288,6 +275,7 @@ function scroll2(whoID, whereID){
     });
 }
 
+scroll2('#menu_item_report', '#report_section');
 scroll2('#menu_item_readers', '#readers-section');
 scroll2('#menu_item_books', '#books-section');
 scroll2('#menu_item_contacts', '#contacts-section');

@@ -147,9 +147,7 @@ public class BookController {
 
     @RequestMapping("/remove")
     @ResponseBody
-    public String removeBook(
-            @RequestParam("id") String id
-    ){
+    public String removeBook(@RequestParam("id") String id){
         bookService.delete(bookService.findBookById(Integer.parseInt(id)));
         return "book removed";
     }

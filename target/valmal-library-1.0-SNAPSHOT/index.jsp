@@ -7,6 +7,7 @@
     <script src="<c:url value="resources/js/jquery-1.11.3.js"/> "></script>
     <script src="<c:url value="resources/js/bootstrap.js"/> "></script>
 
+    <link rel="icon" href="resources/img/favicon.ico"/>
     <link rel="stylesheet" href="<c:url value="resources/css/bootstrap.css"/>"/>
     <link rel="stylesheet" href="<c:url value="resources/css/index.css"/>"/>
 
@@ -34,6 +35,69 @@
 </nav>
 
 <div id="empty_row" style="height: 50px;"></div>
+
+<%--begin report section--%>
+
+<section id="report_section">
+    <%--заголовок--%>
+    <h3>Report</h3>
+    <%--кнопки--%>
+    <div>
+        <button class="btn btn-info btn-lg" type="button" data-toggle="modal" data-target="">Add record</button>
+        <button class="btn btn-info btn-lg" type="button" data-toggle="modal" data-target="">Edit record</button>
+        <button class="btn btn-info btn-lg" type="button" data-toggle="modal" data-target="">Record details</button>
+        <button class="btn btn-info btn-lg" type="button" data-toggle="modal" data-target="">btn</button>
+    </div>
+    <br/>
+        <%--поля пошуку--%>
+        <div id="report-find-input">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control" placeholder="ID">
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control" placeholder="Date">
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control" placeholder="Book">
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control" placeholder="Reader">
+                    </div>
+                    <div class="col-sm-2">
+                    <input type="text" class="form-control" placeholder="Checked">
+                </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control" placeholder="Return date">
+                    </div>
+                </div>
+            </form>
+        </div>
+        <br/>
+        <%--таблиця книг--%>
+        <div id="records_container">
+            <table class="table table-hover" id="records-table">
+                <thead>
+                <tr>
+                    <th class="col-sm-2">Id</th>
+                    <th class="col-sm-2">Date</th>
+                    <th class="col-sm-2">Book</th>
+                    <th class="col-sm-2">Reader</th>
+                    <th class="col-sm-2">Checked</th>
+                    <th class="col-sm-2">Return date</th>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    <%--add record modal--%>
+    <%--edit record modal--%>
+    <%----%>
+</section>
+
+<%--end report section--%>
 
 <%--book section--%>
 <section id="books-section">
@@ -159,36 +223,43 @@
                     <form action="" class="form-horizontal">
                         <div class="form-group">
                             <label for="editBookSearchId" class="col-sm-4 control-label">ID</label>
+
                             <div class="col-sm-8">
-                                <input id="editBookSearchId" type="text" class="form-control" placeholder="Enter book Id here"/>
+                                <input id="editBookSearchId" type="text" class="form-control"
+                                       placeholder="Enter book Id here"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="editBookTitle" class="col-sm-4 control-label">Title</label>
+
                             <div class="col-sm-8">
                                 <input id="editBookTitle" type="text" class="form-control" placeholder="Title"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="editBookAuthors" class="col-sm-4 control-label">Authors</label>
+
                             <div class="col-sm-8">
                                 <input id="editBookAuthors" type="text" class="form-control" placeholder="Authors"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="editBookYear" class="col-sm-4 control-label">Year</label>
+
                             <div class="col-sm-8">
                                 <input id="editBookYear" type="text" class="form-control" placeholder="Year"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="editBookGenre" class="col-sm-4 control-label">Genre</label>
+
                             <div class="col-sm-8">
                                 <input id="editBookGenre" type="text" class="form-control" placeholder="Genre"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="editBookCount" class="col-sm-4 control-label">Count</label>
+
                             <div class="col-sm-8">
                                 <input id="editBookCount" type="text" class="form-control" placeholder="Count"/>
                             </div>
@@ -214,24 +285,29 @@
                     <form action="" class="form-horizontal">
                         <div class="form-group">
                             <label for="removeBookSearchId" class="col-sm-4 control-label">ID</label>
+
                             <div class="col-sm-8 ">
-                                <input type="text" id="removeBookSearchId" class="form-control" placeholder="Enter book Id here"/>
+                                <input type="text" id="removeBookSearchId" class="form-control"
+                                       placeholder="Enter book Id here"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="removeBookTitle" class="col-sm-4 control-label">Title</label>
+
                             <div class="col-sm-8 ">
                                 <input type="text" id="removeBookTitle" class="form-control" placeholder="Title"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="removeBookAuthors" class="col-sm-4 control-label">Authors</label>
+
                             <div class="col-sm-8 ">
                                 <input type="text" id="removeBookAuthors" class="form-control" placeholder="Authors"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="removeBookYear" class="col-sm-4 control-label">Year</label>
+
                             <div class="col-sm-8 ">
                                 <input type="text" id="removeBookYear" class="form-control" placeholder="Year"/>
                             </div>
@@ -257,36 +333,43 @@
                     <form action="" class="form-horizontal">
                         <div class="form-group">
                             <label for="detailsBookSearchId" class="col-sm-4 control-label">ID</label>
+
                             <div class="col-sm-8">
-                                <input id="detailsBookSearchId" type="text" class="form-control" placeholder="Enter book Id here"/>
+                                <input id="detailsBookSearchId" type="text" class="form-control"
+                                       placeholder="Enter book Id here"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="detailsBookTitle" class="col-sm-4 control-label">Title</label>
+
                             <div class="col-sm-8">
                                 <input id="detailsBookTitle" type="text" class="form-control" placeholder="Title"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="detailsBookAuthors" class="col-sm-4 control-label">Authors</label>
+
                             <div class="col-sm-8">
                                 <input id="detailsBookAuthors" type="text" class="form-control" placeholder="Authors"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="detailsBookYear" class="col-sm-4 control-label">Year</label>
+
                             <div class="col-sm-8">
                                 <input id="detailsBookYear" type="text" class="form-control" placeholder="Year"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="detailsBookGenre" class="col-sm-4 control-label">Genre</label>
+
                             <div class="col-sm-8">
                                 <input id="detailsBookGenre" type="text" class="form-control" placeholder="Genre"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="detailsBookCount" class="col-sm-4 control-label">Count</label>
+
                             <div class="col-sm-8">
                                 <input id="detailsBookCount" type="text" class="form-control" placeholder="Count"/>
                             </div>
@@ -323,6 +406,7 @@
                 data-target="#readersDetailsModal">Details
         </button>
     </div>
+    <br/>
     <%--поля пошуку --%>
     <div id="readers-find-input" <%--style="display: none;"--%>>
         <form class="form-horizontal">

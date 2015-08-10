@@ -68,6 +68,10 @@ h1 {
     margin-right: 10px;
 }
 
+#records_container {
+    height: 410px;
+}
+
 #readers-container {
     height: 410px;
 }
