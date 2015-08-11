@@ -99,3 +99,41 @@ select * from readers;
 select * from books;
 select * from subjects;
 select * from readers left join address on readers.address_id = address.reader_id;
+
+use library;
+
+delimiter //
+
+create trigger triggerName
+before delete
+on library.books
+begin
+	declare user varchar(50);
+    set user = 'user1';
+    print(user);
+end;
+ 
+delimiter //
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
