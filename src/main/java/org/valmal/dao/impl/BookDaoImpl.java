@@ -58,10 +58,6 @@ public class BookDaoImpl implements BookDao {
                 .setMaxResults(10)
                 .addOrder(Order.desc("id"))
                 .list();
-//                .createSQLQuery("SELECT * FROM books LIMIT 10;")
-//                .addEntity(Book.class)
-//                .list();
-
     }
 
     @Override

@@ -10,10 +10,14 @@ public interface BookService {
     void delete(Book book);
     Book findBookById(int id);
     List<Book> getBooks();
-    String booksToString(List<Book> books);
     List<Book> findBooksByTitle(String title);
     List<Book> findBooksByAuthors(String authors);
     List<Book> findBooksByYear(String year);
     List<Book> findBooksByGenre(String genre);
     List<Book> findBooksByExample(Book book);
+
+    String booksToString(List<Book> books);
+    int available(Book book);
+    boolean isAvailable(Book book);
+
 }

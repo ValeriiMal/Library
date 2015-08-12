@@ -1,14 +1,12 @@
 package org.valmal.controller;
 
 import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.valmal.bean.Address;
 import org.valmal.bean.Book;
 import org.valmal.bean.Genre;
@@ -113,34 +111,16 @@ public class ReaderController {
     }
 
 
-    @RequestMapping("/add")
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
-    public String addReader(
-            @RequestParam("fName") String fName,
-            @RequestParam("mName") String mName,
-            @RequestParam("lName") String lName,
-            @RequestParam("phone") String phone,
-            @RequestParam("country") String country,
-            @RequestParam("city") String city,
-            @RequestParam("street") String street,
-            @RequestParam("house") String house,
-            @RequestParam("birth") String birth
-    ) {
-        Reader reader = new Reader();
-        reader.setfName(fName);
-        reader.setmName(mName);
-        reader.setlName(lName);
-        reader.setPhone(phone);
+    public String addReader(@RequestBody String obj
+    ) throws IOException {
+        Reader reader = new ObjectMapper().readValue(obj, Reader.class);
         reader.setRegistrationDate(new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new java.util.Date()));
-        reader.setDateOfBirth(birth);
 
-        Address address = new Address();
-        address.setCountry(country);
-        address.setCity(city);
-        address.setStreet(street);
-        address.setHouse(house);
+//        Address address = reader.getAddress();
 
-        reader.setAddress(address);
+//        reader.setAddress(address);
 //        address.setReader(reader);
 
         readerService.insert(reader);

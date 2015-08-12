@@ -2,9 +2,7 @@ package org.valmal.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.valmal.bean.Book;
 import org.valmal.bean.Reader;
 import org.valmal.bean.Record;
@@ -33,28 +31,33 @@ public class ReportController {
         return reportService.recordsToString(reportService.getRecords());
     }
 
-    @RequestMapping("/add")
+    @RequestMapping(value = "/add", method = RequestMethod.GET)
     @ResponseBody
     public String addRecord(
             @RequestParam("bookId") String bookId,
             @RequestParam("readerId") String readerId,
             @RequestParam("returnDate") String returnDate
     ){
-        Record record = new Record();
-        record.setDate(new SimpleDateFormat("yyyy/mm/dd hh:mm:ss").format(new Date()));
-
         Book book = bookService.findBookById(Integer.parseInt(bookId));
-        Reader reader = readerService.findReaderById(Integer.parseInt(readerId));
-        book.getReaders().add(reader);
-        bookService.update(book);
 
-        record.setBook(book);
-        record.setReader(reader);
-        record.setReturnDate(returnDate);
-        record.setChecked(false);
+        if(bookService.isAvailable(book)) {
 
-        reportService.insert(record);
+            Record record = new Record();
+            record.setDate(new SimpleDateFormat("yyyy/mm/dd hh:mm:ss").format(new Date()));
+            Reader reader = readerService.findReaderById(Integer.parseInt(readerId));
+            book.getReaders().add(reader);
+            bookService.update(book);
 
-        return "record added";
+            record.setBook(book);
+            record.setReader(reader);
+            record.setReturnDate(returnDate);
+            record.setChecked(false);
+
+            reportService.insert(record);
+            return "record added";
+        }
+
+        return "books ended";
+
     }
 }

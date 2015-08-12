@@ -298,10 +298,10 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="editBookCount" class="col-sm-4 control-label">Count</label>
+                            <label for="editBookAmount" class="col-sm-4 control-label">Amount</label>
 
                             <div class="col-sm-8">
-                                <input id="editBookCount" type="text" class="form-control" placeholder="Count"/>
+                                <input id="editBookAmount" type="text" class="form-control" placeholder="Amount"/>
                             </div>
                         </div>
                     </form>
@@ -408,11 +408,14 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="detailsBookCount" class="col-sm-4 control-label">Count</label>
+                            <label for="detailsBookAmount" class="col-sm-4 control-label">Amount</label>
 
                             <div class="col-sm-8">
-                                <input id="detailsBookCount" type="text" class="form-control" placeholder="Count"/>
+                                <input id="detailsBookAmount" type="text" class="form-control" placeholder="Amount"/>
                             </div>
+                        </div>
+                        <div class="form-group">
+                            <button id="show_book_readers" class="btn btn-default" type="button" data-target="#bookReadersModal" data-toggle="modal">Show readers</button>
                         </div>
                     </form>
                 </div>
@@ -422,7 +425,32 @@
             </div>
         </div>
     </div>
-    <%----%>
+    <%--show readers modal--%>
+    <div id="bookReadersModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3 class="modal-title">Readers</h3>
+                </div>
+                <div class="modal-body" id="bookReaders">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>FName</th>
+                            <th>MName</th>
+                            <th>LName</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 <%--end book section--%>
 

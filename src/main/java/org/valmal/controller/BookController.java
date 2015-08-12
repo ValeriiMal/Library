@@ -54,13 +54,14 @@ public class BookController {
         return new ObjectMapper().writeValueAsString(bookService.findBookById(Integer.parseInt(id)));
     }
 
-    @RequestMapping("/findById")
+
+    @RequestMapping("/getBookById")
     @ResponseBody
-    public String findBookById(@RequestParam("id") String id) throws IOException {
+    public String getBookById(@RequestParam("id") String id) throws IOException {
         return new ObjectMapper().writeValueAsString(bookService.findBookById(Integer.parseInt(id)));
     }
 
-    @RequestMapping("/edit")
+    @RequestMapping(value = "/edit", method = RequestMethod.POST)
     @ResponseBody
     public String editBook(@RequestBody String obj) throws IOException {
         Book new_book = new ObjectMapper().readValue(obj, Book.class);
@@ -81,5 +82,11 @@ public class BookController {
     public String removeBook(@RequestParam("id") String id){
         bookService.delete(bookService.findBookById(Integer.parseInt(id)));
         return "book removed";
+    }
+
+    @RequestMapping("/readers")
+    @ResponseBody
+    public String getReaders(@RequestParam("id") String id) throws IOException {
+        return new ObjectMapper().writeValueAsString(bookService.findBookById(Integer.parseInt(id)).getReaders());
     }
 }

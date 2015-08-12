@@ -84,4 +84,17 @@ public class BookServiceImpl implements BookService {
     public List<Book> findBooksByExample(Book book) {
         return bookDao.findBooksByExample(book);
     }
+
+    @Override
+    public int available(Book book) {
+        return book.getAmount() - book.getReaders().size();
+    }
+
+    @Override
+    public boolean isAvailable(Book book) {
+        if(available(book) <= 0){
+            return false;
+        }
+        return true;
+    }
 }

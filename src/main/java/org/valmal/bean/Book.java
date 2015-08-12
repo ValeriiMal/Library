@@ -23,7 +23,6 @@ public class Book {
             inverseJoinColumns = {@JoinColumn(name = "reader_id", referencedColumnName = "id")})
     private Set<Reader> readers = new HashSet<>();
 
-
     public int getId() {
         return id;
     }
