@@ -102,18 +102,25 @@ select * from readers left join address on readers.address_id = address.reader_i
 
 use library;
 
-delimiter //
+DELIMITER //
 
-create trigger triggerName
-before delete
-on library.books
-begin
-	declare user varchar(50);
-    set user = 'user1';
-    print(user);
-end;
- 
-delimiter //
+CREATE TRIGGER contacts_before_delete
+BEFORE DELETE
+   ON books FOR EACH ROW
+   
+BEGIN
+
+   DECLARE vUser varchar(50);
+
+   -- Find username of person performing the DELETE into table
+   SELECT USER() INTO vUser;
+   
+   -- Insert record into audit table
+   
+   
+END; //
+
+DELIMITER ;
 
 
 

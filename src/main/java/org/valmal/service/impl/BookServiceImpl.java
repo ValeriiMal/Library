@@ -78,4 +78,10 @@ public class BookServiceImpl implements BookService {
     public List<Book> findBooksByGenre(String genre) {
         return bookDao.findBooksByGenre(genre);
     }
+
+    @Override
+    @Transactional
+    public List<Book> findBooksByExample(Book book) {
+        return bookDao.findBooksByExample(book);
+    }
 }

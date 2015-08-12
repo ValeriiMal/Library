@@ -103,4 +103,21 @@ public class BookDaoImpl implements BookDao {
                 .setMaxResults(10)
                 .list();
     }
+
+    @Override
+    public List<Book> findBooksByExample(Book example) {
+        if (example.getId() == 0) {
+            return sessionFactory.getCurrentSession()
+                    .createCriteria(Book.class)
+                    .add(Restrictions.like("title", "%" + example.getTitle() + "%"))
+                    .setMaxResults(10)
+                    .list();
+        }
+        return sessionFactory.getCurrentSession()
+                .createCriteria(Book.class)
+                .add(Restrictions.eq("id", example.getId()))
+                .add(Restrictions.like("title", "%" + example.getTitle() + "%"))
+                .setMaxResults(10)
+                .list();
+    }
 }

@@ -99,3 +99,48 @@ select * from readers;
 select * from books;
 select * from subjects;
 select * from readers left join address on readers.address_id = address.reader_id;
+
+use library;
+
+DELIMITER //
+
+CREATE TRIGGER contacts_before_delete
+BEFORE DELETE
+   ON books FOR EACH ROW
+   
+BEGIN
+
+   DECLARE vUser varchar(50);
+
+   -- Find username of person performing the DELETE into table
+   SELECT USER() INTO vUser;
+   
+   -- Insert record into audit table
+   
+   
+END; //
+
+DELIMITER ;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

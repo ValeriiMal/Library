@@ -43,9 +43,9 @@
     <h3>Report</h3>
     <%--кнопки--%>
     <div>
-        <button class="btn btn-info btn-lg" type="button" data-toggle="modal" data-target="">Add record</button>
-        <button class="btn btn-info btn-lg" type="button" data-toggle="modal" data-target="">Edit record</button>
-        <button class="btn btn-info btn-lg" type="button" data-toggle="modal" data-target="">Record details</button>
+        <button id="report_add" class="btn btn-info btn-lg" type="button" data-toggle="modal" data-target="#recordsAddModal">Add record</button>
+        <button id="report_edit" class="btn btn-info btn-lg" type="button" data-toggle="modal" data-target="">Edit record</button>
+        <button id="report_details" class="btn btn-info btn-lg" type="button" data-toggle="modal" data-target="">Record details</button>
         <button class="btn btn-info btn-lg" type="button" data-toggle="modal" data-target="">btn</button>
     </div>
     <br/>
@@ -93,6 +93,46 @@
             </table>
         </div>
     <%--add record modal--%>
+        <div id="recordsAddModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h3 class="modal-title">Add record</h3>
+                    </div>
+                    <div class="modal-body">
+                        <form action="" class="form-horizontal">
+                            <div class="form-group">
+                                <label for="inputBookId" class="col-sm-4 control-label">Book Id</label>
+
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="inputBookId" placeholder="Book Id"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputReaderId" class="col-sm-4 control-label">Reader Id</label>
+
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="inputReaderId" placeholder="Reader Id"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputReturnDate" class="col-sm-4 control-label">Return date</label>
+
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="inputReturnDate" placeholder="Return date"/>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                    <div class="modal-footer">
+                        <div id="addRecordResult" style="display: inline-block"></div>
+                        <button id="add_record" type="button" class="btn btn-default">Add</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     <%--edit record modal--%>
     <%----%>
 </section>
@@ -195,10 +235,10 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputBookCount" class="col-sm-4 control-label">Count</label>
+                            <label for="inputBookAmount" class="col-sm-4 control-label">Count</label>
 
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="inputBookCount" placeholder="Count"/>
+                                <input type="text" class="form-control" id="inputBookAmount" placeholder="Amount"/>
                             </div>
                         </div>
                     </form>

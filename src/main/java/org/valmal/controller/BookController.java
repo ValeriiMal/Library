@@ -1,17 +1,17 @@
 package org.valmal.controller;
 
 import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.valmal.bean.Book;
 import org.valmal.bean.Reader;
 import org.valmal.service.BookService;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Enumeration;
@@ -29,93 +29,22 @@ public class BookController {
         return bookService.booksToString(bookService.getBooks());
     }
 
-    @RequestMapping("/find")
+    @RequestMapping(value = "/find", method = RequestMethod.POST)
     @ResponseBody
-    public String findBook(
-            @RequestParam("id") String id,
-            @RequestParam("title") String title,
-            @RequestParam("authors") String authors,
-            @RequestParam("year") String year,
-            @RequestParam("genre") String genre,
-            HttpServletRequest request
-    ) {
-        List<Book> books = null;
-        Enumeration<String> params = request.getParameterNames();
-
-        for(Enumeration<String> p = params; p.hasMoreElements(); ){
-            switch (p.nextElement()){
-                case "id" : {
-                    if(!id.isEmpty()){
-                        books = new ArrayList<>();
-                        books.add(bookService.findBookById(Integer.parseInt(id)));
-                    }
-                } break;
-                case "title" : {
-                    if(!title.isEmpty()){
-                        if(books == null){
-                            books = new ArrayList<>();
-                            books.addAll(bookService.findBooksByTitle(title));
-                        } else {
-                            books.removeIf(r -> !r.getTitle().contains(title));
-                        }
-                    }
-                } break;
-                case "authors" : {
-                    if(!authors.isEmpty()){
-                        if(books == null){
-                            books = new ArrayList<>();
-                            books.addAll(bookService.findBooksByAuthors(authors));
-                        } else {
-                            books.removeIf(r -> !r.getAuthors().contains(authors));
-                        }
-                    }
-                } break;
-                case "year" : {
-                    if(!year.isEmpty()){
-                        if(books == null){
-                            books = new ArrayList<>();
-                            books.addAll(bookService.findBooksByYear(year));
-                        } else {
-                            books.removeIf(r -> !r.getYear().contains(year));
-                        }
-                    }
-                } break;
-                case "genre" : {
-                    if(!genre.isEmpty()){
-                        if(books == null){
-                            books = new ArrayList<>();
-                            books.addAll(bookService.findBooksByGenre(genre));
-                        } else {
-                            books.removeIf(r -> !r.getGenre().contains(genre));
-                        }
-                    }
-                } break;
-            }
-        }
-
-        if(books == null){ books = new ArrayList<>(); }
-
+    public String findBook( @RequestBody String obj, HttpServletResponse response) throws IOException {
+        Book example = new ObjectMapper().readValue(obj, Book.class);
+        List<Book> books = bookService.findBooksByExample(example);
         return bookService.booksToString(books);
     }
 
 
-    @RequestMapping("/add")
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
-    public String addBook(
-            @RequestParam("title") String title,
-            @RequestParam("authors") String authors,
-            @RequestParam("year") String year,
-            @RequestParam("genre") String genre,
-            @RequestParam("count") String count
-    ){
-        Book book = new Book();
-        book.setTitle(title);
-        book.setAuthors(authors);
-        book.setYear(year);
-        book.setGenre(genre);
-        book.setAmount(Integer.parseInt(count));
+    public String addBook(@RequestBody String json) throws IOException {
 
+        Book book = new ObjectMapper().readValue(json, Book.class);
         bookService.insert(book);
+
         return "book added";
     }
 
@@ -125,22 +54,24 @@ public class BookController {
         return new ObjectMapper().writeValueAsString(bookService.findBookById(Integer.parseInt(id)));
     }
 
+    @RequestMapping("/findById")
+    @ResponseBody
+    public String findBookById(@RequestParam("id") String id) throws IOException {
+        return new ObjectMapper().writeValueAsString(bookService.findBookById(Integer.parseInt(id)));
+    }
+
     @RequestMapping("/edit")
     @ResponseBody
-    public String editBook(
-            @RequestParam("id") String id,
-            @RequestParam("title") String title,
-            @RequestParam("authors") String authors,
-            @RequestParam("year") String year,
-            @RequestParam("genre") String genre,
-            @RequestParam("count") String count
-    ){
-        Book book = bookService.findBookById(Integer.parseInt(id));
-        book.setTitle(title);
-        book.setAuthors(authors);
-        book.setGenre(genre);
-        book.setYear(year);
-        book.setAmount(Integer.parseInt(count));
+    public String editBook(@RequestBody String obj) throws IOException {
+        Book new_book = new ObjectMapper().readValue(obj, Book.class);
+        Book book = bookService.findBookById(new_book.getId());
+
+        book.setTitle(new_book.getTitle());
+        book.setAuthors(new_book.getAuthors());
+        book.setGenre(new_book.getGenre());
+        book.setYear(new_book.getYear());
+        book.setAmount(new_book.getAmount());
+
         bookService.update(book);
         return "edited";
     }

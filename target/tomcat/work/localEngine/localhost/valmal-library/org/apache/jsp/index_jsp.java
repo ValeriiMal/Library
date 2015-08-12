@@ -314,10 +314,10 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                            </div>\r\n");
       out.write("                        </div>\r\n");
       out.write("                        <div class=\"form-group\">\r\n");
-      out.write("                            <label for=\"inputBookCount\" class=\"col-sm-4 control-label\">Count</label>\r\n");
+      out.write("                            <label for=\"inputBookAmount\" class=\"col-sm-4 control-label\">Count</label>\r\n");
       out.write("\r\n");
       out.write("                            <div class=\"col-sm-8\">\r\n");
-      out.write("                                <input type=\"text\" class=\"form-control\" id=\"inputBookCount\" placeholder=\"Count\"/>\r\n");
+      out.write("                                <input type=\"text\" class=\"form-control\" id=\"inputBookAmount\" placeholder=\"Amount\"/>\r\n");
       out.write("                            </div>\r\n");
       out.write("                        </div>\r\n");
       out.write("                    </form>\r\n");

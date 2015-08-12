@@ -15,4 +15,5 @@ public interface BookService {
     List<Book> findBooksByAuthors(String authors);
     List<Book> findBooksByYear(String year);
     List<Book> findBooksByGenre(String genre);
+    List<Book> findBooksByExample(Book book);
 }
