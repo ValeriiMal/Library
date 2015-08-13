@@ -295,33 +295,41 @@ function jsonBooksToRows(data){
     return content;
 }
 
+// how = {all/given/taken}
+function booksByDate(how){
+    $.ajax({
+        url: 'report/allBooksByDate',
+        type: 'GET',
+        contentType: 'text/html',
+        dataType: 'json',
+        data: {
+            checked: how,
+            date1: $('#booksDate1').val(),
+            date2: $('#booksDate2').val()
+        },
+        success: function (data) {
+            $('#booksStatTable tbody').html(jsonBooksToRows(data));
+        },
+        error: function(jqXHR, textStatus, errorThrown){
+            alert(textStatus + "\n" + errorThrown);
+        }
+    })
+}
+
 $('#showBooksStat').click(function () {
     if($('#booksOnlyGiven').prop('checked')){
         if($('#booksOnlyTaken').prop('checked')){
         //    ה³ÿ ÿךשמ מבטהגא גטבנאם³
-            $.ajax({
-                url: 'report/allBooksByDate',
-                type: 'GET',
-                contentType: 'text/html',
-                dataType: 'json',
-                data: {
-                    date1: $('#booksDate1').val(),
-                    date2: $('#booksDate2').val()
-                },
-                success: function (data) {
-                    $('#booksStatTable tbody').html(jsonBooksToRows(data));
-                },
-                error: function(jqXHR, textStatus, errorThrown){
-                    alert(textStatus + "\n" + errorThrown);
-                }
-            })
+            booksByDate('all');
         }else{
         //    ה³ÿ ÿךשמ עûכüךט Given
-
+            booksByDate('given');
         }
     } else if($('#booksOnlyTaken').prop('checked')){
     //    ה³ÿ ÿךשמ ע³כüךט Taken
-
+            booksByDate('taken');
+    }else{
+        $('#booksStatTable tbody').html('');
     }
 });
 

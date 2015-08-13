@@ -111,6 +111,7 @@ public class ReportController {
     @RequestMapping("/allBooksByDate")
     @ResponseBody
     public String allBooksByDate(
+            @RequestParam("checked") String how,
             @RequestParam("date1") String date1,
             @RequestParam("date2") String date2
     ) throws IOException, ParseException {
@@ -121,8 +122,20 @@ public class ReportController {
 
         List<Record> records = reportService.getRecordsBetweenDates(date11, date22);
 
-        records.stream().forEach(r -> bookList.add(r.getBook()));
+        switch (how) {
+            case "given": {
+                records.removeIf(r -> !r.isChecked());
+            }
+            break;
+            case "taken": {
+                records.removeIf(Record::isChecked);
+            }
+            break;
+        }
 
-        return new ObjectMapper().writeValueAsString(bookList.stream().distinct());
+        records.stream().forEach(r -> bookList.add(r.getBook()));
+        bookList.stream().distinct();
+
+        return new ObjectMapper().writeValueAsString(bookList);
     }
 }
