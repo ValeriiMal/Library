@@ -177,5 +177,10 @@ public class ReaderController {
 
         return "reader edited";
     }
+    @RequestMapping(value = "/books", method = RequestMethod.GET)
+    @ResponseBody
+    public String getBooks(@RequestParam("id") String id) throws IOException {
+        return new ObjectMapper().writeValueAsString(readerService.findReaderById(Integer.parseInt(id)).getBooks());
+    }
 
 }

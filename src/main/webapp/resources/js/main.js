@@ -53,6 +53,53 @@ function getBookById(url, id) {
 
 // REPORT
 
+$('#editRecordSearchId').keyup(function () {
+    var id = $('#editRecordSearchId').val();
+    if(!!id){
+        $.ajax({
+            url: 'report/findById',
+            type: 'GET',
+            contentType: 'text/html',
+            dataType: 'json',
+            data: {id: id},
+            success: function (data, statusText, jqXHR) {
+                $('#editRecordBookId').val(data['book']['id']);
+                $('#editRecordReaderId').val(data['reader']['id']);
+                $('#editRecordchecked').prop('checked', data['checked']);
+                $('#editRecordReturnDate').val(data['returnDate']);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert(textStatus + "\n" + errorThrown);
+            }
+        })
+    }else{
+        $('#recordsEditModal input').each(function () {
+            $(this).val("");
+        })
+    }
+});
+
+$('#edit_record').click(function () {
+    $.ajax({
+        url: 'report/edit',
+        type: 'GET',
+        contentType: 'text/html',
+        dataType: 'text',
+        data: {
+            id: $('#editRecordSearchId').val(),
+            bookId: $('#editRecordBookId').val(),
+            readerId: $('#editRecordReaderId').val(),
+            checked: $('#editRecordchecked').prop('checked'),
+            returnDate: $('#editRecordReturnDate').val()
+        },
+        success: function (data, textStatus, jqXHR) {
+            $('#editRecordResult').text(data);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            alert(textStatus + "\n" + errorThrown);
+        }
+    })
+});
 
 // BOOKS
 
@@ -145,7 +192,7 @@ $('#edit_book').click(function () {
             authors: $('#editBookAuthors').val(),
             year: $('#editBookYear').val(),
             genre: $('#editBookGenre').val(),
-            amount: $('#editBookCount').val()
+            amount: $('#editBookAmount').val()
         }),
         success: function (text) {
             $('#editBookResult').text(text);
@@ -234,7 +281,76 @@ $('#show_book_readers').click(function () {
     })
 });
 
+function jsonBooksToRows(data){
+    var content = "";
+    for(var i = 0; i < data.length; i++){
+        content += "<tr>" +
+            "<td>" + data[i]['id'] + "</td>" +
+            "<td>" + data[i]['title'] + "</td>" +
+            "<td>" + data[i]['authors'] + "</td>" +
+            "<td>" + data[i]['Year'] + "</td>" +
+            "<td>" + data[i]['genre'] + "</td>" +
+            "</tr>";
+    }
+    return content;
+}
+
+$('#showBooksStat').click(function () {
+    if($('#booksOnlyGiven').prop('checked')){
+        if($('#booksOnlyTaken').prop('checked')){
+        //    дія якщо обидва вибрані
+            $.ajax({
+                url: 'report/allBooksByDate',
+                type: 'GET',
+                contentType: 'text/html',
+                dataType: 'json',
+                data: {
+                    date1: $('#booksDate1').val(),
+                    date2: $('#booksDate2').val()
+                },
+                success: function (data) {
+                    $('#booksStatTable tbody').html(jsonBooksToRows(data));
+                },
+                error: function(jqXHR, textStatus, errorThrown){
+                    alert(textStatus + "\n" + errorThrown);
+                }
+            })
+        }else{
+        //    дія якщо тыльки Given
+
+        }
+    } else if($('#booksOnlyTaken').prop('checked')){
+    //    дія якщо тільки Taken
+
+    }
+});
+
 // READERS
+
+$('#show_reader_books').click(function () {
+    $.ajax({
+        url: 'reader/books',
+        type: 'GET',
+        contentType: 'text/html',
+        dataType: 'json',
+        data: {id: $('#detailsReaderSearchId').val()},
+        success: function (data) {
+            var content = "";
+            for(var i = 0; i < data.length; i++){
+                content += "<tr>" +
+                        "<td>" + data[i]['id'] + "</td>" +
+                        "<td>" + data[i]['title'] + "</td>" +
+                        "<td>" + data[i]['authors'] + "</td>" +
+                        "<td>" + data[i]['year'] + "</td>" +
+                        "</tr>";
+            }
+            $('#readerBooks tbody').html(content);
+        },
+        error: function(jqXHR, textStatus, errorThrown){
+            alert(textStatus + "\n" + errorThrown);
+        }
+    })
+});
 
 // обробник onkeyup для кожного reader input
 function readersFind() {

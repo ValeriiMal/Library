@@ -106,6 +106,9 @@ public class BookDaoImpl implements BookDao {
             return sessionFactory.getCurrentSession()
                     .createCriteria(Book.class)
                     .add(Restrictions.like("title", "%" + example.getTitle() + "%"))
+                    .add(Restrictions.like("authors", "%" + example.getAuthors() + "%"))
+                    .add(Restrictions.like("year", "%" + example.getYear() + "%"))
+                    .add(Restrictions.like("genre", "%" + example.getGenre() + "%"))
                     .setMaxResults(10)
                     .list();
         }

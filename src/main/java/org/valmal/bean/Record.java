@@ -1,6 +1,7 @@
 package org.valmal.bean;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "records")
@@ -8,12 +9,12 @@ public class Record {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String date;
+    private Date date;
     @OneToOne
     private Book book;
     @OneToOne
     private Reader reader;
-    private boolean checked;
+    private boolean checked = false;
     private String returnDate;
 
     public int getId() {
@@ -24,11 +25,11 @@ public class Record {
         this.id = id;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
@@ -68,7 +69,7 @@ public class Record {
     public String toString() {
         return "<tr>" +
                 "<td>" + this.getId() + "</td>" +
-                "<td>" + this.getDate() + "</td>" +
+                "<td>" + this.getDate().toString() + "</td>" +
                 "<td>" + this.getBook().getTitle() + "</td>" +
                 "<td>" + this.getReader().getfName() + " " + this.getReader().getmName() + " " + this.getReader().getlName() + "</td>" +
                 "<td>" + this.isChecked() + "</td>" +

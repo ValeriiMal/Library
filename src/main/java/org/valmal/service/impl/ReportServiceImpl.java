@@ -7,6 +7,7 @@ import org.valmal.bean.Record;
 import org.valmal.dao.RecordDao;
 import org.valmal.service.ReportService;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -35,5 +36,30 @@ public class ReportServiceImpl implements ReportService {
             }
         }
         return res;
+    }
+
+    @Override
+    @Transactional
+    public Record findRecordById(int id) {
+        return recordDao.findRecordById(id);
+    }
+
+    @Override
+    @Transactional
+    public void update(Record record) {
+        recordDao.update(record);
+    }
+
+//    @Override
+//    @Transactional
+//    public List<Record> getRecordsBetweenDates(String date1, String date2) {
+//        return recordDao.getRecordsBetweenDates(date1, date2);
+//    }
+
+
+    @Override
+    @Transactional
+    public List<Record> getRecordsBetweenDates(Date date1, Date date2) {
+        return recordDao.getRecordsBetweenDates(date1, date2);
     }
 }

@@ -1,3 +1,16 @@
+var book = function() {
+    return {
+        add : {
+            title : $('#inputBookTitle').val(),
+            authors: $('#inputBookAuthors').val(),
+            year: $('#inputBookYear').val(),
+            genre: $('#inputBookGenre').val(),
+            amount: $('#inputBookAmount').val()
+        }
+    }
+};
+
+
 // variables
 var readersFindInputs = document.getElementById('readers-find-input').getElementsByTagName('input');
 
@@ -22,15 +35,15 @@ function showReadersFind(params) {
 
 // functions
 
-function getById(url, id){
+function getBookById(url, id) {
     $.ajax({
         url: url,
         type: 'GET',
         contentType: 'text',
         dataType: 'json',
-        data: { id: id},
-        success: function (data) {
-            return data;
+        data: {id: id},
+        success: function (data, textStatus, jqXHR) {
+            alert(data);
         },
         error: function (jqXHR, statusText, errorThrown) {
             alert(statusText + "\n" + errorThrown)
@@ -40,34 +53,81 @@ function getById(url, id){
 
 // REPORT
 
+$('#editRecordSearchId').keyup(function () {
+    var id = $('#editRecordSearchId').val();
+    if(!!id){
+        $.ajax({
+            url: 'report/findById',
+            type: 'GET',
+            contentType: 'text/html',
+            dataType: 'json',
+            data: {id: id},
+            success: function (data, statusText, jqXHR) {
+                $('#editRecordBookId').val(data['book']['id']);
+                $('#editRecordReaderId').val(data['reader']['id']);
+                $('#editRecordchecked').prop('checked', data['checked']);
+                $('#editRecordReturnDate').val(data['returnDate']);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert(textStatus + "\n" + errorThrown);
+            }
+        })
+    }else{
+        $('#recordsEditModal input').each(function () {
+            $(this).val("");
+        })
+    }
+});
 
+$('#edit_record').click(function () {
+    $.ajax({
+        url: 'report/edit',
+        type: 'GET',
+        contentType: 'text/html',
+        dataType: 'text',
+        data: {
+            id: $('#editRecordSearchId').val(),
+            bookId: $('#editRecordBookId').val(),
+            readerId: $('#editRecordReaderId').val(),
+            checked: $('#editRecordchecked').prop('checked'),
+            returnDate: $('#editRecordReturnDate').val()
+        },
+        success: function (data, textStatus, jqXHR) {
+            $('#editRecordResult').text(data);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            alert(textStatus + "\n" + errorThrown);
+        }
+    })
+});
 
 // BOOKS
 
 var booksFindInputs = $('#books-find-input input');
 
-function findBooks(){
-        $.ajax({
-            url: 'book/find',
-            type: 'POST',
-            contentType: 'application/json',
-            dataType: 'text',
-            data: JSON.stringify({
-                id: booksFindInputs.get(0).value,
-                title: booksFindInputs.get(1).value,
-                authors: booksFindInputs.get(2).value,
-                year: booksFindInputs.get(3).value,
-                genre: booksFindInputs.get(4).value
-            }),
-            success: function(data, textStatus, jqXHR){
-                $('#books-table tbody').html(data);
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-                alert(textStatus + "\n" + errorThrown)
-            }
-        })
+function findBooks() {
+    $.ajax({
+        url: 'book/find',
+        type: 'POST',
+        contentType: 'application/json',
+        dataType: 'text',
+        data: JSON.stringify({
+            id: booksFindInputs.get(0).value,
+            title: booksFindInputs.get(1).value,
+            authors: booksFindInputs.get(2).value,
+            year: booksFindInputs.get(3).value,
+            genre: booksFindInputs.get(4).value
+        }),
+        success: function (data, textStatus, jqXHR) {
+            $('#books-table tbody').html(data);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            alert(textStatus + "\n" + errorThrown)
+        }
+    })
 }
-function addBook(){
+
+function addBook() {
     $.ajax({
         url: 'book/add',
         type: 'POST',
@@ -86,14 +146,211 @@ function addBook(){
     });
 }
 
-//booksFindInputs.each(function () {
-//    $(this).keyup(findBooks);
-//});
 booksFindInputs.keyup(findBooks);
 
-$('html body #add-book').click(addBook);
+$('#add-book').click(addBook);
+
+$('#editBookSearchId').keyup(function () {
+    var id = $('#editBookSearchId').val();
+
+    if (id != '' && id != '0') {
+        $.ajax({
+            url: 'book/getBookById',
+            type: 'GET',
+            contentType: 'text',
+            dataType: 'json',
+            data: {id: id},
+            success: function (data, textStatus, jqXHR) {
+                //alert(textStatus);
+                var book = data;
+                $('#editBookTitle').val(book.title);
+                $('#editBookYear').val(book.year);
+                $('#editBookAuthors').val(book.authors);
+                $('#editBookGenre').val(book.genre);
+                $('#editBookCount').val(book.amount);
+            },
+            error: function (jqXHR, statusText, errorThrown) {
+                alert(statusText + "\n" + errorThrown)
+            }
+        })
+    } else {
+        $('#booksEditModal input').each(function () {
+            $(this).val("");
+        })
+    }
+});
+
+$('#edit_book').click(function () {
+    $.ajax({
+        url: 'book/edit',
+        type: 'POST',
+        contentType: 'application/json',
+        dataType: 'text',
+        data: JSON.stringify({
+            id: $('#editBookSearchId').val(),
+            title: $('#editBookTitle').val(),
+            authors: $('#editBookAuthors').val(),
+            year: $('#editBookYear').val(),
+            genre: $('#editBookGenre').val(),
+            amount: $('#editBookAmount').val()
+        }),
+        success: function (text) {
+            $('#editBookResult').text(text);
+        }
+    });
+});
+
+$('#removeBookSearchId').keyup(function () {
+    var id = $('#removeBookSearchId').val();
+    if (!!id) {
+        $.ajax({
+            url: 'book/getBookById',
+            type: 'GET',
+            contentType: 'application/json',
+            dataType: 'text',
+            data: {id: id},
+            success: function (data, textStatus, jqXHR) {
+                var book = $.parseJSON(data);
+                $('#removeBookTitle').val(book.title);
+                $('#removeBookYear').val(book.year);
+                $('#removeBookAuthors').val(book.authors);
+            },
+            error: function(jqXHR, textStatus, errorThrown){
+                alert(textStatus + '\n' + errorThrown);
+            }
+        });
+    } else {
+        $('#booksRemoveModal input').each(function () {
+            $(this).val("");
+        })
+    }
+});
+
+$('#remove-book').click(function () {
+    $('#removeBookResult').load("book/remove?id=" + $('#removeBookSearchId').val())
+});
+
+$('#detailsBookSearchId').keyup(function () {
+    var id = $('#detailsBookSearchId').val();
+    if (!!id) {
+        $.ajax({
+            url: 'book/getBookById',
+            type: 'GET',
+            contentType: 'application/json',
+            dataType: 'json',
+            data: {id: id},
+            success: function (data, textStatus, jqXHR) {
+                $('#detailsBookTitle').val(data.title);
+                $('#detailsBookYear').val(data.year);
+                $('#detailsBookAuthors').val(data.authors);
+                $('#detailsBookGenre').val(data.genre);
+                $('#detailsBookAmount').val(data.amount);
+            },
+            error: function(jqXHR, textStatus, errorThrown){
+                alert(textStatus + '\n' + errorThrown);
+            }
+        });
+    } else {
+        $('#booksDetailsModal input').val("")
+    }
+});
+
+$('#show_book_readers').click(function () {
+    $.ajax({
+        url : 'book/readers',
+        contentType : 'text/html',
+        dataType: 'json',
+        data: {id : $('#detailsBookSearchId').val()},
+        success: function (data) {
+
+            var content = "";
+            for(var i = 0; i < data.length; i++){
+                content += "<tr>" +
+                    "<td>" + data[i]['id'] + "</td>" +
+                    "<td>" + data[i]['fName'] + "</td>" +
+                    "<td>" + data[i]['mName'] + "</td>" +
+                    "<td>" + data[i]['lName'] + "</td>" +
+                    "</tr>";
+            }
+
+            $('#bookReaders tbody').html(content);
+        },
+        error: function(jqXHR, textStatus, errorThrown){
+            alert(textStatus + "\n" + errorThrown);
+        }
+    })
+});
+
+function jsonBooksToRows(data){
+    var content = "";
+    for(var i = 0; i < data.length; i++){
+        content += "<tr>" +
+            "<td>" + data[i]['id'] + "</td>" +
+            "<td>" + data[i]['title'] + "</td>" +
+            "<td>" + data[i]['authors'] + "</td>" +
+            "<td>" + data[i]['Year'] + "</td>" +
+            "<td>" + data[i]['genre'] + "</td>" +
+            "</tr>";
+    }
+    return content;
+}
+
+$('#showBooksStat').click(function () {
+    if($('#booksOnlyGiven').prop('checked')){
+        if($('#booksOnlyTaken').prop('checked')){
+        //    дія якщо обидва вибрані
+            $.ajax({
+                url: 'report/allBooksByDate',
+                type: 'GET',
+                contentType: 'text/html',
+                dataType: 'json',
+                data: {
+                    date1: $('#booksDate1').val(),
+                    date2: $('#booksDate2').val()
+                },
+                success: function (data) {
+                    $('#booksStatTable tbody').html(jsonBooksToRows(data));
+                },
+                error: function(jqXHR, textStatus, errorThrown){
+                    alert(textStatus + "\n" + errorThrown);
+                }
+            })
+        }else{
+        //    дія якщо тыльки Given
+
+        }
+    } else if($('#booksOnlyTaken').prop('checked')){
+    //    дія якщо тільки Taken
+
+    }
+});
 
 // READERS
+
+$('#show_reader_books').click(function () {
+    $.ajax({
+        url: 'reader/books',
+        type: 'GET',
+        contentType: 'text/html',
+        dataType: 'json',
+        data: {id: $('#detailsReaderSearchId').val()},
+        success: function (data) {
+            var content = "";
+            for(var i = 0; i < data.length; i++){
+                content += "<tr>" +
+                        "<td>" + data[i]['id'] + "</td>" +
+                        "<td>" + data[i]['title'] + "</td>" +
+                        "<td>" + data[i]['authors'] + "</td>" +
+                        "<td>" + data[i]['year'] + "</td>" +
+                        "</tr>";
+            }
+            $('#readerBooks tbody').html(content);
+        },
+        error: function(jqXHR, textStatus, errorThrown){
+            alert(textStatus + "\n" + errorThrown);
+        }
+    })
+});
 
 // обробник onkeyup для кожного reader input
 function readersFind() {
@@ -119,8 +376,6 @@ for (var i = 0; i < readersFindInputs.length; i++) {
 }
 
 
-
-
 //add reader button
 
 $('#add-reader').click(function () {
@@ -128,36 +383,49 @@ $('#add-reader').click(function () {
         url: 'reader/add',
         type: 'POST',
         contentType: 'application/json',
-        dataType: 'json',
+        dataType: 'text',
         data: JSON.stringify({
             fName: $('#inputReaderFName').val(),
             mName: $('#inputReaderMName').val(),
             lName: $('#inputReaderLName').val(),
             phone: $('#inputReaderPhone').val(),
-            country: $('#inputReaderCountry').val(),
-            city: $('#inputReaderCity').val(),
-            street: $('#inputReaderStreet').val(),
-            house: $('#inputReaderHouse').val(),
-            birth: $('#inputReaderBirth').val()
-        })
+            address: {
+                country: $('#inputReaderCountry').val(),
+                city: $('#inputReaderCity').val(),
+                street: $('#inputReaderStreet').val(),
+                house: $('#inputReaderHouse').val()
+            },
+            dateOfBirth: $('#inputReaderBirth').val()
+        }),
+        success: function (data) {
+            $('#addReaderResult').text(data);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            alert('add reader: ' + '\n' +
+                textStatus + '\n' +
+                errorThrown);
+        }
     });
 });
-
-//add book button
-
 
 //add report button
 $('#add_record').click(function () {
     $.ajax({
         url: 'report/add',
-        type: 'POST',
-        contentType: 'application/json',
-        dataType: 'json',
-        data: JSON.stringify({
+        type: 'GET',
+        contentType: 'text',
+        dataType: 'text',
+        data: {
             bookId: $('#inputBookId').val(),
             readerId: $('#inputReaderId').val(),
             returnDate: $('#inputReturnDate').val()
-        })
+        },
+        success: function (data) {
+            $('#addRecordResult').text(data);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            alert(textStatus + '\n' + errorThrown);
+        }
     })
 });
 
@@ -202,37 +470,6 @@ $('#edit-reader').click(function () {
     })
 });
 
-//edit book
-// пошук за ID при keyup
-$('#editBookSearchId').keyup(function () {
-    if (!!$('#editBookSearchId').val()) {
-        $.get("book/findBookByIdJSON?id=" + $('#editBookSearchId').val(), function (data) {
-            var obj = $.parseJSON(data);
-            $('#editBookTitle').val(obj.title);
-            $('#editBookYear').val(obj.year);
-            $('#editBookAuthors').val(obj.authors);
-            $('#editBookGenre').val(obj.genre);
-            $('#editBookCount').val(obj.amount);
-        })
-    } else {
-        $('#booksEditModal input').each(function () {
-            $(this).val("");
-        })
-    }
-});
-// відправка редагованих даних для апдейту
-$('#edit_book').click(function () {
-    $.get('book/edit?' +
-        "id=" + $('#editBookSearchId').val() +
-        "&title=" + $('#editBookTitle').val() +
-        "&authors=" + $('#editBookAuthors').val() +
-        "&year=" + $('#editBookYear').val() +
-        "&genre=" + $('#editBookGenre').val() +
-        "&count=" + $('#editBookCount').val()
-        , function (data) {
-            $('#editBookResult').text(data);
-        });
-});
 
 // remove reader button
 
@@ -263,24 +500,7 @@ $('#remove-reader').click(function () {
 
 //remove book
 // пошук за ID при keyup
-$('#removeBookSearchId').keyup(function () {
-    if (!!$('#removeBookSearchId').val()) {
-        $.get("book/findBookByIdJSON?id=" + $('#removeBookSearchId').val(), function (data) {
-            var obj = $.parseJSON(data);
-            $('#removeBookTitle').val(obj.title);
-            $('#removeBookYear').val(obj.year);
-            $('#removeBookAuthors').val(obj.authors);
-        })
-    } else {
-        $('#booksRemoveModal input').each(function () {
-            $(this).val("");
-        })
-    }
-});
 
-$('#remove-book').click(function () {
-    $('#removeBookResult').load("/book/remove?id=" + $('#removeBookSearchId').val())
-});
 
 // readers details
 $('#detailsReaderSearchId').keyup(function () {
@@ -308,20 +528,7 @@ $('#detailsReaderSearchId').keyup(function () {
 });
 
 // books details
-$('#detailsBookSearchId').keyup(function () {
-    if (!!$('#detailsBookSearchId').val()) {
-        $.get("book/findBookByIdJSON?id=" + $('#detailsBookSearchId').val(), function (data) {
-            var obj = $.parseJSON(data);
-            $('#detailsBookTitle').val(obj.title);
-            $('#detailsBookYear').val(obj.year);
-            $('#detailsBookAuthors').val(obj.authors);
-            $('#detailsBookGenre').val(obj.genre);
-            $('#detailsBookCount').val(obj.amount);
-        })
-    } else {
-        $('#booksDetailsModal input').val("")
-    }
-});
+
 
 // показ дефолтної таблички readers
 showReaders();

@@ -43,97 +43,160 @@
     <h3>Report</h3>
     <%--кнопки--%>
     <div>
-        <button id="report_add" class="btn btn-info btn-lg" type="button" data-toggle="modal" data-target="#recordsAddModal">Add record</button>
-        <button id="report_edit" class="btn btn-info btn-lg" type="button" data-toggle="modal" data-target="">Edit record</button>
-        <button id="report_details" class="btn btn-info btn-lg" type="button" data-toggle="modal" data-target="">Record details</button>
+        <button id="report_add" class="btn btn-info btn-lg" type="button" data-toggle="modal"
+                data-target="#recordsAddModal">Add record
+        </button>
+        <button id="report_edit" class="btn btn-info btn-lg" type="button" data-toggle="modal"
+                data-target="#recordsEditModal">Edit record
+        </button>
+        <button id="report_details" class="btn btn-info btn-lg" type="button" data-toggle="modal" data-target="">Record
+            details
+        </button>
         <button class="btn btn-info btn-lg" type="button" data-toggle="modal" data-target="">btn</button>
     </div>
     <br/>
-        <%--поля пошуку--%>
-        <div id="report-find-input">
-            <form class="form-horizontal">
-                <div class="form-group">
-                    <div class="col-sm-2">
-                        <input type="text" class="form-control" placeholder="ID">
-                    </div>
-                    <div class="col-sm-2">
-                        <input type="text" class="form-control" placeholder="Date">
-                    </div>
-                    <div class="col-sm-2">
-                        <input type="text" class="form-control" placeholder="Book">
-                    </div>
-                    <div class="col-sm-2">
-                        <input type="text" class="form-control" placeholder="Reader">
-                    </div>
-                    <div class="col-sm-2">
-                    <input type="text" class="form-control" placeholder="Checked">
+    <%--поля пошуку--%>
+    <div id="report-find-input">
+        <form class="form-horizontal">
+            <div class="form-group">
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" placeholder="ID">
                 </div>
-                    <div class="col-sm-2">
-                        <input type="text" class="form-control" placeholder="Return date">
-                    </div>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" placeholder="Date">
                 </div>
-            </form>
-        </div>
-        <br/>
-        <%--таблиця книг--%>
-        <div id="records_container">
-            <table class="table table-hover" id="records-table">
-                <thead>
-                <tr>
-                    <th class="col-sm-2">Id</th>
-                    <th class="col-sm-2">Date</th>
-                    <th class="col-sm-2">Book</th>
-                    <th class="col-sm-2">Reader</th>
-                    <th class="col-sm-2">Checked</th>
-                    <th class="col-sm-2">Return date</th>
-                </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
-        </div>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" placeholder="Book">
+                </div>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" placeholder="Reader">
+                </div>
+                <div class="col-sm-2">
+                    <input type="checkbox" class="form-control">
+                </div>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" placeholder="Return date">
+                </div>
+            </div>
+        </form>
+    </div>
+    <br/>
+    <%--таблиця записів--%>
+    <div id="records_container">
+        <table class="table table-hover" id="records-table">
+            <thead>
+            <tr>
+                <th class="col-sm-2">Id</th>
+                <th class="col-sm-2">Date</th>
+                <th class="col-sm-2">Book</th>
+                <th class="col-sm-2">Reader</th>
+                <th class="col-sm-2">Checked</th>
+                <th class="col-sm-2">Return date</th>
+            </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+
     <%--add record modal--%>
-        <div id="recordsAddModal" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h3 class="modal-title">Add record</h3>
-                    </div>
-                    <div class="modal-body">
-                        <form action="" class="form-horizontal">
-                            <div class="form-group">
-                                <label for="inputBookId" class="col-sm-4 control-label">Book Id</label>
+    <div id="recordsAddModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3 class="modal-title">Add record</h3>
+                </div>
+                <div class="modal-body">
+                    <form action="" class="form-horizontal">
+                        <div class="form-group">
+                            <label for="inputBookId" class="col-sm-4 control-label">Book Id</label>
 
-                                <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="inputBookId" placeholder="Book Id"/>
-                                </div>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="inputBookId" placeholder="Book Id"/>
                             </div>
-                            <div class="form-group">
-                                <label for="inputReaderId" class="col-sm-4 control-label">Reader Id</label>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputReaderId" class="col-sm-4 control-label">Reader Id</label>
 
-                                <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="inputReaderId" placeholder="Reader Id"/>
-                                </div>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="inputReaderId" placeholder="Reader Id"/>
                             </div>
-                            <div class="form-group">
-                                <label for="inputReturnDate" class="col-sm-4 control-label">Return date</label>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputReturnDate" class="col-sm-4 control-label">Return date</label>
 
-                                <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="inputReturnDate" placeholder="Return date"/>
-                                </div>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="inputReturnDate" placeholder="Return date"/>
                             </div>
-                        </form>
+                        </div>
+                    </form>
 
-                    </div>
-                    <div class="modal-footer">
-                        <div id="addRecordResult" style="display: inline-block"></div>
-                        <button id="add_record" type="button" class="btn btn-default">Add</button>
-                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div id="addRecordResult" style="display: inline-block"></div>
+                    <button id="add_record" type="button" class="btn btn-default">Add</button>
                 </div>
             </div>
         </div>
+    </div>
     <%--edit record modal--%>
+    <div id="recordsEditModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3 class="modal-title">Edit</h3>
+                </div>
+                <div class="modal-body">
+                    <form action="" class="form-horizontal">
+                        <div class="form-group">
+                            <label for="editRecordSearchId" class="col-sm-4 control-label">Id</label>
+
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="editRecordSearchId" placeholder="Enter id"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="editRecordBookId" class="col-sm-4 control-label">Book Id</label>
+
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="editRecordBookId" placeholder="Book Id"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="editRecordReaderId" class="col-sm-4 control-label">Reader Id</label>
+
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="editRecordReaderId"
+                                       placeholder="Reader Id"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="editRecordchecked" class="col-sm-4 control-label">Checked</label>
+
+                            <div class="col-sm-8">
+                                <input type="checkbox" class="form-control" id="editRecordchecked"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="editRecordReturnDate" class="col-sm-4 control-label">Return date</label>
+
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="editRecordReturnDate"
+                                       placeholder="Return date"/>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="modal-footer">
+                        <div id="editRecordResult" style="display: inline-block"></div>
+                        <button id="edit_record" type="button" class="btn btn-default">Edit</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
     <%----%>
 </section>
 
@@ -196,6 +259,35 @@
             </tbody>
         </table>
     </div>
+    <%--інформація про видані/прийняті книги--%>
+    <div>
+        <h3>Stat</h3>
+        <div class="form-group">
+            <%--<label for="booksDate1" class="label col-sm-1 control-label">Date 1:</label>--%>
+            <input type="date" class="date-cell col-sm-2 form-control" id="booksDate1"/>
+            <%--<label for="booksDate1" class="label col-sm-1 control-label">Date 2:</label>--%>
+            <input type="date" class="date-cell col-sm-2 form-control" id="booksDate2"/>
+            Видані<input type="checkbox" class="checkbox form-control" id="booksOnlyGiven"/>
+            Отримані<input type="checkbox" class="checkbox form-control" id="booksOnlyTaken"/>
+            <button type="button" class="button btn-info btn-lg" id="showBooksStat">Show stat</button>
+        </div>
+        <table class="table" id="booksStatTable">
+            <thead>
+            <th class="col-sm-2">Id</th>
+            <th class="col-sm-2">Title</th>
+            <th class="col-sm-2">Authors</th>
+            <th class="col-sm-2">Year</th>
+            <th class="col-sm-2">Genre</th>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+        <div id="booksStatus">
+
+        </div>
+    </div>
+
     <%--add modal--%>
     <div id="booksAddModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
@@ -415,7 +507,9 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <button id="show_book_readers" class="btn btn-default" type="button" data-target="#bookReadersModal" data-toggle="modal">Show readers</button>
+                            <button id="show_book_readers" class="btn btn-default" type="button"
+                                    data-target="#bookReadersModal" data-toggle="modal">Show readers
+                            </button>
                         </div>
                     </form>
                 </div>
@@ -834,12 +928,43 @@
                                        id="detailsReaderRegistrationDate"/>
                             </div>
                         </div>
-                        <div class="modal-footer">
-                            <div></div>
+                        <div class="form-group">
+                            <button id="show_reader_books" class="btn btn-default" type="button"
+                                    data-target="#readerBooksModal" data-toggle="modal">Show readers
+                            </button>
                         </div>
                     </form>
                 </div>
+                <div class="modal-footer">
+                    <div></div>
+                </div>
 
+            </div>
+        </div>
+    </div>
+    <%--show reader books--%>
+    <div id="readerBooksModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3 class="modal-title">Books</h3>
+                </div>
+                <div class="modal-body" id="readerBooks">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Title</th>
+                            <th>Authors</th>
+                            <th>Year</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
