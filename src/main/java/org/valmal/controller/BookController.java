@@ -31,7 +31,7 @@ public class BookController {
 
     @RequestMapping(value = "/find", method = RequestMethod.POST)
     @ResponseBody
-    public String findBook( @RequestBody String obj, HttpServletResponse response) throws IOException {
+    public String findBook( @RequestBody String obj) throws IOException {
         Book example = new ObjectMapper().readValue(obj, Book.class);
         List<Book> books = bookService.findBooksByExample(example);
         return bookService.booksToString(books);

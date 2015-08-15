@@ -6,6 +6,7 @@ org\valmal\dao\impl\ReaderDaoImpl.class
 org\valmal\dao\ReaderDao.class
 org\valmal\service\ReaderService.class
 org\valmal\controller\ReportController.class
+org\valmal\dao\impl\RecordDaoImpl.class
 org\valmal\dao\impl\BookDaoImpl.class
 org\valmal\bean\Book.class
 org\valmal\service\ReportService.class
@@ -15,4 +16,5 @@ org\valmal\service\BookService.class
 org\valmal\service\impl\BookServiceImpl.class
 org\valmal\dao\BookDao.class
 org\valmal\bean\Address.class
+org\valmal\dao\RecordDao.class
 org\valmal\controller\BookController.class

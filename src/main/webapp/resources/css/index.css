@@ -70,10 +70,12 @@ h1 {
 
 #records_container {
     height: 410px;
+
 }
 
 #readers-container {
     height: 410px;
+    overflow: scroll;
 }
 
 #books-container {

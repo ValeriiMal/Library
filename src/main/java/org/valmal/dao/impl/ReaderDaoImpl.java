@@ -1,6 +1,7 @@
 package org.valmal.dao.impl;
 
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
@@ -41,7 +42,7 @@ public class ReaderDaoImpl implements ReaderDao {
 
     public List<Reader> getReaders() {
         return sessionFactory.getCurrentSession()
-                .createSQLQuery("SELECT * FROM readers ORDER BY id DESC LIMIT 10")
+                .createSQLQuery("SELECT * FROM readers ORDER BY id DESC")
                 .addEntity(Reader.class)
                 .list();
     }
@@ -55,7 +56,7 @@ public class ReaderDaoImpl implements ReaderDao {
 
     public List<Reader> findReadersByFName(String fName){
         return sessionFactory.getCurrentSession()
-                .createSQLQuery("SELECT * FROM readers AS r WHERE r.fName LIKE '%" + fName + "%' ORDER BY r.fName ASC LIMIT 10")
+                .createSQLQuery("SELECT * FROM readers AS r WHERE r.fName LIKE '%" + fName + "%' ORDER BY r.fName ASC")
                 .addEntity(Reader.class)
                 .list();
     }
@@ -63,7 +64,7 @@ public class ReaderDaoImpl implements ReaderDao {
     @Override
     public List<Reader> findReadersByMName(String mName) {
         return sessionFactory.getCurrentSession()
-                .createSQLQuery("SELECT * FROM readers AS r WHERE r.mName LIKE '%" + mName + "%' ORDER BY r.mName ASC LIMIT 10")
+                .createSQLQuery("SELECT * FROM readers AS r WHERE r.mName LIKE '%" + mName + "%' ORDER BY r.mName ASC")
                 .addEntity(Reader.class)
                 .list();
     }
@@ -71,7 +72,7 @@ public class ReaderDaoImpl implements ReaderDao {
     @Override
     public List<Reader> findReadersByLName(String lName) {
         return sessionFactory.getCurrentSession()
-                .createSQLQuery("SELECT * FROM readers AS r WHERE r.lName LIKE '%" + lName + "%' ORDER BY r.lName ASC LIMIT 10")
+                .createSQLQuery("SELECT * FROM readers AS r WHERE r.lName LIKE '%" + lName + "%' ORDER BY r.lName ASC")
                 .addEntity(Reader.class)
                 .list();
     }
@@ -79,7 +80,7 @@ public class ReaderDaoImpl implements ReaderDao {
     @Override
     public List<Reader> findReadersByPhone(String phone) {
         return sessionFactory.getCurrentSession()
-                .createSQLQuery("SELECT * FROM readers AS r WHERE r.phone LIKE '%" + phone + "%' ORDER BY r.phone ASC LIMIT 10")
+                .createSQLQuery("SELECT * FROM readers AS r WHERE r.phone LIKE '%" + phone + "%' ORDER BY r.phone ASC")
                 .addEntity(Reader.class)
                 .list();
     }
@@ -87,5 +88,29 @@ public class ReaderDaoImpl implements ReaderDao {
     @Override
     public List<Reader> findReadersByAddress(String address) {
         return null;
+    }
+
+    @Override
+    public List<Reader> findReadersByExample(Reader reader) {
+        if(reader.getId() == 0){
+            return sessionFactory.getCurrentSession()
+                    .createCriteria(Reader.class)
+                    .add(Restrictions.like("fName", "%" + reader.getfName() + "%"))
+                    .add(Restrictions.like("mName", "%" + reader.getmName() + "%"))
+                    .add(Restrictions.like("lName", "%" + reader.getlName() + "%"))
+                    .add(Restrictions.like("phone", "%" + reader.getPhone() + "%"))
+                    .setMaxResults(100)
+                    .list();
+        }
+        return sessionFactory.getCurrentSession()
+                .createCriteria(Reader.class)
+                .add(Restrictions.eq("id", reader.getId()))
+                .add(Restrictions.like("fName", "%" + reader.getfName() + "%"))
+                .add(Restrictions.like("mName", "%" + reader.getmName() + "%"))
+                .add(Restrictions.like("lName", "%" + reader.getlName() + "%"))
+                .add(Restrictions.like("phone", "%" + reader.getPhone() + "%"))
+                .setMaxResults(100)
+                .list();
+
     }
 }

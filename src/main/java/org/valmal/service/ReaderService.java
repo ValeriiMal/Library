@@ -18,5 +18,7 @@ public interface ReaderService {
     List<Reader> findReadersByPhone(String phone);
     List<Reader> findReadersByAddress(String address);
 
+    List<Reader> findReadersByExample(Reader reader);
+
     String readersToString(List<Reader> readers);
 }

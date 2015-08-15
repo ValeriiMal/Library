@@ -59,7 +59,6 @@ public class RecordDaoImpl implements RecordDao {
         return sessionFactory.getCurrentSession()
                 .createCriteria(Record.class)
                 .add(Restrictions.between("date", date1, date2))
-                .setMaxResults(10)
                 .list();
     }
 }

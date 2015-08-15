@@ -4,6 +4,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Entity()
@@ -16,8 +17,8 @@ public class Reader {
     private String mName;
     private String lName;
     private String phone;
-    private String registrationDate;
-    private String dateOfBirth;
+    private Date registrationDate;
+    private Date dateOfBirth;
     @Embedded
     private Address address;
     @ManyToMany(fetch = FetchType.EAGER)
@@ -36,19 +37,19 @@ public class Reader {
         return reader;
     }
 
-    public String getRegistrationDate() {
+    public Date getRegistrationDate() {
         return registrationDate;
     }
 
-    public void setRegistrationDate(String registrationDate) {
+    public void setRegistrationDate(Date registrationDate) {
         this.registrationDate = registrationDate;
     }
 
-    public String getDateOfBirth() {
+    public Date getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(String dateOfBirth) {
+    public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 

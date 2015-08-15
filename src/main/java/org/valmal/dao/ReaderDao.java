@@ -18,4 +18,6 @@ public interface ReaderDao {
     List<Reader> findReadersByLName(String lName);
     List<Reader> findReadersByPhone(String phone);
     List<Reader> findReadersByAddress(String address);
+
+    List<Reader> findReadersByExample(Reader reader);
 }

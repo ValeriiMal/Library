@@ -52,9 +52,7 @@ public class ReportController {
             Record record = new Record();
             record.setDate(new Date());
             book.getReaders().add(reader);
-//            reader.getBooks().add(book);
             bookService.update(book);
-//            readerService.update(reader);
 
             record.setBook(book);
             record.setReader(reader);
@@ -124,11 +122,11 @@ public class ReportController {
 
         switch (how) {
             case "given": {
-                records.removeIf(r -> !r.isChecked());
+                records.removeIf(r -> r.isChecked());
             }
             break;
             case "taken": {
-                records.removeIf(Record::isChecked);
+                records.removeIf(r -> !r.isChecked());
             }
             break;
         }

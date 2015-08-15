@@ -109,14 +109,17 @@ public class BookDaoImpl implements BookDao {
                     .add(Restrictions.like("authors", "%" + example.getAuthors() + "%"))
                     .add(Restrictions.like("year", "%" + example.getYear() + "%"))
                     .add(Restrictions.like("genre", "%" + example.getGenre() + "%"))
-                    .setMaxResults(10)
+                    .setMaxResults(100)
                     .list();
         }
         return sessionFactory.getCurrentSession()
                 .createCriteria(Book.class)
                 .add(Restrictions.eq("id", example.getId()))
                 .add(Restrictions.like("title", "%" + example.getTitle() + "%"))
-                .setMaxResults(10)
+                .add(Restrictions.like("authors", "%" + example.getAuthors() + "%"))
+                .add(Restrictions.like("year", "%" + example.getYear() + "%"))
+                .add(Restrictions.like("genre", "%" + example.getGenre() + "%"))
+                .setMaxResults(100)
                 .list();
     }
 }

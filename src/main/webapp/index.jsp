@@ -262,30 +262,30 @@
     <%--інформація про видані/прийняті книги--%>
     <div>
         <h3>Stat</h3>
-        <div class="form-group">
-            <%--<label for="booksDate1" class="label col-sm-1 control-label">Date 1:</label>--%>
-            <input type="date" class="date-cell col-sm-2 form-control" id="booksDate1"/>
-            <%--<label for="booksDate1" class="label col-sm-1 control-label">Date 2:</label>--%>
-            <input type="date" class="date-cell col-sm-2 form-control" id="booksDate2"/>
-            Видані<input type="checkbox" class="checkbox form-control" id="booksOnlyGiven"/>
-            Отримані<input type="checkbox" class="checkbox form-control" id="booksOnlyTaken"/>
+        <div>
+            <div>
+                <input type="date" class="date-cell col-sm-2" id="booksDate1"/>
+                <input type="date" class="date-cell col-sm-2" id="booksDate2"/>
+            </div>
+            <div>
+                Видані<input type="checkbox" class="check-box" id="booksOnlyGiven" style="font-size: 20px; display: block; "/>
+                Отримані<input type="checkbox" class="checkbox" id="booksOnlyTaken"/>
+            </div>
             <button type="button" class="button btn-info btn-lg" id="showBooksStat">Show stat</button>
         </div>
-        <table class="table" id="booksStatTable">
+        <table class="table table-hover scroll-arrow" id="booksStatTable">
             <thead>
-            <th class="col-sm-2">Id</th>
-            <th class="col-sm-2">Title</th>
-            <th class="col-sm-2">Authors</th>
-            <th class="col-sm-2">Year</th>
-            <th class="col-sm-2">Genre</th>
+                <th class="col-sm-2">Id</th>
+                <th class="col-sm-2">Title</th>
+                <th class="col-sm-2">Authors</th>
+                <th class="col-sm-2">Year</th>
+                <th class="col-sm-2">Genre</th>
             </thead>
             <tbody>
 
             </tbody>
         </table>
-        <div id="booksStatus">
-
-        </div>
+        <div id="booksStatStatus"></div>
     </div>
 
     <%--add modal--%>
@@ -601,7 +601,6 @@
                 <th class="col-sm-2">Middle name</th>
                 <th class="col-sm-2">Last name</th>
                 <th class="col-sm-2">Phone</th>
-                <%--<th class="col-sm-2">Address</th>--%>
             </tr>
             </thead>
             <tbody>
@@ -680,7 +679,7 @@
                             <label class="col-sm-4 control-label" for="inputReaderBirth">Date of birth</label>
 
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" placeholder="Date of birth"
+                                <input type="date" class="form-control" placeholder="Date of birth"
                                        id="inputReaderBirth"/>
                             </div>
                         </div>
@@ -771,7 +770,7 @@
                             <label class="col-sm-4 control-label" for="editReaderBirth">Date of birth</label>
 
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" placeholder="Date of birth"
+                                <input type="date" class="form-control" placeholder="Date of birth"
                                        id="editReaderBirth"/>
                             </div>
                         </div>

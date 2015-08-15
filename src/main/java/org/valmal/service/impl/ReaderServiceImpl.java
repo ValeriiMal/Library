@@ -83,4 +83,10 @@ public class ReaderServiceImpl implements ReaderService {
     public List<Reader> findReadersByAddress(String address) {
         return readerDao.findReadersByAddress(address);
     }
+
+    @Override
+    @Transactional
+    public List<Reader> findReadersByExample(Reader reader) {
+        return readerDao.findReadersByExample(reader);
+    }
 }
