@@ -530,16 +530,26 @@ $('#detailsReaderSearchId').keyup(function () {
                     rM = rDate.getMonth() + 1,
                     rDay = rDate.getDate(),
                     rMonth = rM < 10 ? '0' + rM : rM;
-                $('#detailsReaderFName').val(data['fName']);
-                $('#detailsReaderMName').val(data['mName']);
-                $('#detailsReaderLName').val(data['lName']);
-                $('#detailsReaderPhone').val(data['phone']);
-                $('#detailsReaderCountry').val(data['address']['country']);
-                $('#detailsReaderCity').val(data['address']['city']);
-                $('#detailsReaderStreet').val(data['address']['street']);
-                $('#detailsReaderHouse').val(data['address']['house']);
-                $('#detailsReaderBirth').val(year + '-' + month + '-' + day);
-                $('#detailsReaderRegistrationDate').val(rYear + '-' + rMonth + '-' + rDay);
+                //$('#detailsReaderFName').val(data['fName']);
+                //$('#detailsReaderMName').val(data['mName']);
+                //$('#detailsReaderLName').val(data['lName']);
+                //$('#detailsReaderPhone').val(data['phone']);
+                //$('#detailsReaderCountry').val(data['address']['country']);
+                //$('#detailsReaderCity').val(data['address']['city']);
+                //$('#detailsReaderStreet').val(data['address']['street']);
+                //$('#detailsReaderHouse').val(data['address']['house']);
+                //$('#detailsReaderBirth').val(year + '-' + month + '-' + day);
+                //$('#detailsReaderRegistrationDate').val(rYear + '-' + rMonth + '-' + rDay);
+                $('#detailsReaderFName').text(data['fName']);
+                $('#detailsReaderMName').text(data['mName']);
+                $('#detailsReaderLName').text(data['lName']);
+                $('#detailsReaderPhone').text(data['phone']);
+                $('#detailsReaderCountry').text(data['address']['country']);
+                $('#detailsReaderCity').text(data['address']['city']);
+                $('#detailsReaderStreet').text(data['address']['street']);
+                $('#detailsReaderHouse').text(data['address']['house']);
+                $('#detailsReaderBirth').text(year + '-' + month + '-' + day);
+                $('#detailsReaderRegistrationDate').text(rYear + '-' + rMonth + '-' + rDay);
             },
             'json'
         );

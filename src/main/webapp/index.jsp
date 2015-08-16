@@ -562,7 +562,7 @@
         <button id="readers-remove-button" type="button" class="btn btn-info btn-lg" data-toggle="modal"
                 data-target="#readersRemoveModal">Remove
         </button>
-        <button id="readers-find-button" type="button" class="btn btn-info btn-lg">Find</button>
+        <%--<button id="readers-find-button" type="button" class="btn btn-info btn-lg">Find</button>--%>
 
         <button id="readers-details-button" type="button" class="btn btn-info btn-lg" data-toggle="modal"
                 data-target="#readersDetailsModal">Details
@@ -854,68 +854,77 @@
                             <label for="detailsReaderFName" class="col-sm-4 control-label">First name</label>
 
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="detailsReaderFName"
-                                       placeholder="First name">
+                                <label class="form-control" id="detailsReaderFName"></label>
+                                <%--<input type="text" class="form-control" id="detailsReaderFName"--%>
+                                       <%--placeholder="First name">--%>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="detailsReaderMName" class="col-sm-4 control-label">Middle name</label>
 
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="detailsReaderMName"
-                                       placeholder="Middle name">
+                                <label class="form-control" id="detailsReaderMName"></label>
+                                <%--<input type="text" class="form-control" id="detailsReaderMName"--%>
+                                       <%--placeholder="Middle name">--%>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-4 control-label" for="detailsReaderLName">Last name</label>
 
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" placeholder="Last name"
-                                       id="detailsReaderLName"/>
+                                <label class="form-control" id="detailsReaderLName"></label>
+                                <%--<input type="text" class="form-control" placeholder="Last name"--%>
+                                       <%--id="detailsReaderLName"/>--%>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-4 control-label" for="detailsReaderPhone">Phone</label>
 
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" placeholder="Phone" id="detailsReaderPhone"/>
+                                <label class="form-control" id="detailsReaderPhone"></label>
+                                <%--<input type="text" class="form-control" placeholder="Phone" id="detailsReaderPhone"/>--%>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-4 control-label" for="detailsReaderCountry">Country</label>
 
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" placeholder="Country"
-                                       id="detailsReaderCountry"/>
+                                <label class="form-control" id="detailsReaderCountry"></label>
+                                <%--<input type="text" class="form-control" placeholder="Country"--%>
+                                       <%--id="detailsReaderCountry"/>--%>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-4 control-label" for="detailsReaderCity">City</label>
 
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" placeholder="City" id="detailsReaderCity"/>
+                                <label class="form-control" id="detailsReaderCity"></label>
+                                <%--<input type="text" class="form-control" placeholder="City" id="detailsReaderCity"/>--%>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-4 control-label" for="detailsReaderStreet">Street</label>
 
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" placeholder="Street" id="detailsReaderStreet"/>
+                                <label class="form-control" id="detailsReaderStreet"></label>
+                                <%--<input type="text" class="form-control" placeholder="Street" id="detailsReaderStreet"/>--%>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-4 control-label" for="detailsReaderHouse">House</label>
 
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" placeholder="House" id="detailsReaderHouse"/>
+                                <label class="form-control" id="detailsReaderHouse"></label>
+                                <%--<input type="text" class="form-control" placeholder="House" id="detailsReaderHouse"/>--%>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-4 control-label" for="detailsReaderBirth">Date of birth</label>
 
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" placeholder="Date of birth"
-                                       id="detailsReaderBirth"/>
+                                <label class="form-control" id="detailsReaderBirth"></label>
+                                <%--<input type="text" class="form-control" placeholder="Date of birth"--%>
+                                       <%--id="detailsReaderBirth"/>--%>
                             </div>
                         </div>
                         <div class="form-group">
@@ -923,50 +932,43 @@
                                 date</label>
 
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" placeholder="Registration date"
-                                       id="detailsReaderRegistrationDate"/>
+                                <label class="form-control" id="detailsReaderRegistrationDate"></label>
+                                <%--<input type="text" class="form-control" placeholder="Registration date"--%>
+                                       <%--id="detailsReaderRegistrationDate"/>--%>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <button id="show_reader_books" class="btn btn-default" type="button"
-                                    data-target="#readerBooksModal" data-toggle="modal">Show readers
-                            </button>
                         </div>
                     </form>
                 </div>
-                <div class="modal-footer">
-                    <div></div>
-                </div>
 
             </div>
         </div>
     </div>
-    <%--show reader books--%>
-    <div id="readerBooksModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h3 class="modal-title">Books</h3>
-                </div>
-                <div class="modal-body" id="readerBooks">
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>Title</th>
-                            <th>Authors</th>
-                            <th>Year</th>
-                        </tr>
-                        </thead>
-                        <tbody>
+    <%--&lt;%&ndash;show reader books&ndash;%&gt;--%>
+    <%--<div id="readerBooksModal" class="modal fade" role="dialog">--%>
+        <%--<div class="modal-dialog">--%>
+            <%--<div class="modal-content">--%>
+                <%--<div class="modal-header">--%>
+                    <%--<button type="button" class="close" data-dismiss="modal">&times;</button>--%>
+                    <%--<h3 class="modal-title">Books</h3>--%>
+                <%--</div>--%>
+                <%--<div class="modal-body" id="readerBooks">--%>
+                    <%--<table class="table">--%>
+                        <%--<thead>--%>
+                        <%--<tr>--%>
+                            <%--<th>Id</th>--%>
+                            <%--<th>Title</th>--%>
+                            <%--<th>Authors</th>--%>
+                            <%--<th>Year</th>--%>
+                        <%--</tr>--%>
+                        <%--</thead>--%>
+                        <%--<tbody>--%>
 
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
+                        <%--</tbody>--%>
+                    <%--</table>--%>
+                <%--</div>--%>
+            <%--</div>--%>
+        <%--</div>--%>
+    <%--</div>--%>
     <%--рядок додаткової інформації--%>
     <div id="readersStatus"></div>
 </section>
