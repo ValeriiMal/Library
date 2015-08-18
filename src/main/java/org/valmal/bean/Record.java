@@ -15,7 +15,7 @@ public class Record {
     @OneToOne
     private Reader reader;
     private boolean checked = false;
-    private String returnDate;
+    private Date returnDate;
 
     public int getId() {
         return id;
@@ -57,11 +57,11 @@ public class Record {
         this.checked = checked;
     }
 
-    public String getReturnDate() {
+    public Date getReturnDate() {
         return returnDate;
     }
 
-    public void setReturnDate(String returnDate) {
+    public void setReturnDate(Date returnDate) {
         this.returnDate = returnDate;
     }
 

@@ -16,4 +16,5 @@ public interface BookDao {
     List<Book> findBooksByYear(String year);
     List<Book> findBooksByGenre(String genre);
     List findBooksByExample(Book book);
+    Integer readersCountById(int i);
 }

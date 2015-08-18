@@ -69,6 +69,7 @@ h1 {
 }
 
 #records_container {
+    overflow: scroll;
     height: 410px;
 
 }
@@ -79,17 +80,15 @@ h1 {
 }
 
 #books-container {
+    overflow: scroll;
     height: 410px;
 }
 
-#booksStatTable {
+#booksStatContainer {
+    overflow: scroll;
     height: 410px;
 }
-
-/*.readers_input {*/
-    /*width: 120px;*/
-/*}*/
 
 .modal {
-    top: 28px;
+    top: 25px;
 }

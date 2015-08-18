@@ -122,4 +122,9 @@ public class BookDaoImpl implements BookDao {
                 .setMaxResults(100)
                 .list();
     }
+
+    @Override
+    public Integer readersCountById(int i) {
+        return null;
+    }
 }

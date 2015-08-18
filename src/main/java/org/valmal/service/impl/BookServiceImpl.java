@@ -82,7 +82,12 @@ public class BookServiceImpl implements BookService {
     @Override
     @Transactional
     public List<Book> findBooksByExample(Book book) {
-        return bookDao.findBooksByExample(book);
+        List<Book> books = bookDao.findBooksByExample(book);
+        if(book.isScarce()){
+            books.removeIf(b -> !b.isScarce());
+            return books;
+        }
+        return books;
     }
 
     @Override
@@ -96,5 +101,11 @@ public class BookServiceImpl implements BookService {
             return false;
         }
         return true;
+    }
+
+    @Override
+    @Transactional
+    public Integer readersCountById(int i) {
+        return null;
     }
 }

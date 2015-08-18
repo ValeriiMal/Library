@@ -50,16 +50,21 @@ public class ReportServiceImpl implements ReportService {
         recordDao.update(record);
     }
 
-//    @Override
-//    @Transactional
-//    public List<Record> getRecordsBetweenDates(String date1, String date2) {
-//        return recordDao.getRecordsBetweenDates(date1, date2);
-//    }
-
-
     @Override
     @Transactional
     public List<Record> getRecordsBetweenDates(Date date1, Date date2) {
         return recordDao.getRecordsBetweenDates(date1, date2);
+    }
+
+    @Override
+    @Transactional
+    public List<Record> getRecordsByExample(Record example) {
+        return recordDao.getRecordsByExample(example);
+    }
+
+    @Override
+    @Transactional
+    public Date getRecordsFirstDate() {
+        return recordDao.getRecordsFirstDate();
     }
 }

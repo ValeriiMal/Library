@@ -1,5 +1,7 @@
 package org.valmal.dao;
 
+import org.valmal.bean.Book;
+import org.valmal.bean.Reader;
 import org.valmal.bean.Record;
 
 import java.util.Date;
@@ -12,4 +14,6 @@ public interface RecordDao {
     Record findRecordById(int id);
     List<Record> getRecordsBetweenDates(String date1, String date2);
     List<Record> getRecordsBetweenDates(Date date1, Date date2);
+    List<Record> getRecordsByExample(Record example);
+    Date getRecordsFirstDate();
 }

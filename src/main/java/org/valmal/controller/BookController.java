@@ -72,6 +72,7 @@ public class BookController {
         book.setGenre(new_book.getGenre());
         book.setYear(new_book.getYear());
         book.setAmount(new_book.getAmount());
+        book.setIsScarce(new_book.isScarce());
 
         bookService.update(book);
         return "edited";
@@ -88,5 +89,12 @@ public class BookController {
     @ResponseBody
     public String getReaders(@RequestParam("id") String id) throws IOException {
         return new ObjectMapper().writeValueAsString(bookService.findBookById(Integer.parseInt(id)).getReaders());
+    }
+
+    @RequestMapping("/readersCount")
+    @ResponseBody
+    public String getReadersCount(@RequestParam("id") String id){
+        Book book = bookService.findBookById(Integer.parseInt(id));
+        return Integer.toString(book.getAmount() - book.getReaders().size());
     }
 }

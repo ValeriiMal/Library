@@ -20,4 +20,5 @@ public interface BookService {
     int available(Book book);
     boolean isAvailable(Book book);
 
+    Integer readersCountById(int i);
 }

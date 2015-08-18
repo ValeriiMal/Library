@@ -27,7 +27,7 @@ public class RecordDaoImpl implements RecordDao {
         return sessionFactory.getCurrentSession()
                 .createCriteria(Record.class)
                 .addOrder(Order.desc("id"))
-                .setMaxResults(10)
+//                .setMaxResults(100)
                 .list();
     }
 
@@ -50,7 +50,7 @@ public class RecordDaoImpl implements RecordDao {
         return sessionFactory.getCurrentSession()
                 .createCriteria(Record.class)
                 .add(Restrictions.between("date", date1, date2))
-                .setMaxResults(10)
+                .setMaxResults(100)
                 .list();
     }
 
@@ -61,4 +61,24 @@ public class RecordDaoImpl implements RecordDao {
                 .add(Restrictions.between("date", date1, date2))
                 .list();
     }
+
+    @Override
+    public List<Record> getRecordsByExample(Record example) {
+        return sessionFactory.getCurrentSession()
+                .createCriteria(Record.class)
+                .add(Restrictions.eq("id", example.getId()))
+                .add(Restrictions.or(Restrictions.eq("book", example.getBook())))
+//                .add(Restrictions.eq("reader", example.getReader()))
+//                .add(Restrictions.eq("checked", example.isChecked()))
+                .setMaxResults(100)
+                .list();
+    }
+
+    @Override
+    public Date getRecordsFirstDate() {
+        return (Date) sessionFactory.getCurrentSession()
+                .createSQLQuery("select MIN(" + "date" + ") from records;")
+                .uniqueResult();
+    }
+
 }

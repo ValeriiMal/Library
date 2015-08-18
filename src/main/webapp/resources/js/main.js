@@ -4,30 +4,107 @@ function showReport() {
 
 // REPORT
 
+function recordsJsonToRows(data) {
+    var content = "";
+
+    if (data.length === 0) {
+        return "<tr><td>nothing to show</td></tr>";
+    }
+
+    for (var i = 0; i < data.length; i++) {
+        var date = new Date(data[i]['date']),
+            dYear = date.getFullYear(),
+            dM = date.getMonth() + 1,
+            dMonth = dM < 10 ? '0' + dM : dM,
+            dDay = date.getDate();
+        var rDate = new Date(data[i]['returnDate']),
+            rYear = rDate.getFullYear(),
+            rM = rDate.getMonth(),
+            rMonth = rM < 10 ? '0' + rM : rM,
+            rDay = rDate.getDate();
+        data[i]['date'] = dYear + '-' + dMonth + '-' + dDay;
+        data[i]['returnDate'] = rYear + '-' + rMonth + '-' + rDay;
+        content +=
+            "<tr>" +
+            "<td>" + data[i]['id'] + "</td>" +
+            "<td>" + data[i]['date'] + "</td>" +
+            "<td>" + data[i]['book']['id'] + "</td>" +
+            "<td>" + data[i]['reader']['id'] + "</td>" +
+            "<td>" + data[i]['checked'] + "</td>" +
+            "<td>" + data[i]['returnDate'] + "</td>" +
+            "</tr>";
+    }
+
+    return content;
+}
+
 function findRecords() {
+    $('#records-table tbody').html('');
+
+    if ($('#reportFindId').val() === "0"
+        | $('#reportFindBookId').val() === "0"
+        | $('#reportFindReaderId').val() === "0") {
+        alert("id can't be zero");
+    } else {
+        $.ajax({
+            url: 'report/find',
+            type: 'GET',
+            contentType: 'text/html',
+            dataType: 'json',
+            data: {
+                id: $('#reportFindId').val(),
+                book_id: $('#reportFindBookId').val(),
+                reader_id: $('#reportFindReaderId').val(),
+                date_from: $('#reportFindDateFrom').val(),
+                date_to: $('#reportFindDateTo').val(),
+                return_from: $('#reportFindReturnDateFrom').val(),
+                return_to: $('#reportFindReturnDateTo').val(),
+                returned: $('#reportFindReturned').val()
+            },
+            success: function (data) {
+                // дата до нормального вигляду
+
+                // заповнюємо таблицю
+                $('#records-table tbody').html(recordsJsonToRows(data));
+            },
+            error: function (jqXHR, statusText, errorThrown) {
+                alert(statusText + '\n' + errorThrown);
+                $('#records-table tbody').text('error');
+            }
+        });
+    }
 
 }
 
-$('#report-find-input input').keyup(findRecords);
+$('#report-find-input input[type=text]').keyup(findRecords);
+$('#report-find-input input[type=date]').change(findRecords);
+//$('#report-find-input input[type=checkbox]').change(findRecords);
+$('#reportFindReturned').change(findRecords);
 
 $('#add_record').click(function () {
-    $.ajax({
-        url: 'report/add',
-        type: 'GET',
-        contentType: 'text',
-        dataType: 'text',
-        data: {
-            bookId: $('#inputBookId').val(),
-            readerId: $('#inputReaderId').val(),
-            returnDate: $('#inputReturnDate').val()
-        },
-        success: function (data) {
-            $('#addRecordResult').text(data);
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            alert(textStatus + '\n' + errorThrown);
-        }
-    })
+    $('#addRecordResult').text('');
+    if ($('#inputReturnDate').val() === "") {
+        alert('You must enter "Return date" value');
+    } else {
+
+        $.ajax({
+            url: 'report/add',
+            type: 'GET',
+            contentType: 'text',
+            dataType: 'text',
+            data: {
+                bookId: $('#inputBookId').val(),
+                readerId: $('#inputReaderId').val(),
+                returnDate: $('#inputReturnDate').val()
+            },
+            success: function (data) {
+                $('#addRecordResult').text(data);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert(textStatus + '\n' + errorThrown);
+            }
+        })
+    }
 });
 
 $('#editRecordSearchId').keyup(function () {
@@ -40,10 +117,16 @@ $('#editRecordSearchId').keyup(function () {
             dataType: 'json',
             data: {id: id},
             success: function (data, statusText, jqXHR) {
+                var date = new Date(data['returnDate']),
+                    year = date.getFullYear(),
+                    m = date.getMonth() + 1,
+                    month = m < 10 ? '0' + m : m,
+                    day = date.getDate();
+
                 $('#editRecordBookId').val(data['book']['id']);
                 $('#editRecordReaderId').val(data['reader']['id']);
                 $('#editRecordchecked').prop('checked', data['checked']);
-                $('#editRecordReturnDate').val(data['returnDate']);
+                $('#editRecordReturnDate').val(year + '-' + month + '-' + day);
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 alert(textStatus + "\n" + errorThrown);
@@ -80,6 +163,7 @@ $('#edit_record').click(function () {
 
 //--------------------------------------------------- BOOKS -----------------------------------------------
 
+$('#bookFindScarce').prop('checked', false);
 var booksFindInputs = $('#books-find-input input');
 
 function findBooks() {
@@ -93,7 +177,8 @@ function findBooks() {
             title: booksFindInputs.get(1).value,
             authors: booksFindInputs.get(2).value,
             year: booksFindInputs.get(3).value,
-            genre: booksFindInputs.get(4).value
+            genre: booksFindInputs.get(4).value,
+            isScarce: $('#bookFindScarce').prop('checked')
         }),
         success: function (data, textStatus, jqXHR) {
             $('#books-table tbody').html(data);
@@ -115,7 +200,8 @@ function addBook() {
             authors: $('#inputBookAuthors').val(),
             year: $('#inputBookYear').val(),
             genre: $('#inputBookGenre').val(),
-            amount: $('#inputBookAmount').val()
+            amount: $('#inputBookAmount').val(),
+            isScarce: $('#inputBookScarce').prop('checked')
         }),
         success: function (data) {
             $('#addBookResult').text(data);
@@ -127,10 +213,16 @@ function addBook() {
 }
 
 booksFindInputs.keyup(findBooks);
+$('#bookFindScarce').change(findBooks);
 
 $('#add-book').click(function () {
     $('#addBookResult').text('');
-    addBook();
+    if ($('#inputBookAmount').val() == '' && $('#inputBookAmount').val() == '') {
+        alert('You must enter "Amount" value \n Amount > 0');
+    } else {
+        addBook();
+    }
+
 });
 
 $('#editBookSearchId').keyup(function () {
@@ -148,7 +240,8 @@ $('#editBookSearchId').keyup(function () {
                 $('#editBookYear').val(data.year);
                 $('#editBookAuthors').val(data.authors);
                 $('#editBookGenre').val(data.genre);
-                $('#editBookCount').val(data.amount);
+                $('#editBookAmount').val(data.amount);
+                $('#editBookScarce').prop('checked', data.scarce);
             },
             error: function (jqXHR, statusText, errorThrown) {
                 alert(statusText + "\n" + errorThrown)
@@ -174,7 +267,8 @@ $('#edit_book').click(function () {
             authors: $('#editBookAuthors').val(),
             year: $('#editBookYear').val(),
             genre: $('#editBookGenre').val(),
-            amount: $('#editBookAmount').val()
+            amount: $('#editBookAmount').val(),
+            isScarce: $('#editBookScarce').prop('checked')
         }),
         success: function (data) {
             $('#editBookResult').text(data);
@@ -230,6 +324,19 @@ $('#detailsBookSearchId').keyup(function () {
                 $('#detailsBookAuthors').val(data.authors);
                 $('#detailsBookGenre').val(data.genre);
                 $('#detailsBookAmount').val(data.amount);
+                $('#detailsBookScarce').prop('checked', data.scarce);
+                $.ajax({
+                    url: 'book/readersCount',
+                    contentType: 'text/html',
+                    dataType: 'text',
+                    data: {id: $('#detailsBookSearchId').val()},
+                    success: function (data2) {
+                        $('#detailsBookRemains').val(data2);
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        alert(textStatus + "\n" + errorThrown);
+                    }
+                })
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 alert(textStatus + '\n' + errorThrown);
@@ -285,26 +392,33 @@ function jsonBooksToRows(data) {
 
 // how = {all/given/taken}
 function booksByDate(how) {
-    $.ajax({
-        url: 'report/allBooksByDate',
-        type: 'GET',
-        contentType: 'text/html',
-        dataType: 'json',
-        data: {
-            checked: how,
-            date1: $('#booksDate1').val(),
-            date2: $('#booksDate2').val()
-        },
-        success: function (data) {
-            $('#booksStatTable tbody').html(jsonBooksToRows(data));
-            $('#booksStatStatus').text(data.length);
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            $('#booksStatTable tbody').html('');
-            $('#booksStatStatus').text('error');
-            alert(textStatus + "\n" + errorThrown);
-        }
-    })
+    if ($('#booksDate1').val() === "") {
+        alert("You must enter 'Date from' value")
+    } else {
+
+        $.ajax({
+            url: 'report/allBooksByDate',
+            type: 'GET',
+            contentType: 'text/html',
+            dataType: 'json',
+            data: {
+                checked: how,
+                dateFrom: $('#booksDate1').val(),
+                dateTo: $('#booksDate2').val(),
+                scarce: $('#booksScarce').prop('checked')
+            },
+            success: function (data) {
+
+                $('#booksStatTable tbody').html(jsonBooksToRows(data));
+                $('#booksStatStatus').text(' ' + data.length + ' books');
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                $('#booksStatTable tbody').html('');
+                $('#booksStatStatus').text('error');
+                alert(textStatus + "\n" + errorThrown);
+            }
+        })
+    }
 }
 
 $('#showBooksStat').click(function () {
@@ -323,6 +437,7 @@ $('#showBooksStat').click(function () {
         $('#booksStatTable tbody').html('');
     }
 });
+
 
 //--------------------------------------------------- READERS -------------------------------------------------
 
@@ -564,16 +679,17 @@ $('#detailsReaderSearchId').keyup(function () {
 
 function scroll2(menu_item, section) {
     $(menu_item).click(function () {
-            $('html, body').animate({
-                scrollTop: $(section).offset().top - 50
-            }, 1000)
+        $('html, body').animate({
+            scrollTop: $(section).offset().top - 50
+        }, 1000)
     })
 }
 
 $(document).ready(function () {
     findReaders();
     findBooks();
-    showReport();
+    findRecords();
+    //showReport();
 
     scroll2('#menu_item_report', '#report_section');
     scroll2('#menu_item_readers', '#readers-section');

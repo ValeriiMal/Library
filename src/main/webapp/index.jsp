@@ -52,31 +52,66 @@
         <button id="report_details" class="btn btn-info btn-lg" type="button" data-toggle="modal" data-target="">Record
             details
         </button>
-        <button class="btn btn-info btn-lg" type="button" data-toggle="modal" data-target="">btn</button>
     </div>
     <br/>
     <%--поля пошуку--%>
     <div id="report-find-input">
         <form class="form-horizontal">
             <div class="form-group">
-                <div class="col-sm-2">
-                    <input type="text" class="form-control" placeholder="ID">
+                <label for="reportFindId" class="col-sm-2 control-label">Record Id: </label>
+
+                <div class="col-sm-1">
+                    <input type="text" class="form-control" placeholder="" id="reportFindId">
                 </div>
+
+                <label for="reportFindBookId" class="control-label col-sm-2">Book Id: </label>
+
                 <div class="col-sm-2">
-                    <input type="text" class="form-control" placeholder="Date">
+                    <input type="text" class="form-control" placeholder="" id="reportFindBookId">
                 </div>
+
+                <label class="col-sm-2 control-label" for="reportFindReaderId">Reader Id: </label>
+
                 <div class="col-sm-2">
-                    <input type="text" class="form-control" placeholder="Book">
+                    <input type="text" class="form-control" placeholder="" id="reportFindReaderId">
                 </div>
-                <div class="col-sm-2">
-                    <input type="text" class="form-control" placeholder="Reader">
+            </div>
+            <div class="form-group">
+                <label for="reportFindDateFrom" class="col-sm-2 control-label">Date of record: from </label>
+
+                <div class="col-sm-3">
+                    <input type="date" class="form-control col-sm-3" placeholder="" id="reportFindDateFrom">
                 </div>
-                <div class="col-sm-2">
-                    <input type="checkbox" class="form-control">
+                <label for="reportFindDateTo" class="col-sm-1 control-label">to </label>
+
+                <div class="col-sm-3">
+                    <input type="date" class="form-control col-sm-3" placeholder="" id="reportFindDateTo">
                 </div>
-                <div class="col-sm-2">
-                    <input type="text" class="form-control" placeholder="Return date">
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="reportFindReturnDateFrom">Return date: from </label>
+                <div class="col-sm-3">
+                    <input type="date" class="form-control" placeholder="" id="reportFindReturnDateFrom">
                 </div>
+
+                <label class="col-sm-1 control-label" for="reportFindReturnDateTo">to </label>
+                <div class="col-sm-3">
+                    <input type="date" class="form-control" placeholder="" id="reportFindReturnDateTo">
+                </div>
+
+                <%--<label for="reportFindReturned" class="col-sm-2 control-label">Returned: </label>--%>
+                <%--<div class="col-sm-1">--%>
+                    <%--<input type="checkbox" class="form-control" id="reportFindReturned">--%>
+                <%--</div>--%>
+
+                <div class="col-sm-3">
+                    <select name="" id="reportFindReturned" class="form-control">
+                        <option value="all">All</option>
+                        <option value="returned">Returned books</option>
+                        <option value="notReturned">Not returned books</option>
+                    </select>
+                </div>
+
             </div>
         </form>
     </div>
@@ -90,7 +125,7 @@
                 <th class="col-sm-2">Date</th>
                 <th class="col-sm-2">Book</th>
                 <th class="col-sm-2">Reader</th>
-                <th class="col-sm-2">Checked</th>
+                <th class="col-sm-2">Returned</th>
                 <th class="col-sm-2">Return date</th>
             </tr>
             </thead>
@@ -124,10 +159,10 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputReturnDate" class="col-sm-4 control-label">Return date</label>
+                            <label for="inputReturnDate" class="col-sm-4 control-label">Return date*</label>
 
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="inputReturnDate" placeholder="Return date"/>
+                                <input type="date" class="form-control" id="inputReturnDate" placeholder=""/>
                             </div>
                         </div>
                     </form>
@@ -151,7 +186,7 @@
                 <div class="modal-body">
                     <form action="" class="form-horizontal">
                         <div class="form-group">
-                            <label for="editRecordSearchId" class="col-sm-4 control-label">Id</label>
+                            <label for="editRecordSearchId" class="col-sm-4 control-label">Id*</label>
 
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" id="editRecordSearchId" placeholder="Enter id"/>
@@ -173,9 +208,9 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="editRecordchecked" class="col-sm-4 control-label">Checked</label>
+                            <label for="editRecordchecked" class="col-sm-4 control-label">Returned</label>
 
-                            <div class="col-sm-8">
+                            <div class="col-sm-1">
                                 <input type="checkbox" class="form-control" id="editRecordchecked"/>
                             </div>
                         </div>
@@ -183,7 +218,7 @@
                             <label for="editRecordReturnDate" class="col-sm-4 control-label">Return date</label>
 
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="editRecordReturnDate"
+                                <input type="date" class="form-control" id="editRecordReturnDate"
                                        placeholder="Return date"/>
                             </div>
                         </div>
@@ -225,7 +260,7 @@
     <div id="books-find-input">
         <form class="form-horizontal">
             <div class="form-group">
-                <div class="col-sm-2">
+                <div class="col-sm-1">
                     <input type="text" class="form-control" placeholder="ID">
                 </div>
                 <div class="col-sm-2">
@@ -239,6 +274,11 @@
                 </div>
                 <div class="col-sm-2">
                     <input type="text" class="form-control" placeholder="Genre">
+                </div>
+                <label for="bookFindScarce" class="control-label col-sm-2">Scarce: </label>
+
+                <div class="col-sm-1">
+                    <input type="checkbox" class="form-control" placeholder="Genre" id="bookFindScarce">
                 </div>
             </div>
         </form>
@@ -262,29 +302,64 @@
     <%--інформація про видані/прийняті книги--%>
     <div>
         <h3>Stat</h3>
+
         <div>
-            <div>
-                <input type="date" class="date-cell col-sm-2" id="booksDate1"/>
-                <input type="date" class="date-cell col-sm-2" id="booksDate2"/>
-            </div>
-            <div>
-                Видані<input type="checkbox" class="check-box" id="booksOnlyGiven" style="font-size: 20px; display: block; "/>
-                Отримані<input type="checkbox" class="checkbox" id="booksOnlyTaken"/>
-            </div>
-            <button type="button" class="button btn-info btn-lg" id="showBooksStat">Show stat</button>
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label for="booksDate1" class="col-sm-2 control-label">Date from: </label>
+
+                    <div class="col-sm-3">
+
+                        <input type="date" class="form-control" id="booksDate1"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="booksDate2" class="col-sm-2 control-label">Date to: </label>
+
+                    <div class="col-sm-3">
+
+                        <input type="date" class="form-control" id="booksDate2"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="booksOnlyGiven" class="col-sm-2 control-label">Видані: </label>
+
+                    <div class="col-sm-1">
+
+                        <input type="checkbox" class="check-box form-control" id="booksOnlyGiven"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="booksOnlyTaken" class="col-sm-2 control-label">Отримані: </label>
+
+                    <div class="col-sm-1">
+                        <input type="checkbox" class="checkbox form-control" id="booksOnlyTaken"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="booksScarce" class="col-sm-2 control-label">Дефіцитні: </label>
+
+                    <div class="col-sm-1">
+                        <input type="checkbox" class="checkbox form-control" id="booksScarce"/>
+                    </div>
+                </div>
+                <button type="button" class="button btn-info btn-lg" id="showBooksStat">Show stat</button>
+            </form>
         </div>
-        <table class="table table-hover scroll-arrow" id="booksStatTable">
-            <thead>
+        <div id="booksStatContainer">
+            <table class="table table-hover scroll-arrow" id="booksStatTable">
+                <thead>
                 <th class="col-sm-2">Id</th>
                 <th class="col-sm-2">Title</th>
                 <th class="col-sm-2">Authors</th>
                 <th class="col-sm-2">Year</th>
                 <th class="col-sm-2">Genre</th>
-            </thead>
-            <tbody>
+                </thead>
+                <tbody>
 
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </div>
         <div id="booksStatStatus"></div>
     </div>
 
@@ -327,10 +402,17 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputBookAmount" class="col-sm-4 control-label">Count</label>
+                            <label for="inputBookAmount" class="col-sm-4 control-label">Amount</label>
 
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" id="inputBookAmount" placeholder="Amount"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputBookScarce" class="col-sm-4 control-label">Scarce: </label>
+
+                            <div class="col-sm-1">
+                                <input type="checkbox" class="form-control" id="inputBookScarce" placeholder="Amount"/>
                             </div>
                         </div>
                     </form>
@@ -394,6 +476,13 @@
 
                             <div class="col-sm-8">
                                 <input id="editBookAmount" type="text" class="form-control" placeholder="Amount"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="editBookScarce" class="col-sm-4 control-label">Scarce: </label>
+
+                            <div class="col-sm-1">
+                                <input id="editBookScarce" type="checkbox" class="form-control"/>
                             </div>
                         </div>
                     </form>
@@ -502,8 +591,20 @@
                         <div class="form-group">
                             <label for="detailsBookAmount" class="col-sm-4 control-label">Amount</label>
 
-                            <div class="col-sm-8">
+                            <div class="col-sm-2">
                                 <input id="detailsBookAmount" type="text" class="form-control" placeholder="Amount"/>
+                            </div>
+                            <label for="detailsBookRemains" class="col-sm-4 control-label">Remains</label>
+
+                            <div class="col-sm-2">
+                                <input id="detailsBookRemains" type="text" class="form-control" placeholder="Remains"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="detailsBookScarce" class="col-sm-4 control-label">Scarce: </label>
+
+                            <div class="col-sm-1">
+                                <input id="detailsBookScarce" type="checkbox" class="form-control"/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -570,7 +671,7 @@
     </div>
     <br/>
     <%--поля пошуку --%>
-    <div id="readers-find-input" <%--style="display: none;"--%>>
+    <div id="readers-find-input">
         <form class="form-horizontal">
             <div class="form-group">
                 <div class="col-sm-2">
@@ -856,7 +957,7 @@
                             <div class="col-sm-8">
                                 <label class="form-control" id="detailsReaderFName"></label>
                                 <%--<input type="text" class="form-control" id="detailsReaderFName"--%>
-                                       <%--placeholder="First name">--%>
+                                <%--placeholder="First name">--%>
                             </div>
                         </div>
                         <div class="form-group">
@@ -865,7 +966,7 @@
                             <div class="col-sm-8">
                                 <label class="form-control" id="detailsReaderMName"></label>
                                 <%--<input type="text" class="form-control" id="detailsReaderMName"--%>
-                                       <%--placeholder="Middle name">--%>
+                                <%--placeholder="Middle name">--%>
                             </div>
                         </div>
                         <div class="form-group">
@@ -874,7 +975,7 @@
                             <div class="col-sm-8">
                                 <label class="form-control" id="detailsReaderLName"></label>
                                 <%--<input type="text" class="form-control" placeholder="Last name"--%>
-                                       <%--id="detailsReaderLName"/>--%>
+                                <%--id="detailsReaderLName"/>--%>
                             </div>
                         </div>
                         <div class="form-group">
@@ -891,7 +992,7 @@
                             <div class="col-sm-8">
                                 <label class="form-control" id="detailsReaderCountry"></label>
                                 <%--<input type="text" class="form-control" placeholder="Country"--%>
-                                       <%--id="detailsReaderCountry"/>--%>
+                                <%--id="detailsReaderCountry"/>--%>
                             </div>
                         </div>
                         <div class="form-group">
@@ -924,7 +1025,7 @@
                             <div class="col-sm-8">
                                 <label class="form-control" id="detailsReaderBirth"></label>
                                 <%--<input type="text" class="form-control" placeholder="Date of birth"--%>
-                                       <%--id="detailsReaderBirth"/>--%>
+                                <%--id="detailsReaderBirth"/>--%>
                             </div>
                         </div>
                         <div class="form-group">
@@ -934,7 +1035,7 @@
                             <div class="col-sm-8">
                                 <label class="form-control" id="detailsReaderRegistrationDate"></label>
                                 <%--<input type="text" class="form-control" placeholder="Registration date"--%>
-                                       <%--id="detailsReaderRegistrationDate"/>--%>
+                                <%--id="detailsReaderRegistrationDate"/>--%>
                             </div>
                         </div>
                     </form>
@@ -945,29 +1046,29 @@
     </div>
     <%--&lt;%&ndash;show reader books&ndash;%&gt;--%>
     <%--<div id="readerBooksModal" class="modal fade" role="dialog">--%>
-        <%--<div class="modal-dialog">--%>
-            <%--<div class="modal-content">--%>
-                <%--<div class="modal-header">--%>
-                    <%--<button type="button" class="close" data-dismiss="modal">&times;</button>--%>
-                    <%--<h3 class="modal-title">Books</h3>--%>
-                <%--</div>--%>
-                <%--<div class="modal-body" id="readerBooks">--%>
-                    <%--<table class="table">--%>
-                        <%--<thead>--%>
-                        <%--<tr>--%>
-                            <%--<th>Id</th>--%>
-                            <%--<th>Title</th>--%>
-                            <%--<th>Authors</th>--%>
-                            <%--<th>Year</th>--%>
-                        <%--</tr>--%>
-                        <%--</thead>--%>
-                        <%--<tbody>--%>
+    <%--<div class="modal-dialog">--%>
+    <%--<div class="modal-content">--%>
+    <%--<div class="modal-header">--%>
+    <%--<button type="button" class="close" data-dismiss="modal">&times;</button>--%>
+    <%--<h3 class="modal-title">Books</h3>--%>
+    <%--</div>--%>
+    <%--<div class="modal-body" id="readerBooks">--%>
+    <%--<table class="table">--%>
+    <%--<thead>--%>
+    <%--<tr>--%>
+    <%--<th>Id</th>--%>
+    <%--<th>Title</th>--%>
+    <%--<th>Authors</th>--%>
+    <%--<th>Year</th>--%>
+    <%--</tr>--%>
+    <%--</thead>--%>
+    <%--<tbody>--%>
 
-                        <%--</tbody>--%>
-                    <%--</table>--%>
-                <%--</div>--%>
-            <%--</div>--%>
-        <%--</div>--%>
+    <%--</tbody>--%>
+    <%--</table>--%>
+    <%--</div>--%>
+    <%--</div>--%>
+    <%--</div>--%>
     <%--</div>--%>
     <%--рядок додаткової інформації--%>
     <div id="readersStatus"></div>

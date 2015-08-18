@@ -17,6 +17,7 @@ public class Book {
     private String genre;
     private String year;
     private int amount;
+    private boolean isScarce;
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "books_readers",
             joinColumns = { @JoinColumn(name = "book_id", referencedColumnName = "id")},
@@ -80,6 +81,14 @@ public class Book {
 
     public void setReaders(Set<Reader> readers) {
         this.readers = readers;
+    }
+
+    public boolean isScarce() {
+        return isScarce;
+    }
+
+    public void setIsScarce(boolean isScarce) {
+        this.isScarce = isScarce;
     }
 
     @Override

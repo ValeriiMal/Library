@@ -12,4 +12,6 @@ public interface ReportService {
     List<Record> getRecords();
     Record findRecordById(int id);
     List<Record> getRecordsBetweenDates(Date date1, Date date2);
+    List<Record> getRecordsByExample(Record example);
+    Date getRecordsFirstDate();
 }
