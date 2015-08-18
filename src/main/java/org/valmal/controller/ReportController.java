@@ -37,13 +37,17 @@ public class ReportController {
     @ResponseBody
     public String findRecords(@RequestBody String json) throws IOException, ParseException {
         PreRecord preRecord = new ObjectMapper().readValue(json, PreRecord.class);
-        List<Record> records = reportService.getRecordsByPreExample(
-                preRecord,
-                bookService.findBookById(preRecord.getBook_id()),
-                readerService.findReaderById(preRecord.getReader_id())
-        );
-
-
+        List<Record> records = reportService.getRecords();
+//         фільтр по айдішкам
+        if(preRecord.getId() != 0) records.removeIf(r -> r.getId() != preRecord.getId());
+        if(preRecord.getBook_id() != 0) records.removeIf(r -> r.getBook().getId() != preRecord.getBook_id());
+        if(preRecord.getReader_id() != 0) records.removeIf(r -> r.getReader().getId() != preRecord.getReader_id());
+//        фільтр по даті запису
+        if(preRecord.getDate_from() != null) records.removeIf(r -> r.getDate().before(preRecord.getDate_from()));
+        if(preRecord.getDate_to() != null) records.removeIf(r -> r.getDate().after(preRecord.getDate_to()));
+//        фільтр по даті повернення книги
+        if(preRecord.getReturn_from() != null) records.removeIf(r -> r.getReturnDate().before(preRecord.getReturn_from()));
+        if(preRecord.getReturn_to() != null) records.removeIf(r -> r.getReturnDate().after(preRecord.getReturn_to()));
 
         switch (preRecord.getReturned()){
             case "all" : {}break;
