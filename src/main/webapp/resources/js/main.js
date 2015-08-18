@@ -161,6 +161,46 @@ $('#edit_record').click(function () {
     })
 });
 
+$('#detailsRecordSearchId').keyup(function () {
+    var id = $('#detailsRecordSearchId').val();
+    if (!!id) {
+        $.ajax({
+            url: 'report/findById',
+            type: 'GET',
+            contentType: 'text/html',
+            dataType: 'json',
+            data: {id: id},
+            success: function (data, statusText, jqXHR) {
+                var date = new Date(data['date']),
+                    year = date.getFullYear(),
+                    m = date.getMonth() + 1,
+                    month = m < 10 ? '0' + m : m,
+                    day = date.getDate();
+                var rDate = new Date(data['returnDate']),
+                    ryear = rDate.getFullYear(),
+                    rm = rDate.getMonth() + 1,
+                    rmonth = m < 10 ? '0' + m : m,
+                    rday = rDate.getDate();
+
+                $('#detailsRecordBookId').text(data['book']['id']);
+                $('#detailsRecordBookTitle').val(data['book']['title']);
+                $('#detailsRecordReaderId').text(data['reader']['id']);
+                $('#detailsRecordReaderName').val(data['reader']['fName'] + ' ' + data['reader']['mName'] + ' ' + data['reader']['lName']);
+                $('#detailsRecordchecked').prop('checked', data['checked']);
+                $('#detailsRecordDate').text(year + '-' + month + '-' + day);
+                $('#detailsRecordReturnDate').text(ryear + '-' + rmonth + '-' + rday);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert(textStatus + "\n" + errorThrown);
+            }
+        })
+    } else {
+        $('#recordsEditModal input').each(function () {
+            $(this).val("");
+        })
+    }
+});
+
 //--------------------------------------------------- BOOKS -----------------------------------------------
 
 $('#bookFindScarce').prop('checked', false);
@@ -290,9 +330,9 @@ $('#removeBookSearchId').keyup(function () {
             data: {id: id},
             success: function (data, textStatus, jqXHR) {
                 var book = $.parseJSON(data);
-                $('#removeBookTitle').val(book.title);
-                $('#removeBookYear').val(book.year);
-                $('#removeBookAuthors').val(book.authors);
+                $('#removeBookTitle').text(book.title);
+                $('#removeBookYear').text(book.year);
+                $('#removeBookAuthors').text(book.authors);
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 alert(textStatus + '\n' + errorThrown);
@@ -319,11 +359,11 @@ $('#detailsBookSearchId').keyup(function () {
             dataType: 'json',
             data: {id: id},
             success: function (data, textStatus, jqXHR) {
-                $('#detailsBookTitle').val(data.title);
-                $('#detailsBookYear').val(data.year);
-                $('#detailsBookAuthors').val(data.authors);
-                $('#detailsBookGenre').val(data.genre);
-                $('#detailsBookAmount').val(data.amount);
+                $('#detailsBookTitle').text(data.title);
+                $('#detailsBookYear').text(data.year);
+                $('#detailsBookAuthors').text(data.authors);
+                $('#detailsBookGenre').text(data.genre);
+                $('#detailsBookAmount').text(data.amount);
                 $('#detailsBookScarce').prop('checked', data.scarce);
                 $.ajax({
                     url: 'book/readersCount',
@@ -331,7 +371,7 @@ $('#detailsBookSearchId').keyup(function () {
                     dataType: 'text',
                     data: {id: $('#detailsBookSearchId').val()},
                     success: function (data2) {
-                        $('#detailsBookRemains').val(data2);
+                        $('#detailsBookRemains').text(data2);
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                         alert(textStatus + "\n" + errorThrown);
@@ -598,9 +638,9 @@ $('#removeReaderSearchId').keyup(function () {
             dataType: 'json',
             data: {id: id},
             success: function (data) {
-                $('#removeReaderFName').val(data['fName']);
-                $('#removeReaderMName').val(data['mName']);
-                $('#removeReaderLName').val(data['lName']);
+                $('#removeReaderFName').text(data['fName']);
+                $('#removeReaderMName').text(data['mName']);
+                $('#removeReaderLName').text(data['lName']);
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 alert(textStatus + '\n' + errorThrown);
