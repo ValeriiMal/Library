@@ -5,8 +5,11 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.valmal.bean.Book;
+import org.valmal.bean.Reader;
 import org.valmal.bean.Record;
 import org.valmal.dao.RecordDao;
+import org.valmal.domain.PreRecord;
 
 import java.util.Date;
 import java.util.List;
@@ -81,4 +84,16 @@ public class RecordDaoImpl implements RecordDao {
                 .uniqueResult();
     }
 
+    @Override
+    public List<Record> getRecordsByPreExample(PreRecord preExample, Book book, Reader reader) {
+        return sessionFactory.getCurrentSession()
+                .createCriteria(Record.class)
+                .add(Restrictions.eq("id", preExample.getId()))
+                .add(Restrictions.eq("book", book))
+                .add(Restrictions.eq("reader", reader))
+                .add(Restrictions.between("date", preExample.getDate_from(), preExample.getDate_to()))
+                .add(Restrictions.between("returnDate", preExample.getReturn_from(), preExample.getReturn_to()))
+                .setMaxResults(100)
+                .list();
+    }
 }

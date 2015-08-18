@@ -12,6 +12,7 @@ org\valmal\bean\Book.class
 org\valmal\service\ReportService.class
 org\valmal\bean\Reader.class
 org\valmal\service\impl\ReportServiceImpl.class
+org\valmal\domain\PreRecord.class
 org\valmal\service\BookService.class
 org\valmal\service\impl\BookServiceImpl.class
 org\valmal\dao\BookDao.class

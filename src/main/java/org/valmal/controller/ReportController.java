@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.valmal.bean.Book;
 import org.valmal.bean.Reader;
 import org.valmal.bean.Record;
+import org.valmal.domain.PreRecord;
 import org.valmal.service.BookService;
 import org.valmal.service.ReaderService;
 import org.valmal.service.ReportService;
@@ -32,64 +33,26 @@ public class ReportController {
     @Autowired
     ReaderService readerService;
 
-    @RequestMapping(value = "/find", method = RequestMethod.GET)
+    @RequestMapping(value = "/find", method = RequestMethod.POST)
     @ResponseBody
-    public String findRecords(
-            @RequestParam("id") String id,
-            @RequestParam("book_id") String book_id,
-            @RequestParam("reader_id") String reader_id,
-            @RequestParam("date_from") String date_from,
-            @RequestParam("date_to") String date_to,
-            @RequestParam("return_from") String return_from,
-            @RequestParam("return_to") String return_to,
-            @RequestParam("returned") String returned
+    public String findRecords(@RequestBody String json) throws IOException, ParseException {
+        PreRecord preRecord = new ObjectMapper().readValue(json, PreRecord.class);
+        List<Record> records = reportService.getRecordsByPreExample(
+                preRecord,
+                bookService.findBookById(preRecord.getBook_id()),
+                readerService.findReaderById(preRecord.getReader_id())
+        );
 
-    ) throws IOException, ParseException {
 
-        List<Record> records = new ArrayList<>();
-            records = reportService.getRecords();
 
-        switch (returned) {
-            case "all": {
-
-            }
-            break;
-            case "notReturned": {
-                records.removeIf(Record::isChecked);
-            }
-            break;
-            case "returned": {
+        switch (preRecord.getReturned()){
+            case "all" : {}break;
+            case "returned" : {
                 records.removeIf(r -> !r.isChecked());
-            }
-            break;
-            default: {
-
-            }
-        }
-
-        if (!id.equals("")) records.removeIf(r -> r.getId() != Integer.parseInt(id));
-
-        if (!book_id.equals("")) records.removeIf(r -> r.getBook().getId() != Integer.parseInt(book_id));
-
-        if (!reader_id.equals("")) records.removeIf(r -> r.getReader().getId() != Integer.parseInt(reader_id));
-
-//        фільтр по даті запису
-        if (!date_from.equals("")) {
-            Date dateF = new SimpleDateFormat("yyy-MM-dd").parse(date_from);
-            records.removeIf(r -> r.getDate().before(dateF));
-        }
-        if (!date_to.equals("")) {
-            Date dateT = new SimpleDateFormat("yyy-MM-dd").parse(date_to);
-            records.removeIf(r -> r.getDate().after(dateT));
-        }
-//        фільтр по даті повернення книги
-        if (!return_from.equals("")) {
-            Date retF = new SimpleDateFormat("yyy-MM-dd").parse(return_from);
-            records.removeIf(r -> r.getReturnDate().before(retF));
-        }
-        if (!return_to.equals("")) {
-            Date retT = new SimpleDateFormat("yyy-MM-dd").parse(return_to);
-            records.removeIf(r -> r.getReturnDate().after(retT));
+            }break;
+            case "notReturned" : {
+                records.removeIf(Record::isChecked);
+            } break;
         }
 
         return new ObjectMapper().writeValueAsString(records);

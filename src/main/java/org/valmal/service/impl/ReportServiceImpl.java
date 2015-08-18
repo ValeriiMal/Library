@@ -3,8 +3,11 @@ package org.valmal.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.valmal.bean.Book;
+import org.valmal.bean.Reader;
 import org.valmal.bean.Record;
 import org.valmal.dao.RecordDao;
+import org.valmal.domain.PreRecord;
 import org.valmal.service.ReportService;
 
 import java.util.Date;
@@ -66,5 +69,11 @@ public class ReportServiceImpl implements ReportService {
     @Transactional
     public Date getRecordsFirstDate() {
         return recordDao.getRecordsFirstDate();
+    }
+
+    @Override
+    @Transactional
+    public List<Record> getRecordsByPreExample(PreRecord preExample, Book book, Reader reader) {
+        return recordDao.getRecordsByPreExample(preExample, book, reader);
     }
 }
