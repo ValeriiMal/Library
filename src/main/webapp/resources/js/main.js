@@ -203,6 +203,142 @@ $('#detailsRecordSearchId').keyup(function () {
 
 //--------------------------------------------------- QUEUE -----------------------------------------------
 
+function QueuesToRows(queues) {
+    if (queues.length != 0) {
+        var rows = "";
+        $.each(queues, function (index, value) {
+            var rName =
+                $(this).attr('reader')['fName'] + '-' +
+                $(this).attr('reader')['mName'] + '-' +
+                $(this).attr('reader')['lName'];
+            var date = new Date($(this).attr('date')),
+                year = date.getFullYear(),
+                m = date.getMonth() + 1,
+                month = m < 10 ? '0' + m : m + '',
+                day = date.getDate(),
+                tDate = year + '-' + month + '-' + day;
+
+            rows +=
+                "<tr>" +
+                "<td>" + $(this).attr('id') + "</td>" +
+                "<td>" + tDate + "</td>" +
+                "<td>" + $(this).attr('book')['id'] + "</td>" +
+                "<td>" + $(this).attr('book')['title'] + "</td>" +
+                "<td>" + $(this).attr('reader')['id'] + "</td>" +
+                "<td>" + rName + "</td>" +
+                "</tr>";
+        });
+        return rows;
+    }
+
+    return "<tr><td>nothing to show</td></tr>";
+}
+
+function findQueues() {
+    var id = $('#queueFindId').val(),
+        date = $('#queueFindDate').val(),
+        book_id = $('#queueFindReaderId').val(),
+        reader_id = $('#queueFindBookId').val();
+    if (id == "" && date == "" && book_id == "" && reader_id == "") {
+        $.ajax({
+            url: 'queue/getQueues',
+            type: 'GET',
+            contentType: 'text/html',
+            dataType: 'json',
+            //data: {
+            //    id: id,
+            //    date: date,
+            //    book_id: book_id,
+            //    reader_id: reader_id
+            //},
+            success: function (data) {
+                $('#queue-table tbody').html(QueuesToRows(data));
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                $('#queue-table tbody').text('error');
+                alert(textStatus + "\n" + errorThrown);
+            }
+        })
+        //$('#queue-table tbody').html(QueuesToRows([]));
+    } else {
+        $.ajax({
+            url: 'queue/find',
+            type: 'GET',
+            contentType: 'text/html',
+            dataType: 'json',
+            data: {
+                id: id,
+                date: date,
+                book_id: book_id,
+                reader_id: reader_id
+            },
+            success: function (data) {
+                $('#queue-table tbody').html(QueuesToRows(data));
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                $('#queue-table tbody').text('error');
+                alert(textStatus + "\n" + errorThrown);
+            }
+        })
+    }
+}
+
+$('#queue-find-input input').keyup(findQueues);
+
+$('#queueAddBookId').keyup(function () {
+    var id = $('#queueAddBookId').val();
+    if (id != "") {
+        $.ajax({
+            url: 'book/findBookByIdJSON',
+            type: 'GET',
+            contentType: 'text/html',
+            dataType: 'json',
+            data: {id: id},
+            success: function (data) {
+                if (data != null) {
+
+                    $('#queueAddBookTitle').val(data['title']);
+                } else {
+                    $('#queueAddBookTitle').val("");
+
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert(textStatus + "\n" + errorThrown);
+            }
+        })
+    } else {
+        $('#queueAddBookTitle').val("");
+    }
+});
+
+$('#queueAddReaderId').keyup(function () {
+    var id = $('#queueAddReaderId').val();
+    if (id != "") {
+        $.ajax({
+            url: 'reader/findReaderJSON',
+            type: 'GET',
+            contentType: 'text/html',
+            dataType: 'json',
+            data: {id: id},
+            success: function (data) {
+                if (data != null) {
+
+                    $('#queueAddReaderName').val(data['fName'] + ' ' + data['mName'] + ' ' + data['lName']);
+                } else {
+                    $('#queueAddReaderName').val("");
+                }
+
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert(textStatus + "\n" + errorThrown);
+            }
+        })
+    } else {
+        $('#queueAddReaderName').val("");
+    }
+});
+
 $('#add-queue').click(function () {
     $('#addQueueResult').text("");
     var book_id = $('#queueAddBookId').val(),
@@ -231,7 +367,7 @@ $('#add-queue').click(function () {
 
 $('#queueEditSearchId').keyup(function () {
     var id = $('#queueEditSearchId').val();
-    if(id != ""){
+    if (id != "") {
         $.ajax({
             url: 'queue/findById',
             type: 'GET',
@@ -239,10 +375,19 @@ $('#queueEditSearchId').keyup(function () {
             dataType: 'json',
             data: {id: id},
             success: function (data) {
-                $('#queueEditBookId').val(data['book']['id']);
-                $('#queueEditBookTitle').val(data['book']['title']);
-                $('#queueEditReaderId').val(data['reader']['id']);
-                $('#queueEditReaderName').val(data['reader']['fName'] + ' ' + data['reader']['mName'] + ' ' + data['reader']['lName']);
+                if (data != null) {
+
+                    $('#queueEditBookId').val(data['book']['id']);
+                    $('#queueEditBookTitle').val(data['book']['title']);
+                    $('#queueEditReaderId').val(data['reader']['id']);
+                    $('#queueEditReaderName').val(data['reader']['fName'] + ' ' + data['reader']['mName'] + ' ' + data['reader']['lName']);
+                } else {
+                    $.each($('#queueEditModal input'), function (index, value) {
+                        if (index != 0) {
+                            $(this).val("");
+                        }
+                    })
+                }
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 alert(textStatus + "\n" + errorThrown);
@@ -255,7 +400,7 @@ $('#queueEditSearchId').keyup(function () {
 
 $('#queueEditBookId').keyup(function () {
     var id = $('#queueEditBookId').val();
-    if(id != "") {
+    if (id != "") {
         $.ajax({
             url: 'book/findBookByIdJSON',
             type: 'GET',
@@ -263,7 +408,13 @@ $('#queueEditBookId').keyup(function () {
             dataType: 'json',
             data: {id: id},
             success: function (data) {
-                $('#queueEditBookTitle').val(data['title']);
+                if (data != null) {
+
+                    $('#queueEditBookTitle').val(data['title']);
+                } else {
+                    $('#queueEditBookTitle').val("");
+
+                }
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 alert(textStatus + "\n" + errorThrown);
@@ -276,7 +427,7 @@ $('#queueEditBookId').keyup(function () {
 
 $('#queueEditReaderId').keyup(function () {
     var id = $('#queueEditReaderId').val();
-    if(id != "") {
+    if (id != "") {
         $.ajax({
             url: 'reader/findReaderJSON',
             type: 'GET',
@@ -284,7 +435,13 @@ $('#queueEditReaderId').keyup(function () {
             dataType: 'json',
             data: {id: id},
             success: function (data) {
-                $('#queueEditReaderName').val(data['fName'] + ' ' + data['mName'] + ' ' + data['lName']);
+                if (data != null) {
+
+                    $('#queueEditReaderName').val(data['fName'] + ' ' + data['mName'] + ' ' + data['lName']);
+                } else {
+                    $('#queueEditReaderName').val("");
+                }
+
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 alert(textStatus + "\n" + errorThrown);
@@ -298,9 +455,9 @@ $('#queueEditReaderId').keyup(function () {
 $('#edit-queue').click(function () {
     $('#editQueueResult').text("");
     var id = $('#queueEditSearchId').val(),
-        book_id = $('#queueAddBookId').val(),
-        reader_id = $('#queueAddReaderId').val();
-    if(id != "") {
+        book_id = $('#queueEditBookId').val(),
+        reader_id = $('#queueEditReaderId').val();
+    if (id != "") {
         $.ajax({
             url: 'queue/edit',
             type: 'GET',
@@ -326,7 +483,7 @@ $('#edit-queue').click(function () {
 $('#queueRemoveSearchId').keyup(function () {
     $('#removeQueueResult').val("");
     var id = $('#queueRemoveSearchId').val();
-    if(id != ""){
+    if (id != "") {
         $.ajax({
             url: 'queue/findById',
             type: 'GET',
@@ -336,10 +493,18 @@ $('#queueRemoveSearchId').keyup(function () {
                 id: id
             },
             success: function (data) {
-                $('#queueRemoveBookId').val(data['book']['id']);
-                $('#queueRemoveBookTitle').val(data['book']['title']);
-                $('#queueRemoveReaderId').val(data['reader']['id']);
-                $('#queueRemoveReaderName').val(data['reader']['fName'] + '-' + data['reader']['mName'] + '-' + data['reader']['lName']);
+                if (data == null) {
+                    $.each($('#queueRemoveModal input'), function (index, value) {
+                        if (index != 0) {
+                            $(this).val("");
+                        }
+                    })
+                } else {
+                    $('#queueRemoveBookId').val(data['book']['id']);
+                    $('#queueRemoveBookTitle').val(data['book']['title']);
+                    $('#queueRemoveReaderId').val(data['reader']['id']);
+                    $('#queueRemoveReaderName').val(data['reader']['fName'] + '-' + data['reader']['mName'] + '-' + data['reader']['lName']);
+                }
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 alert(textStatus + "\n" + errorThrown);
@@ -351,9 +516,9 @@ $('#queueRemoveSearchId').keyup(function () {
 });
 
 $('#remove-queue').click(function () {
-    $('#removeQueueResult').val("");
+
     var id = $('#queueRemoveSearchId').val();
-    if(id != ""){
+    if (id != "") {
         $.ajax({
             url: 'queue/remove',
             type: 'GET',
@@ -363,7 +528,8 @@ $('#remove-queue').click(function () {
                 id: id
             },
             success: function (data) {
-                $('#removeQueueResult').val(data);
+                $('#removeQueueResult').text("");
+                $('#removeQueueResult').text(data);
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 alert(textStatus + "\n" + errorThrown);
@@ -903,6 +1069,7 @@ $(document).ready(function () {
     findReaders();
     findBooks();
     findRecords();
+    findQueues();
 
     scroll2('#menu_item_report', '#report_section');
     scroll2('#menu_item_queue', '#queue-section');

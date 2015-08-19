@@ -16,6 +16,7 @@ import org.valmal.service.ReaderService;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -29,30 +30,22 @@ public class QueueController {
     @Autowired
     ReaderService readerService;
 
+    @RequestMapping("/getQueues")
+    @ResponseBody
+    public String getQueues() throws IOException {
+        return new ObjectMapper().writeValueAsString(queueService.getQueues());
+    }
+
     @RequestMapping("/find")
     @ResponseBody
     public String find(@RequestParam("id") String id,
                        @RequestParam("date") String date,
                        @RequestParam("book_id") String book_id,
                        @RequestParam("reader_id") String reader_id) throws ParseException, IOException {
-        Queue example = new Queue(
-                new SimpleDateFormat("yyyy-MM-dd").parse(date),
-                bookService.findBookById(Integer.parseInt(book_id)),
-                readerService.findReaderById(Integer.parseInt(reader_id))
-        );
-        example.setId(Integer.parseInt(id));
-        List<Queue> queues = queueService.findQueuesByExample(example);
-        return new ObjectMapper().writeValueAsString(queues);
-    }
 
-
-    public String findBetweenDates(@RequestParam("id") String id,
-                                   @RequestParam("date_from") String date_from,
-                                   @RequestParam("date_to") String date_to,
-                                   @RequestParam("book_id") String book_id,
-                                   @RequestParam("reader_id") String reader_id){
         return null;
     }
+
 
     @RequestMapping("/add")
     @ResponseBody

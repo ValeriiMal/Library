@@ -34,6 +34,12 @@ public class QueueServiceImpl implements QueueService {
 
     @Override
     @Transactional
+    public List<Queue> getQueues() {
+        return queueDao.getQueues();
+    }
+
+    @Override
+    @Transactional
     public Queue findQueueById(int id) {
         return queueDao.findQueueById(id);
     }

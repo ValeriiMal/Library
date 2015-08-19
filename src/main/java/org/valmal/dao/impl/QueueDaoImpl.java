@@ -1,6 +1,7 @@
 package org.valmal.dao.impl;
 
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -30,6 +31,15 @@ public class QueueDaoImpl implements QueueDao {
     public void delete(Queue queue) {
         sessionFactory.getCurrentSession()
                 .delete(queue);
+    }
+
+    @Override
+    public List<Queue> getQueues() {
+        return sessionFactory.getCurrentSession()
+                .createCriteria(Queue.class)
+                .addOrder(Order.desc("id"))
+                .setMaxResults(100)
+                .list();
     }
 
     @Override

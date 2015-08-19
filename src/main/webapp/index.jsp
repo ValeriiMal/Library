@@ -367,16 +367,22 @@
                         <div class="form-group">
                             <label for="queueAddBookId" class="control-label col-sm-4">Book Id: </label>
 
-                            <div class="col-sm-8">
+                            <div class="col-sm-2">
                                 <input type="text" class="form-control" id="queueAddBookId"/>
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="queueAddBookTitle"/>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="queueAddReaderId" class="control-label col-sm-4">Reader Id: </label>
 
-                            <div class="col-sm-8">
+                            <div class="col-sm-2">
                                 <input type="text" class="form-control" id="queueAddReaderId"/>
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="queueAddReaderName"/>
                             </div>
                         </div>
                     </form>

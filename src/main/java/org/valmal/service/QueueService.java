@@ -9,6 +9,7 @@ public interface QueueService {
     void update(Queue queue);
     void delete(Queue queue);
 
+    List<Queue> getQueues();
     Queue findQueueById(int id);
     List<Queue> findQueuesByExample(Queue example);
 }
