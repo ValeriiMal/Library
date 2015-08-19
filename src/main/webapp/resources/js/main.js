@@ -2,7 +2,7 @@ function showReport() {
     $('#records-table tbody').load("report/load");
 }
 
-// REPORT
+//-------------------------------------------------- REPORT -----------------------------------------------
 
 function recordsJsonToRows(data) {
     var content = "";
@@ -199,6 +199,180 @@ $('#detailsRecordSearchId').keyup(function () {
             $(this).val("");
         })
     }
+});
+
+//--------------------------------------------------- QUEUE -----------------------------------------------
+
+$('#add-queue').click(function () {
+    $('#addQueueResult').text("");
+    var book_id = $('#queueAddBookId').val(),
+        reader_id = $('#queueAddReaderId').val();
+    if (book_id != "" && reader_id != "") {
+        $.ajax({
+            url: 'queue/add',
+            type: 'GET',
+            contentType: 'text/html',
+            dataType: 'text',
+            data: {
+                book_id: book_id,
+                reader_id: reader_id
+            },
+            success: function (data) {
+                $('#addQueueResult').text(data);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert(textStatus + "\n" + errorThrown);
+            }
+        })
+    } else {
+        alert('you must enter both "book_id" and "reader_id" values');
+    }
+});
+
+$('#queueEditSearchId').keyup(function () {
+    var id = $('#queueEditSearchId').val();
+    if(id != ""){
+        $.ajax({
+            url: 'queue/findById',
+            type: 'GET',
+            contentType: 'text/html',
+            dataType: 'json',
+            data: {id: id},
+            success: function (data) {
+                $('#queueEditBookId').val(data['book']['id']);
+                $('#queueEditBookTitle').val(data['book']['title']);
+                $('#queueEditReaderId').val(data['reader']['id']);
+                $('#queueEditReaderName').val(data['reader']['fName'] + ' ' + data['reader']['mName'] + ' ' + data['reader']['lName']);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert(textStatus + "\n" + errorThrown);
+            }
+        })
+    } else {
+        $('#queueEditModal input').val("");
+    }
+});
+
+$('#queueEditBookId').keyup(function () {
+    var id = $('#queueEditBookId').val();
+    if(id != "") {
+        $.ajax({
+            url: 'book/findBookByIdJSON',
+            type: 'GET',
+            contentType: 'text/html',
+            dataType: 'json',
+            data: {id: id},
+            success: function (data) {
+                $('#queueEditBookTitle').val(data['title']);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert(textStatus + "\n" + errorThrown);
+            }
+        })
+    } else {
+        $('#queueEditBookTitle').val("");
+    }
+});
+
+$('#queueEditReaderId').keyup(function () {
+    var id = $('#queueEditReaderId').val();
+    if(id != "") {
+        $.ajax({
+            url: 'reader/findReaderJSON',
+            type: 'GET',
+            contentType: 'text/html',
+            dataType: 'json',
+            data: {id: id},
+            success: function (data) {
+                $('#queueEditReaderName').val(data['fName'] + ' ' + data['mName'] + ' ' + data['lName']);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert(textStatus + "\n" + errorThrown);
+            }
+        })
+    } else {
+        $('#queueEditReaderName').val("");
+    }
+});
+
+$('#edit-queue').click(function () {
+    $('#editQueueResult').text("");
+    var id = $('#queueEditSearchId').val(),
+        book_id = $('#queueAddBookId').val(),
+        reader_id = $('#queueAddReaderId').val();
+    if(id != "") {
+        $.ajax({
+            url: 'queue/edit',
+            type: 'GET',
+            contentType: 'text/html',
+            dataType: 'text',
+            data: {
+                id: id,
+                book_id: book_id,
+                reader_id: reader_id
+            },
+            success: function (data) {
+                $('#editQueueResult').text(data);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert(textStatus + "\n" + errorThrown);
+            }
+        })
+    } else {
+        alert('you must enter "Id" value in order to edit it');
+    }
+});
+
+$('#queueRemoveSearchId').keyup(function () {
+    $('#removeQueueResult').val("");
+    var id = $('#queueRemoveSearchId').val();
+    if(id != ""){
+        $.ajax({
+            url: 'queue/findById',
+            type: 'GET',
+            contentType: 'text/html',
+            dataType: 'json',
+            data: {
+                id: id
+            },
+            success: function (data) {
+                $('#queueRemoveBookId').val(data['book']['id']);
+                $('#queueRemoveBookTitle').val(data['book']['title']);
+                $('#queueRemoveReaderId').val(data['reader']['id']);
+                $('#queueRemoveReaderName').val(data['reader']['fName'] + '-' + data['reader']['mName'] + '-' + data['reader']['lName']);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert(textStatus + "\n" + errorThrown);
+            }
+        })
+    } else {
+        $('#queueRemoveModal input').val("");
+    }
+});
+
+$('#remove-queue').click(function () {
+    $('#removeQueueResult').val("");
+    var id = $('#queueRemoveSearchId').val();
+    if(id != ""){
+        $.ajax({
+            url: 'queue/remove',
+            type: 'GET',
+            contentType: 'text/html',
+            dataType: 'text',
+            data: {
+                id: id
+            },
+            success: function (data) {
+                $('#removeQueueResult').val(data);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert(textStatus + "\n" + errorThrown);
+            }
+        })
+    } else {
+        alert('you must enter "Id*" value to remove');
+    }
+
 });
 
 //--------------------------------------------------- BOOKS -----------------------------------------------
@@ -729,10 +903,10 @@ $(document).ready(function () {
     findReaders();
     findBooks();
     findRecords();
-    //showReport();
 
     scroll2('#menu_item_report', '#report_section');
-    scroll2('#menu_item_readers', '#readers-section');
+    scroll2('#menu_item_queue', '#queue-section');
     scroll2('#menu_item_books', '#books-section');
+    scroll2('#menu_item_readers', '#readers-section');
     scroll2('#menu_item_contacts', '#contacts-section');
 });

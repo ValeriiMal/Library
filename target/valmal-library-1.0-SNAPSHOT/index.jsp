@@ -49,8 +49,8 @@
         <button id="report_edit" class="btn btn-info btn-lg" type="button" data-toggle="modal"
                 data-target="#recordsEditModal">Edit record
         </button>
-        <button id="report_details" class="btn btn-info btn-lg" type="button" data-toggle="modal" data-target="">Record
-            details
+        <button id="report_details" class="btn btn-info btn-lg" type="button" data-toggle="modal"
+                data-target="#recordsDetailsModal">Record details
         </button>
     </div>
     <br/>
@@ -90,19 +90,16 @@
             </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label" for="reportFindReturnDateFrom">Return date: from </label>
+
                 <div class="col-sm-3">
                     <input type="date" class="form-control" placeholder="" id="reportFindReturnDateFrom">
                 </div>
 
                 <label class="col-sm-1 control-label" for="reportFindReturnDateTo">to </label>
+
                 <div class="col-sm-3">
                     <input type="date" class="form-control" placeholder="" id="reportFindReturnDateTo">
                 </div>
-
-                <%--<label for="reportFindReturned" class="col-sm-2 control-label">Returned: </label>--%>
-                <%--<div class="col-sm-1">--%>
-                    <%--<input type="checkbox" class="form-control" id="reportFindReturned">--%>
-                <%--</div>--%>
 
                 <div class="col-sm-3">
                     <select name="" id="reportFindReturned" class="form-control">
@@ -232,10 +229,216 @@
             </div>
         </div>
     </div>
-    <%----%>
+    <%--record details modal--%>
+    <div id="recordsDetailsModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3 class="modal-title">Details</h3>
+                </div>
+                <div class="modal-body">
+                    <form action="" class="form-horizontal">
+                        <div class="form-group">
+                            <label for="detailsRecordSearchId" class="col-sm-4 control-label">Id*: </label>
+
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="detailsRecordSearchId"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="detailsRecordBookId" class="col-sm-4 control-label">Book Id: </label>
+
+                            <div class="col-sm-2">
+                                <label class="form-control" id="detailsRecordBookId"></label>
+                            </div>
+                            <label for="detailsRecordBookTitle" class="col-sm-2 control-label">Title: </label>
+
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="detailsRecordBookTitle"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="detailsRecordReaderId" class="col-sm-4 control-label">Reader Id: </label>
+
+                            <div class="col-sm-2">
+                                <label class="form-control" id="detailsRecordReaderId"></label>
+                            </div>
+
+                            <label for="detailsRecordReaderName" class="col-sm-2 control-label">Name: </label>
+
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="detailsRecordReaderName"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="detailsRecordchecked" class="col-sm-4 control-label">Returned: </label>
+
+                            <div class="col-sm-1">
+                                <input type="checkbox" class="form-control" id="detailsRecordchecked"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="detailsRecordDate" class="col-sm-4 control-label">Record date: </label>
+
+                            <div class="col-sm-8">
+                                <label class="form-control" id="detailsRecordDate"></label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="detailsRecordReturnDate" class="col-sm-4 control-label">Return date: </label>
+
+                            <div class="col-sm-8">
+                                <label class="form-control" id="detailsRecordReturnDate"></label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 
 <%--end report section--%>
+
+<%--queue section--%>
+<section id="queue-section">
+    <h3>Queue</h3>
+
+    <div>
+        <button id="queue-add" class="btn btn-info btn-lg" type="button" data-toggle="modal"
+                data-target="#queueAddModal">Add
+        </button>
+        <button id="queue-edit" class="btn btn-info btn-lg" type="button" data-toggle="modal"
+                data-target="#queueEditModal">Edit
+        </button>
+        <button id="queue-remove" class="btn btn-info btn-lg" type="button" data-toggle="modal"
+                data-target="#queueRemoveModal">Remove
+        </button>
+    </div>
+    <br/>
+
+    <div id="queue-find-input">
+        <form class="form-horizontal">
+            <div class="form-group">
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" id="queueFindId" placeholder="id"/>
+                </div>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" id="queueFindDate" placeholder="date"/>
+                </div>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" id="queueFindBookId" placeholder="book Id"/>
+                </div>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" id="queueFindReaderId" placeholder="reader id"/>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div id="queue-container">
+        <table id="queue-table" class="table table-hover">
+            <thead>
+            <tr>
+                <th class="col-sm-2">Id</th>
+                <th class="col-sm-2">Date</th>
+                <th class="col-sm-2">Book Id</th>
+                <th class="col-sm-2">Book title</th>
+                <th class="col-sm-2">Reader Id</th>
+                <th class="col-sm-2">Reader name</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+
+    <div id="queueAddModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3>Add item</h3>
+                </div>
+                <div class="modal-body">
+                    <form action="" class="form-horizontal">
+                        <div class="form-group">
+                            <label for="queueAddBookId" class="control-label col-sm-4">Book Id: </label>
+
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="queueAddBookId"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="queueAddReaderId" class="control-label col-sm-4">Reader Id: </label>
+
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="queueAddReaderId"/>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <div id="addQueueResult" style="display: inline-block;"></div>
+                    <button id="add-queue" class="btn btn-default" type="button">Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="queueEditModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3>Edit item</h3>
+                </div>
+                <div class="modal-body">
+                    <form action="" class="form-horizontal">
+
+                        <div class="form-group">
+                            <label for="queueEditSearchId" class="control-label col-sm-4">Id*: </label>
+
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control" id="queueEditSearchId"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="queueEditBookId" class="control-label col-sm-4">Book Id: </label>
+
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="queueEditBookId"/>
+                            </div>
+                            <div class="col-sm-4">
+                                <input readonly class="form-control" id="queueEditBookTitle" placeholder="Title"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="queueEditReaderId" class="control-label col-sm-4">Reader Id: </label>
+
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="queueEditReaderId"/>
+                            </div>
+                            <div class="col-sm-4">
+                                <input class="form-control" id="queueEditReaderName" placeholder="Name"/>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <div id="editQueueResult" style="display: inline-block;"></div>
+                    <button id="edit-queue" class="btn btn-default" type="button">Edit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<%--end queue section--%>
 
 <%--book section--%>
 <section id="books-section">
@@ -516,21 +719,21 @@
                             <label for="removeBookTitle" class="col-sm-4 control-label">Title</label>
 
                             <div class="col-sm-8 ">
-                                <input type="text" id="removeBookTitle" class="form-control" placeholder="Title"/>
+                                <label id="removeBookTitle" class="form-control"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="removeBookAuthors" class="col-sm-4 control-label">Authors</label>
 
                             <div class="col-sm-8 ">
-                                <input type="text" id="removeBookAuthors" class="form-control" placeholder="Authors"/>
+                                <label id="removeBookAuthors" class="form-control"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="removeBookYear" class="col-sm-4 control-label">Year</label>
 
                             <div class="col-sm-8 ">
-                                <input type="text" id="removeBookYear" class="form-control" placeholder="Year"/>
+                                <label id="removeBookYear" class="form-control"/>
                             </div>
                         </div>
                     </form>
@@ -553,7 +756,7 @@
                 <div class="modal-body">
                     <form action="" class="form-horizontal">
                         <div class="form-group">
-                            <label for="detailsBookSearchId" class="col-sm-4 control-label">ID</label>
+                            <label for="detailsBookSearchId" class="col-sm-4 control-label">Id*: </label>
 
                             <div class="col-sm-8">
                                 <input id="detailsBookSearchId" type="text" class="form-control"
@@ -564,40 +767,40 @@
                             <label for="detailsBookTitle" class="col-sm-4 control-label">Title</label>
 
                             <div class="col-sm-8">
-                                <input id="detailsBookTitle" type="text" class="form-control" placeholder="Title"/>
+                                <label id="detailsBookTitle" class="form-control"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="detailsBookAuthors" class="col-sm-4 control-label">Authors</label>
 
                             <div class="col-sm-8">
-                                <input id="detailsBookAuthors" type="text" class="form-control" placeholder="Authors"/>
+                                <label id="detailsBookAuthors" class="form-control"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="detailsBookYear" class="col-sm-4 control-label">Year</label>
 
                             <div class="col-sm-8">
-                                <input id="detailsBookYear" type="text" class="form-control" placeholder="Year"/>
+                                <label id="detailsBookYear" class="form-control"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="detailsBookGenre" class="col-sm-4 control-label">Genre</label>
 
                             <div class="col-sm-8">
-                                <input id="detailsBookGenre" type="text" class="form-control" placeholder="Genre"/>
+                                <label id="detailsBookGenre" class="form-control"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="detailsBookAmount" class="col-sm-4 control-label">Amount</label>
 
                             <div class="col-sm-2">
-                                <input id="detailsBookAmount" type="text" class="form-control" placeholder="Amount"/>
+                                <label id="detailsBookAmount" class="form-control"/>
                             </div>
                             <label for="detailsBookRemains" class="col-sm-4 control-label">Remains</label>
 
                             <div class="col-sm-2">
-                                <input id="detailsBookRemains" type="text" class="form-control" placeholder="Remains"/>
+                                <label id="detailsBookRemains" class="form-control"/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -895,7 +1098,7 @@
                 <div class="modal-body">
                     <form class="form-horizontal">
                         <div class="form-group">
-                            <label for="removeReaderSearchId" class="col-sm-4 control-label">ID</label>
+                            <label for="removeReaderSearchId" class="col-sm-4 control-label">Id*: </label>
 
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" id="removeReaderSearchId"
@@ -903,25 +1106,24 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="removeReaderFName" class="col-sm-4 control-label">First name</label>
+                            <label for="removeReaderFName" class="col-sm-4 control-label">First name: </label>
 
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="removeReaderFName" placeholder="First name">
+                                <label class="form-control" id="removeReaderFName"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="removeReaderMName" class="col-sm-4 control-label">Middle name</label>
+                            <label for="removeReaderMName" class="col-sm-4 control-label">Middle name: </label>
 
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="removeReaderMName"
-                                       placeholder="Middle name">
+                                <label class="form-control" id="removeReaderMName"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label" for="removeReaderLName">Last name</label>
+                            <label class="col-sm-4 control-label" for="removeReaderLName">Last name: </label>
 
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" placeholder="Last name" id="removeReaderLName"/>
+                                <label class="form-control" id="removeReaderLName"/>
                             </div>
                         </div>
                     </form>
