@@ -18,4 +18,11 @@ public interface ReportService {
     List<Record> getRecordsByExample(Record example);
     List<Record> getRecordsByPreExample(PreRecord preExample, Book book, Reader reader);
     Date getRecordsFirstDate();
+    List<Record> getRecordsByBook(Book book);
+    List<Record> getRecordsByReader(Reader reader);
+
+    List<Record> getRecordsFromDate(Date date);
+    List<Record> getRecordsToDate(Date date);
+    List<Record> getRecordsFromReturnDate(Date date);
+    List<Record> getRecordsToReturnDate(Date date);
 }

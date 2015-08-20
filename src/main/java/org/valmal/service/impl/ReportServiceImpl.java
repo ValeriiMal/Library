@@ -76,4 +76,40 @@ public class ReportServiceImpl implements ReportService {
     public List<Record> getRecordsByPreExample(PreRecord preExample, Book book, Reader reader) {
         return recordDao.getRecordsByPreExample(preExample, book, reader);
     }
+
+    @Override
+    @Transactional
+    public List<Record> getRecordsByBook(Book book) {
+        return recordDao.getRecordsByBook(book);
+    }
+
+    @Override
+    @Transactional
+    public List<Record> getRecordsByReader(Reader reader) {
+        return recordDao.getRecordsByReader(reader);
+    }
+
+    @Override
+    @Transactional
+    public List<Record> getRecordsFromDate(Date date) {
+        return recordDao.getRecordsFromDate(date);
+    }
+
+    @Override
+    @Transactional
+    public List<Record> getRecordsToDate(Date date) {
+        return recordDao.getRecordsToDate(date);
+    }
+
+    @Override
+    @Transactional
+    public List<Record> getRecordsFromReturnDate(Date date) {
+        return recordDao.getRecordsFromReturnDate(date);
+    }
+
+    @Override
+    @Transactional
+    public List<Record> getRecordsToReturnDate(Date date) {
+        return recordDao.getRecordsToReturnDate(date);
+    }
 }

@@ -30,7 +30,7 @@ public class RecordDaoImpl implements RecordDao {
         return sessionFactory.getCurrentSession()
                 .createCriteria(Record.class)
                 .addOrder(Order.desc("id"))
-//                .setMaxResults(100)
+                .setMaxResults(100)
                 .list();
     }
 
@@ -93,6 +93,60 @@ public class RecordDaoImpl implements RecordDao {
                 .add(Restrictions.eq("reader", reader))
                 .add(Restrictions.between("date", preExample.getDate_from(), preExample.getDate_to()))
                 .add(Restrictions.between("returnDate", preExample.getReturn_from(), preExample.getReturn_to()))
+                .setMaxResults(100)
+                .list();
+    }
+
+    @Override
+    public List<Record> getRecordsByBook(Book book) {
+        return sessionFactory.getCurrentSession()
+                .createCriteria(Record.class)
+                .add(Restrictions.eq("book", book))
+                .setMaxResults(100)
+                .list();
+    }
+
+    @Override
+    public List<Record> getRecordsByReader(Reader reader) {
+        return sessionFactory.getCurrentSession()
+                .createCriteria(Record.class)
+                .add(Restrictions.eq("reader", reader))
+                .setMaxResults(100)
+                .list();
+    }
+
+    @Override
+    public List<Record> getRecordsFromDate(Date date) {
+        return sessionFactory.getCurrentSession()
+                .createCriteria(Record.class)
+                .add(Restrictions.gt("date", date))
+                .setMaxResults(100)
+                .list();
+    }
+
+    @Override
+    public List<Record> getRecordsToDate(Date date) {
+        return sessionFactory.getCurrentSession()
+                .createCriteria(Record.class)
+                .add(Restrictions.lt("date", date))
+                .setMaxResults(100)
+                .list();
+    }
+
+    @Override
+    public List<Record> getRecordsFromReturnDate(Date date) {
+        return sessionFactory.getCurrentSession()
+                .createCriteria(Record.class)
+                .add(Restrictions.gt("returnDate", date))
+                .setMaxResults(100)
+                .list();
+    }
+
+    @Override
+    public List<Record> getRecordsToReturnDate(Date date) {
+        return sessionFactory.getCurrentSession()
+                .createCriteria(Record.class)
+                .add(Restrictions.lt("returnDate", date))
                 .setMaxResults(100)
                 .list();
     }
