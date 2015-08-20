@@ -237,20 +237,20 @@ function QueuesToRows(queues) {
 function findQueues() {
     var id = $('#queueFindId').val(),
         date = $('#queueFindDate').val(),
-        book_id = $('#queueFindReaderId').val(),
-        reader_id = $('#queueFindBookId').val();
+        book_id = $('#queueFindBookId').val(),
+        reader_id = $('#queueFindReaderId').val();
     if (id == "" && date == "" && book_id == "" && reader_id == "") {
         $.ajax({
             url: 'queue/getQueues',
             type: 'GET',
             contentType: 'text/html',
             dataType: 'json',
-            //data: {
-            //    id: id,
-            //    date: date,
-            //    book_id: book_id,
-            //    reader_id: reader_id
-            //},
+            data: {
+                id: id,
+                date: date,
+                book_id: book_id,
+                reader_id: reader_id
+            },
             success: function (data) {
                 $('#queue-table tbody').html(QueuesToRows(data));
             },
@@ -258,8 +258,7 @@ function findQueues() {
                 $('#queue-table tbody').text('error');
                 alert(textStatus + "\n" + errorThrown);
             }
-        })
-        //$('#queue-table tbody').html(QueuesToRows([]));
+        });
     } else {
         $.ajax({
             url: 'queue/find',
@@ -284,6 +283,7 @@ function findQueues() {
 }
 
 $('#queue-find-input input').keyup(findQueues);
+$('#queue-find-input input[type=date]').change(findQueues);
 
 $('#queueAddBookId').keyup(function () {
     var id = $('#queueAddBookId').val();

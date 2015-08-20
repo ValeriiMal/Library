@@ -47,7 +47,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/org/valmal/bean/Queue.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="20" column="20" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="20" />
+              <caret line="15" column="26" selection-start-line="15" selection-start-column="26" selection-end-line="15" selection-end-column="26" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -55,11 +55,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="QueueController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="QueueController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/valmal/controller/QueueController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.41580757">
-              <caret line="44" column="0" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="41" column="26" selection-start-line="41" selection-start-column="22" selection-end-line="41" selection-end-column="26" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -67,21 +67,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ReportController.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ReportController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/valmal/controller/ReportController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="56" column="34" selection-start-line="56" selection-start-column="34" selection-end-line="56" selection-end-column="34" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="QueueDao.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/valmal/dao/QueueDao.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="11" column="28" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="28" />
+            <state vertical-scroll-proportion="0.20209059">
+              <caret line="39" column="58" selection-start-line="39" selection-start-column="58" selection-end-line="39" selection-end-column="58" />
               <folding />
             </state>
           </provider>
@@ -91,9 +81,13 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/org/valmal/dao/impl/QueueDaoImpl.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="41" column="23" selection-start-line="41" selection-start-column="23" selection-end-line="41" selection-end-column="23" />
+              <caret line="67" column="13" selection-start-line="67" selection-start-column="13" selection-end-line="67" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <marker date="1440067635791" expanded="true" signature="2092:2119" placeholder="select * fro..queues..." />
+                <marker date="1440067635791" expanded="true" signature="2092:2150" placeholder="select * fro..queues..." />
+                <marker date="1440067635791" expanded="true" signature="2092:2151" placeholder="select * fro..queues..." />
+                <marker date="1440067635791" expanded="true" signature="2092:2182" placeholder="select * fro..queues..." />
               </folding>
             </state>
           </provider>
@@ -103,54 +97,45 @@
         <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="216" column="21" selection-start-line="216" selection-start-column="21" selection-end-line="216" selection-end-column="21" />
+              <caret line="285" column="14" selection-start-line="285" selection-start-column="14" selection-end-line="285" selection-end-column="14" />
               <folding>
                 <element signature="n#!!block;n#recordsJsonToRows#0" expanded="false" />
                 <element signature="n#!!block;n#findRecords#0" expanded="false" />
                 <element signature="e#2941#3676#0" expanded="false" />
+                <element signature="n#!!block;n#QueuesToRows#0" expanded="false" />
                 <element signature="n#!!block;n#findQueues#0" expanded="false" />
-                <element signature="e#10137#10837#0" expanded="false" />
-                <element signature="e#10882#11631#0" expanded="false" />
-                <element signature="e#11669#12430#0" expanded="false" />
-                <element signature="e#12476#13625#0" expanded="false" />
-                <element signature="e#13669#14373#0" expanded="false" />
-                <element signature="e#14419#15172#0" expanded="false" />
-                <element signature="e#15211#16014#0" expanded="false" />
-                <element signature="e#16062#17291#0" expanded="false" />
-                <element signature="e#17332#17978#0" expanded="false" />
-                <element signature="e#17399#17907#0" expanded="false" />
+                <element signature="e#10128#10828#0" expanded="false" />
+                <element signature="e#10873#11622#0" expanded="false" />
+                <element signature="e#11660#12421#0" expanded="false" />
+                <element signature="e#12467#13616#0" expanded="false" />
+                <element signature="e#13660#14364#0" expanded="false" />
+                <element signature="e#14410#15163#0" expanded="false" />
+                <element signature="e#15202#16005#0" expanded="false" />
+                <element signature="e#16053#17282#0" expanded="false" />
+                <element signature="e#17323#17969#0" expanded="false" />
+                <element signature="e#17390#17898#0" expanded="false" />
                 <element signature="n#!!block;n#findBooks#0" expanded="false" />
                 <element signature="n#!!block;n#addBook#0" expanded="false" />
-                <element signature="e#19747#19967#0" expanded="false" />
-                <element signature="e#20012#20927#0" expanded="false" />
-                <element signature="e#20965#21732#0" expanded="false" />
-                <element signature="e#21779#22574#0" expanded="false" />
-                <element signature="e#22614#22701#0" expanded="false" />
-                <element signature="e#22749#24167#0" expanded="false" />
-                <element signature="e#24213#24988#0" expanded="false" />
+                <element signature="e#19738#19958#0" expanded="false" />
+                <element signature="e#20003#20918#0" expanded="false" />
+                <element signature="e#20956#21723#0" expanded="false" />
+                <element signature="e#21770#22565#0" expanded="false" />
+                <element signature="e#22605#22692#0" expanded="false" />
+                <element signature="e#22740#24158#0" expanded="false" />
+                <element signature="e#24204#24979#0" expanded="false" />
                 <element signature="n#!!block;n#jsonBooksToRows#0" expanded="false" />
                 <element signature="n#!!block;n#booksByDate#0" expanded="false" />
-                <element signature="e#26562#27025#0" expanded="false" />
+                <element signature="e#26553#27016#0" expanded="false" />
                 <element signature="n#!!block;n#readersJsonToRow#0" expanded="false" />
                 <element signature="n#!!block;n#findReaders#0" expanded="false" />
-                <element signature="e#28689#29624#0" expanded="false" />
-                <element signature="e#29671#31052#0" expanded="false" />
-                <element signature="e#31092#32130#0" expanded="false" />
-                <element signature="e#32179#32940#0" expanded="false" />
-                <element signature="e#32982#33233#0" expanded="false" />
-                <element signature="e#33283#35600#0" expanded="false" />
+                <element signature="e#28680#29615#0" expanded="false" />
+                <element signature="e#29662#31043#0" expanded="false" />
+                <element signature="e#31083#32121#0" expanded="false" />
+                <element signature="e#32170#32931#0" expanded="false" />
+                <element signature="e#32973#33224#0" expanded="false" />
+                <element signature="e#33274#35591#0" expanded="false" />
                 <element signature="n#!!block;n#scroll2#0" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/index.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-49.03846">
-              <caret line="371" column="34" selection-start-line="371" selection-start-column="34" selection-end-line="371" selection-end-column="34" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -159,7 +144,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/resources/library.sql">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="59" column="88" selection-start-line="59" selection-start-column="88" selection-end-line="59" selection-end-column="88" />
+              <caret line="75" column="61" selection-start-line="75" selection-start-column="61" selection-end-line="75" selection-end-column="61" />
               <folding />
             </state>
           </provider>
@@ -169,13 +154,17 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/org/valmal/service/impl/QueueServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="37" column="36" selection-start-line="37" selection-start-column="36" selection-end-line="37" selection-end-column="36" />
+              <caret line="57" column="46" selection-start-line="57" selection-start-column="46" selection-end-line="57" selection-end-column="46" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#655#656#0" expanded="true" />
-                <element signature="e#693#694#0" expanded="true" />
-                <element signature="e#892#893#0" expanded="true" />
-                <element signature="e#935#936#0" expanded="true" />
+                <element signature="e#975#976#0" expanded="true" />
+                <element signature="e#1018#1019#0" expanded="true" />
+                <element signature="e#1385#1386#0" expanded="true" />
+                <element signature="e#1439#1440#0" expanded="true" />
+                <element signature="e#1526#1527#0" expanded="true" />
+                <element signature="e#1580#1581#0" expanded="true" />
+                <element signature="e#1673#1674#0" expanded="true" />
+                <element signature="e#1731#1732#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -185,7 +174,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/org/valmal/service/QueueService.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="11" column="28" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
+              <caret line="17" column="39" selection-start-line="17" selection-start-column="39" selection-end-line="17" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -240,10 +229,10 @@
         <option value="$PROJECT_DIR$/src/main/webapp/index.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/org/valmal/dao/QueueDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/valmal/service/QueueService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/valmal/dao/impl/QueueDaoImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/valmal/service/impl/QueueServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/resources/js/main.js" />
         <option value="$PROJECT_DIR$/src/main/java/org/valmal/controller/QueueController.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/resources/js/main.js" />
+        <option value="$PROJECT_DIR$/src/main/java/org/valmal/dao/impl/QueueDaoImpl.java" />
       </list>
     </option>
   </component>
@@ -297,6 +286,17 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scratches">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.intellij.ide.scratch.ScratchProjectViewPane$MyProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -661,17 +661,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" />
-              <option name="myItemType" value="com.intellij.ide.scratch.ScratchProjectViewPane$MyProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane">
         <subPane>
           <PATH>
@@ -943,6 +932,9 @@
       <listeners />
       <method />
     </configuration>
+    <configuration default="true" type="Unknown" factoryName="Unknown">
+      <method />
+    </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
       <node-options />
       <gulpfile />
@@ -1063,11 +1055,12 @@
       <workItem from="1439915587539" duration="618000" />
       <workItem from="1439965065730" duration="14981000" />
       <workItem from="1439985422169" duration="7714000" />
+      <workItem from="1440054405352" duration="11321000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="166763000" />
+    <option name="totallyTimeSpent" value="178084000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1448" y="-8" width="1456" height="916" extended-state="6" />
@@ -1075,13 +1068,14 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3299363" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22292994" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23312102" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1092,12 +1086,11 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2764331" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
@@ -1149,7 +1142,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="20" />
+      <option name="time" value="21" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1180,37 +1173,38 @@
             <element signature="n#!!block;n#recordsJsonToRows#0" expanded="false" />
             <element signature="n#!!block;n#findRecords#0" expanded="false" />
             <element signature="e#2941#3676#0" expanded="false" />
+            <element signature="n#!!block;n#QueuesToRows#0" expanded="false" />
             <element signature="n#!!block;n#findQueues#0" expanded="false" />
-            <element signature="e#10137#10837#0" expanded="false" />
-            <element signature="e#10882#11631#0" expanded="false" />
-            <element signature="e#11669#12430#0" expanded="false" />
-            <element signature="e#12476#13625#0" expanded="false" />
-            <element signature="e#13669#14373#0" expanded="false" />
-            <element signature="e#14419#15172#0" expanded="false" />
-            <element signature="e#15211#16014#0" expanded="false" />
-            <element signature="e#16062#17291#0" expanded="false" />
-            <element signature="e#17332#17978#0" expanded="false" />
-            <element signature="e#17399#17907#0" expanded="false" />
+            <element signature="e#10128#10828#0" expanded="false" />
+            <element signature="e#10873#11622#0" expanded="false" />
+            <element signature="e#11660#12421#0" expanded="false" />
+            <element signature="e#12467#13616#0" expanded="false" />
+            <element signature="e#13660#14364#0" expanded="false" />
+            <element signature="e#14410#15163#0" expanded="false" />
+            <element signature="e#15202#16005#0" expanded="false" />
+            <element signature="e#16053#17282#0" expanded="false" />
+            <element signature="e#17323#17969#0" expanded="false" />
+            <element signature="e#17390#17898#0" expanded="false" />
             <element signature="n#!!block;n#findBooks#0" expanded="false" />
             <element signature="n#!!block;n#addBook#0" expanded="false" />
-            <element signature="e#19747#19967#0" expanded="false" />
-            <element signature="e#20012#20927#0" expanded="false" />
-            <element signature="e#20965#21732#0" expanded="false" />
-            <element signature="e#21779#22574#0" expanded="false" />
-            <element signature="e#22614#22701#0" expanded="false" />
-            <element signature="e#22749#24167#0" expanded="false" />
-            <element signature="e#24213#24988#0" expanded="false" />
+            <element signature="e#19738#19958#0" expanded="false" />
+            <element signature="e#20003#20918#0" expanded="false" />
+            <element signature="e#20956#21723#0" expanded="false" />
+            <element signature="e#21770#22565#0" expanded="false" />
+            <element signature="e#22605#22692#0" expanded="false" />
+            <element signature="e#22740#24158#0" expanded="false" />
+            <element signature="e#24204#24979#0" expanded="false" />
             <element signature="n#!!block;n#jsonBooksToRows#0" expanded="false" />
             <element signature="n#!!block;n#booksByDate#0" expanded="false" />
-            <element signature="e#26562#27025#0" expanded="false" />
+            <element signature="e#26553#27016#0" expanded="false" />
             <element signature="n#!!block;n#readersJsonToRow#0" expanded="false" />
             <element signature="n#!!block;n#findReaders#0" expanded="false" />
-            <element signature="e#28689#29624#0" expanded="false" />
-            <element signature="e#29671#31052#0" expanded="false" />
-            <element signature="e#31092#32130#0" expanded="false" />
-            <element signature="e#32179#32940#0" expanded="false" />
-            <element signature="e#32982#33233#0" expanded="false" />
-            <element signature="e#33283#35600#0" expanded="false" />
+            <element signature="e#28680#29615#0" expanded="false" />
+            <element signature="e#29662#31043#0" expanded="false" />
+            <element signature="e#31083#32121#0" expanded="false" />
+            <element signature="e#32170#32931#0" expanded="false" />
+            <element signature="e#32973#33224#0" expanded="false" />
+            <element signature="e#33274#35591#0" expanded="false" />
             <element signature="n#!!block;n#scroll2#0" expanded="false" />
           </folding>
         </state>
@@ -1252,37 +1246,38 @@
             <element signature="n#!!block;n#recordsJsonToRows#0" expanded="false" />
             <element signature="n#!!block;n#findRecords#0" expanded="false" />
             <element signature="e#2941#3676#0" expanded="false" />
+            <element signature="n#!!block;n#QueuesToRows#0" expanded="false" />
             <element signature="n#!!block;n#findQueues#0" expanded="false" />
-            <element signature="e#10137#10837#0" expanded="false" />
-            <element signature="e#10882#11631#0" expanded="false" />
-            <element signature="e#11669#12430#0" expanded="false" />
-            <element signature="e#12476#13625#0" expanded="false" />
-            <element signature="e#13669#14373#0" expanded="false" />
-            <element signature="e#14419#15172#0" expanded="false" />
-            <element signature="e#15211#16014#0" expanded="false" />
-            <element signature="e#16062#17291#0" expanded="false" />
-            <element signature="e#17332#17978#0" expanded="false" />
-            <element signature="e#17399#17907#0" expanded="false" />
+            <element signature="e#10128#10828#0" expanded="false" />
+            <element signature="e#10873#11622#0" expanded="false" />
+            <element signature="e#11660#12421#0" expanded="false" />
+            <element signature="e#12467#13616#0" expanded="false" />
+            <element signature="e#13660#14364#0" expanded="false" />
+            <element signature="e#14410#15163#0" expanded="false" />
+            <element signature="e#15202#16005#0" expanded="false" />
+            <element signature="e#16053#17282#0" expanded="false" />
+            <element signature="e#17323#17969#0" expanded="false" />
+            <element signature="e#17390#17898#0" expanded="false" />
             <element signature="n#!!block;n#findBooks#0" expanded="false" />
             <element signature="n#!!block;n#addBook#0" expanded="false" />
-            <element signature="e#19747#19967#0" expanded="false" />
-            <element signature="e#20012#20927#0" expanded="false" />
-            <element signature="e#20965#21732#0" expanded="false" />
-            <element signature="e#21779#22574#0" expanded="false" />
-            <element signature="e#22614#22701#0" expanded="false" />
-            <element signature="e#22749#24167#0" expanded="false" />
-            <element signature="e#24213#24988#0" expanded="false" />
+            <element signature="e#19738#19958#0" expanded="false" />
+            <element signature="e#20003#20918#0" expanded="false" />
+            <element signature="e#20956#21723#0" expanded="false" />
+            <element signature="e#21770#22565#0" expanded="false" />
+            <element signature="e#22605#22692#0" expanded="false" />
+            <element signature="e#22740#24158#0" expanded="false" />
+            <element signature="e#24204#24979#0" expanded="false" />
             <element signature="n#!!block;n#jsonBooksToRows#0" expanded="false" />
             <element signature="n#!!block;n#booksByDate#0" expanded="false" />
-            <element signature="e#26562#27025#0" expanded="false" />
+            <element signature="e#26553#27016#0" expanded="false" />
             <element signature="n#!!block;n#readersJsonToRow#0" expanded="false" />
             <element signature="n#!!block;n#findReaders#0" expanded="false" />
-            <element signature="e#28689#29624#0" expanded="false" />
-            <element signature="e#29671#31052#0" expanded="false" />
-            <element signature="e#31092#32130#0" expanded="false" />
-            <element signature="e#32179#32940#0" expanded="false" />
-            <element signature="e#32982#33233#0" expanded="false" />
-            <element signature="e#33283#35600#0" expanded="false" />
+            <element signature="e#28680#29615#0" expanded="false" />
+            <element signature="e#29662#31043#0" expanded="false" />
+            <element signature="e#31083#32121#0" expanded="false" />
+            <element signature="e#32170#32931#0" expanded="false" />
+            <element signature="e#32973#33224#0" expanded="false" />
+            <element signature="e#33274#35591#0" expanded="false" />
             <element signature="n#!!block;n#scroll2#0" expanded="false" />
           </folding>
         </state>
@@ -1400,13 +1395,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/valmal/dao/impl/BookDaoImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="127" column="20" selection-start-line="127" selection-start-column="20" selection-end-line="127" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/valmal/service/impl/BookServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1463,18 +1451,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/valmal/dao/impl/RecordDaoImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="32" column="37" selection-start-line="32" selection-start-column="37" selection-end-line="32" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/register.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1504,7 +1484,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="74" column="0" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1524,28 +1503,39 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/index.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.8461537">
+          <caret line="326" column="36" selection-start-line="326" selection-start-column="36" selection-end-line="326" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/valmal/bean/Queue.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="20" column="20" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="20" />
+          <caret line="15" column="26" selection-start-line="15" selection-start-column="26" selection-end-line="15" selection-end-column="26" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/index.jsp">
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/valmal/dao/impl/BookDaoImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-49.03846">
-          <caret line="371" column="34" selection-start-line="371" selection-start-column="34" selection-end-line="371" selection-end-column="34" />
-          <folding />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="127" column="20" selection-start-line="127" selection-start-column="20" selection-end-line="127" selection-end-column="20" />
+          <folding>
+            <element signature="e#4241#4242#0" expanded="false" />
+            <element signature="e#4268#4269#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/valmal/dao/QueueDao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="28" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="28" />
+          <caret line="16" column="51" selection-start-line="16" selection-start-column="51" selection-end-line="16" selection-end-column="51" />
           <folding />
         </state>
       </provider>
@@ -1553,31 +1543,35 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/org/valmal/service/QueueService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="28" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
+          <caret line="17" column="39" selection-start-line="17" selection-start-column="39" selection-end-line="17" selection-end-column="39" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/valmal/dao/impl/QueueDaoImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="41" column="23" selection-start-line="41" selection-start-column="23" selection-end-line="41" selection-end-column="23" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/valmal/service/impl/QueueServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="37" column="36" selection-start-line="37" selection-start-column="36" selection-end-line="37" selection-end-column="36" />
+          <caret line="57" column="46" selection-start-line="57" selection-start-column="46" selection-end-line="57" selection-end-column="46" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#655#656#0" expanded="true" />
-            <element signature="e#693#694#0" expanded="true" />
-            <element signature="e#892#893#0" expanded="true" />
-            <element signature="e#935#936#0" expanded="true" />
+            <element signature="e#975#976#0" expanded="true" />
+            <element signature="e#1018#1019#0" expanded="true" />
+            <element signature="e#1385#1386#0" expanded="true" />
+            <element signature="e#1439#1440#0" expanded="true" />
+            <element signature="e#1526#1527#0" expanded="true" />
+            <element signature="e#1580#1581#0" expanded="true" />
+            <element signature="e#1673#1674#0" expanded="true" />
+            <element signature="e#1731#1732#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/valmal/dao/impl/RecordDaoImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.41295546">
+          <caret line="58" column="0" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
+          <folding>
+            <marker date="1439904392792" expanded="true" signature="-1:-1" placeholder="select MIN(d..records..." />
           </folding>
         </state>
       </provider>
@@ -1585,42 +1579,43 @@
     <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="216" column="21" selection-start-line="216" selection-start-column="21" selection-end-line="216" selection-end-column="21" />
+          <caret line="285" column="14" selection-start-line="285" selection-start-column="14" selection-end-line="285" selection-end-column="14" />
           <folding>
             <element signature="n#!!block;n#recordsJsonToRows#0" expanded="false" />
             <element signature="n#!!block;n#findRecords#0" expanded="false" />
             <element signature="e#2941#3676#0" expanded="false" />
+            <element signature="n#!!block;n#QueuesToRows#0" expanded="false" />
             <element signature="n#!!block;n#findQueues#0" expanded="false" />
-            <element signature="e#10137#10837#0" expanded="false" />
-            <element signature="e#10882#11631#0" expanded="false" />
-            <element signature="e#11669#12430#0" expanded="false" />
-            <element signature="e#12476#13625#0" expanded="false" />
-            <element signature="e#13669#14373#0" expanded="false" />
-            <element signature="e#14419#15172#0" expanded="false" />
-            <element signature="e#15211#16014#0" expanded="false" />
-            <element signature="e#16062#17291#0" expanded="false" />
-            <element signature="e#17332#17978#0" expanded="false" />
-            <element signature="e#17399#17907#0" expanded="false" />
+            <element signature="e#10128#10828#0" expanded="false" />
+            <element signature="e#10873#11622#0" expanded="false" />
+            <element signature="e#11660#12421#0" expanded="false" />
+            <element signature="e#12467#13616#0" expanded="false" />
+            <element signature="e#13660#14364#0" expanded="false" />
+            <element signature="e#14410#15163#0" expanded="false" />
+            <element signature="e#15202#16005#0" expanded="false" />
+            <element signature="e#16053#17282#0" expanded="false" />
+            <element signature="e#17323#17969#0" expanded="false" />
+            <element signature="e#17390#17898#0" expanded="false" />
             <element signature="n#!!block;n#findBooks#0" expanded="false" />
             <element signature="n#!!block;n#addBook#0" expanded="false" />
-            <element signature="e#19747#19967#0" expanded="false" />
-            <element signature="e#20012#20927#0" expanded="false" />
-            <element signature="e#20965#21732#0" expanded="false" />
-            <element signature="e#21779#22574#0" expanded="false" />
-            <element signature="e#22614#22701#0" expanded="false" />
-            <element signature="e#22749#24167#0" expanded="false" />
-            <element signature="e#24213#24988#0" expanded="false" />
+            <element signature="e#19738#19958#0" expanded="false" />
+            <element signature="e#20003#20918#0" expanded="false" />
+            <element signature="e#20956#21723#0" expanded="false" />
+            <element signature="e#21770#22565#0" expanded="false" />
+            <element signature="e#22605#22692#0" expanded="false" />
+            <element signature="e#22740#24158#0" expanded="false" />
+            <element signature="e#24204#24979#0" expanded="false" />
             <element signature="n#!!block;n#jsonBooksToRows#0" expanded="false" />
             <element signature="n#!!block;n#booksByDate#0" expanded="false" />
-            <element signature="e#26562#27025#0" expanded="false" />
+            <element signature="e#26553#27016#0" expanded="false" />
             <element signature="n#!!block;n#readersJsonToRow#0" expanded="false" />
             <element signature="n#!!block;n#findReaders#0" expanded="false" />
-            <element signature="e#28689#29624#0" expanded="false" />
-            <element signature="e#29671#31052#0" expanded="false" />
-            <element signature="e#31092#32130#0" expanded="false" />
-            <element signature="e#32179#32940#0" expanded="false" />
-            <element signature="e#32982#33233#0" expanded="false" />
-            <element signature="e#33283#35600#0" expanded="false" />
+            <element signature="e#28680#29615#0" expanded="false" />
+            <element signature="e#29662#31043#0" expanded="false" />
+            <element signature="e#31083#32121#0" expanded="false" />
+            <element signature="e#32170#32931#0" expanded="false" />
+            <element signature="e#32973#33224#0" expanded="false" />
+            <element signature="e#33274#35591#0" expanded="false" />
             <element signature="n#!!block;n#scroll2#0" expanded="false" />
           </folding>
         </state>
@@ -1629,26 +1624,40 @@
     <entry file="file://$PROJECT_DIR$/src/main/resources/library.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="59" column="88" selection-start-line="59" selection-start-column="88" selection-end-line="59" selection-end-column="88" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/valmal/controller/ReportController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="56" column="34" selection-start-line="56" selection-start-column="34" selection-end-line="56" selection-end-column="34" />
+          <caret line="75" column="61" selection-start-line="75" selection-start-column="61" selection-end-line="75" selection-end-column="61" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/valmal/controller/QueueController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.41580757">
-          <caret line="44" column="0" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="41" column="26" selection-start-line="41" selection-start-column="22" selection-end-line="41" selection-end-column="26" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/valmal/dao/impl/QueueDaoImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="67" column="13" selection-start-line="67" selection-start-column="13" selection-end-line="67" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <marker date="1440067635791" expanded="true" signature="2092:2119" placeholder="select * fro..queues..." />
+            <marker date="1440067635791" expanded="true" signature="2092:2150" placeholder="select * fro..queues..." />
+            <marker date="1440067635791" expanded="true" signature="2092:2151" placeholder="select * fro..queues..." />
+            <marker date="1440067635791" expanded="true" signature="2092:2182" placeholder="select * fro..queues..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/valmal/controller/ReportController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.20209059">
+          <caret line="39" column="58" selection-start-line="39" selection-start-column="58" selection-end-line="39" selection-end-column="58" />
+          <folding />
         </state>
       </provider>
     </entry>

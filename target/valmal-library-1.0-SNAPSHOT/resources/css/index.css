@@ -1,0 +1,98 @@
+html {
+    background-color: #122b40;
+}
+
+body {
+    font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+h1 {
+    font-size: 50px;
+}
+
+section {
+    text-align: center;
+}
+
+.menu_container {
+    font-size: 30px;
+}
+
+body {
+    background-color: #e38d13;
+    /*height: 100%;*/
+    width: 1000px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+    margin: 0 auto;
+}
+
+.header {
+    text-align: center;
+    height: 50px;
+    background-color: #1b6d85;
+    z-index: 9998;
+}
+
+/*.menu_item button {*/
+    /*line-height: 50px;*/
+    /*margin: 0;*/
+    /*padding: 0;*/
+/*}*/
+
+.menu_container {
+    align-content: center;
+    height: 100%;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu_item {
+    text-align: center;
+    line-height: 50px;
+    height: 100%;
+    width: 150px;
+    display: inline-block;
+    margin: 0 0 0 -10px;
+    padding: 0;
+    cursor: pointer;
+}
+
+.btn {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#records_container {
+    overflow: scroll;
+    height: 410px;
+}
+
+#queue-container{
+    height: 410px;
+    overflow: scroll;
+}
+
+#readers-container {
+    height: 410px;
+    overflow: scroll;
+}
+
+#books-container {
+    overflow: scroll;
+    height: 410px;
+}
+
+#booksStatContainer {
+    overflow: scroll;
+    height: 410px;
+}
+
+.modal {
+    top: 25px;
+}
