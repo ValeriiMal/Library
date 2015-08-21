@@ -34,6 +34,7 @@ public class BookController {
     public String findBook( @RequestBody String obj) throws IOException {
         Book example = new ObjectMapper().readValue(obj, Book.class);
         List<Book> books = bookService.findBooksByExample(example);
+//        String b = bookService.booksToString(books);
         return bookService.booksToString(books);
     }
 
