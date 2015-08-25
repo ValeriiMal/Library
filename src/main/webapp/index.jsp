@@ -3,7 +3,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <%--<meta charset="utf-8">--%>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <script src="<c:url value="resources/js/jquery-1.11.3.js"/> "></script>
     <script src="<c:url value="resources/js/bootstrap.js"/> "></script>
@@ -119,11 +118,13 @@
         <table class="table table-hover" id="records-table">
             <thead>
             <tr>
-                <th class="col-sm-2">Id</th>
+                <th class="col-sm-1">Id</th>
                 <th class="col-sm-2">Date</th>
-                <th class="col-sm-2">Book</th>
-                <th class="col-sm-2">Reader</th>
-                <th class="col-sm-2">Returned</th>
+                <th class="col-sm-1">Book id</th>
+                <th class="col-sm-2">Book title</th>
+                <th class="col-sm-1">Reader id</th>
+                <th class="col-sm-2">Reader name</th>
+                <th class="col-sm-1">Returned</th>
                 <th class="col-sm-2">Return date</th>
             </tr>
             </thead>
@@ -143,21 +144,21 @@
                 <div class="modal-body">
                     <form action="" class="form-horizontal">
                         <div class="form-group">
-                            <label for="inputBookId" class="col-sm-4 control-label">Book Id</label>
+                            <label for="inputBookId" class="col-sm-4 control-label">Book Id:</label>
 
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" id="inputBookId" placeholder="Book Id"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputReaderId" class="col-sm-4 control-label">Reader Id</label>
+                            <label for="inputReaderId" class="col-sm-4 control-label">Reader Id:</label>
 
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" id="inputReaderId" placeholder="Reader Id"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputReturnDate" class="col-sm-4 control-label">Return date*</label>
+                            <label for="inputReturnDate" class="col-sm-4 control-label">Return date*:</label>
 
                             <div class="col-sm-8">
                                 <input type="date" class="form-control" id="inputReturnDate" placeholder=""/>
@@ -184,21 +185,21 @@
                 <div class="modal-body">
                     <form action="" class="form-horizontal">
                         <div class="form-group">
-                            <label for="editRecordSearchId" class="col-sm-4 control-label">Id*</label>
+                            <label for="editRecordSearchId" class="col-sm-4 control-label">Id*:</label>
 
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" id="editRecordSearchId" placeholder="Enter id"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="editRecordBookId" class="col-sm-4 control-label">Book Id</label>
+                            <label for="editRecordBookId" class="col-sm-4 control-label">Book Id:</label>
 
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" id="editRecordBookId" placeholder="Book Id"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="editRecordReaderId" class="col-sm-4 control-label">Reader Id</label>
+                            <label for="editRecordReaderId" class="col-sm-4 control-label">Reader Id:</label>
 
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" id="editRecordReaderId"
@@ -206,14 +207,14 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="editRecordchecked" class="col-sm-4 control-label">Returned</label>
+                            <label for="editRecordchecked" class="col-sm-4 control-label">Returned:</label>
 
                             <div class="col-sm-1">
                                 <input type="checkbox" class="form-control" id="editRecordchecked"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="editRecordReturnDate" class="col-sm-4 control-label">Return date</label>
+                            <label for="editRecordReturnDate" class="col-sm-4 control-label">Return date:</label>
 
                             <div class="col-sm-8">
                                 <input type="date" class="form-control" id="editRecordReturnDate"
@@ -633,42 +634,42 @@
                 <div class="modal-body">
                     <form action="" class="form-horizontal">
                         <div class="form-group">
-                            <label for="inputBookTitle" class="col-sm-4 control-label">Title</label>
+                            <label for="inputBookTitle" class="col-sm-4 control-label">Title:</label>
 
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" id="inputBookTitle" placeholder="Title"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputBookAuthors" class="col-sm-4 control-label">Authors</label>
+                            <label for="inputBookAuthors" class="col-sm-4 control-label">Authors:</label>
 
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" id="inputBookAuthors" placeholder="Authors"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputBookYear" class="col-sm-4 control-label">Year</label>
+                            <label for="inputBookYear" class="col-sm-4 control-label">Year:</label>
 
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" id="inputBookYear" placeholder="Year"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputBookGenre" class="col-sm-4 control-label">Genre</label>
+                            <label for="inputBookGenre" class="col-sm-4 control-label">Genre:</label>
 
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" id="inputBookGenre" placeholder="Genre"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputBookAmount" class="col-sm-4 control-label">Amount</label>
+                            <label for="inputBookAmount" class="col-sm-4 control-label">Amount:</label>
 
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" id="inputBookAmount" placeholder="Amount"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputBookScarce" class="col-sm-4 control-label">Scarce: </label>
+                            <label for="inputBookScarce" class="col-sm-4 control-label">Scarce:</label>
 
                             <div class="col-sm-1">
                                 <input type="checkbox" class="form-control" id="inputBookScarce" placeholder="Amount"/>
@@ -695,7 +696,7 @@
                 <div class="modal-body">
                     <form action="" class="form-horizontal">
                         <div class="form-group">
-                            <label for="editBookSearchId" class="col-sm-4 control-label">ID</label>
+                            <label for="editBookSearchId" class="col-sm-4 control-label">Id*:</label>
 
                             <div class="col-sm-8">
                                 <input id="editBookSearchId" type="text" class="form-control"
@@ -703,42 +704,42 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="editBookTitle" class="col-sm-4 control-label">Title</label>
+                            <label for="editBookTitle" class="col-sm-4 control-label">Title:</label>
 
                             <div class="col-sm-8">
                                 <input id="editBookTitle" type="text" class="form-control" placeholder="Title"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="editBookAuthors" class="col-sm-4 control-label">Authors</label>
+                            <label for="editBookAuthors" class="col-sm-4 control-label">Authors:</label>
 
                             <div class="col-sm-8">
                                 <input id="editBookAuthors" type="text" class="form-control" placeholder="Authors"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="editBookYear" class="col-sm-4 control-label">Year</label>
+                            <label for="editBookYear" class="col-sm-4 control-label">Year:</label>
 
                             <div class="col-sm-8">
                                 <input id="editBookYear" type="text" class="form-control" placeholder="Year"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="editBookGenre" class="col-sm-4 control-label">Genre</label>
+                            <label for="editBookGenre" class="col-sm-4 control-label">Genre:</label>
 
                             <div class="col-sm-8">
                                 <input id="editBookGenre" type="text" class="form-control" placeholder="Genre"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="editBookAmount" class="col-sm-4 control-label">Amount</label>
+                            <label for="editBookAmount" class="col-sm-4 control-label">Amount:</label>
 
                             <div class="col-sm-8">
                                 <input id="editBookAmount" type="text" class="form-control" placeholder="Amount"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="editBookScarce" class="col-sm-4 control-label">Scarce: </label>
+                            <label for="editBookScarce" class="col-sm-4 control-label">Scarce:</label>
 
                             <div class="col-sm-1">
                                 <input id="editBookScarce" type="checkbox" class="form-control"/>
@@ -764,7 +765,7 @@
                 <div class="modal-body">
                     <form action="" class="form-horizontal">
                         <div class="form-group">
-                            <label for="removeBookSearchId" class="col-sm-4 control-label">ID</label>
+                            <label for="removeBookSearchId" class="col-sm-4 control-label">Id*:</label>
 
                             <div class="col-sm-8 ">
                                 <input type="text" id="removeBookSearchId" class="form-control"
@@ -772,24 +773,24 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="removeBookTitle" class="col-sm-4 control-label">Title</label>
+                            <label for="removeBookTitle" class="col-sm-4 control-label">Title:</label>
 
                             <div class="col-sm-8 ">
-                                <label id="removeBookTitle" class="form-control"/>
+                                <label id="removeBookTitle" class="form-control"></label>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="removeBookAuthors" class="col-sm-4 control-label">Authors</label>
+                            <label for="removeBookAuthors" class="col-sm-4 control-label">Authors:</label>
 
                             <div class="col-sm-8 ">
-                                <label id="removeBookAuthors" class="form-control"/>
+                                <label id="removeBookAuthors" class="form-control"></label>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="removeBookYear" class="col-sm-4 control-label">Year</label>
+                            <label for="removeBookYear" class="col-sm-4 control-label">Year:</label>
 
                             <div class="col-sm-8 ">
-                                <label id="removeBookYear" class="form-control"/>
+                                <label id="removeBookYear" class="form-control"></label>
                             </div>
                         </div>
                     </form>
@@ -820,47 +821,47 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="detailsBookTitle" class="col-sm-4 control-label">Title</label>
+                            <label for="detailsBookTitle" class="col-sm-4 control-label">Title:</label>
 
                             <div class="col-sm-8">
                                 <label id="detailsBookTitle" class="form-control"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="detailsBookAuthors" class="col-sm-4 control-label">Authors</label>
+                            <label for="detailsBookAuthors" class="col-sm-4 control-label">Authors:</label>
 
                             <div class="col-sm-8">
                                 <label id="detailsBookAuthors" class="form-control"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="detailsBookYear" class="col-sm-4 control-label">Year</label>
+                            <label for="detailsBookYear" class="col-sm-4 control-label">Year:</label>
 
                             <div class="col-sm-8">
                                 <label id="detailsBookYear" class="form-control"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="detailsBookGenre" class="col-sm-4 control-label">Genre</label>
+                            <label for="detailsBookGenre" class="col-sm-4 control-label">Genre:</label>
 
                             <div class="col-sm-8">
                                 <label id="detailsBookGenre" class="form-control"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="detailsBookAmount" class="col-sm-4 control-label">Amount</label>
+                            <label for="detailsBookAmount" class="col-sm-4 control-label">Amount:</label>
 
                             <div class="col-sm-2">
                                 <label id="detailsBookAmount" class="form-control"/>
                             </div>
-                            <label for="detailsBookRemains" class="col-sm-4 control-label">Remains</label>
+                            <label for="detailsBookRemains" class="col-sm-4 control-label">Remains:</label>
 
                             <div class="col-sm-2">
                                 <label id="detailsBookRemains" class="form-control"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="detailsBookScarce" class="col-sm-4 control-label">Scarce: </label>
+                            <label for="detailsBookScarce" class="col-sm-4 control-label">Scarce:</label>
 
                             <div class="col-sm-1">
                                 <input id="detailsBookScarce" type="checkbox" class="form-control"/>
@@ -980,63 +981,63 @@
                 <div class="modal-body">
                     <form class="form-horizontal">
                         <div class="form-group">
-                            <label for="inputReaderFName" class="col-sm-4 control-label">First name</label>
+                            <label for="inputReaderFName" class="col-sm-4 control-label">First name:</label>
 
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" id="inputReaderFName" placeholder="First name">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputReaderMName" class="col-sm-4 control-label">Middle name</label>
+                            <label for="inputReaderMName" class="col-sm-4 control-label">Middle name:</label>
 
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" id="inputReaderMName" placeholder="Middle name">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label" for="inputReaderLName">Last name</label>
+                            <label class="col-sm-4 control-label" for="inputReaderLName">Last name:</label>
 
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" placeholder="Last name" id="inputReaderLName"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label" for="inputReaderPhone">Phone</label>
+                            <label class="col-sm-4 control-label" for="inputReaderPhone">Phone:</label>
 
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" placeholder="Phone" id="inputReaderPhone"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label" for="inputReaderCountry">Country</label>
+                            <label class="col-sm-4 control-label" for="inputReaderCountry">Country:</label>
 
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" placeholder="Country" id="inputReaderCountry"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label" for="inputReaderCity">City</label>
+                            <label class="col-sm-4 control-label" for="inputReaderCity">City:</label>
 
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" placeholder="City" id="inputReaderCity"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label" for="inputReaderStreet">Street</label>
+                            <label class="col-sm-4 control-label" for="inputReaderStreet">Street:</label>
 
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" placeholder="Street" id="inputReaderStreet"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label" for="inputReaderHouse">House</label>
+                            <label class="col-sm-4 control-label" for="inputReaderHouse">House:</label>
 
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" placeholder="House" id="inputReaderHouse"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label" for="inputReaderBirth">Date of birth</label>
+                            <label class="col-sm-4 control-label" for="inputReaderBirth">Date of birth:</label>
 
                             <div class="col-sm-8">
                                 <input type="date" class="form-control" placeholder="Date of birth"
@@ -1063,7 +1064,7 @@
                 <div class="modal-body">
                     <form class="form-horizontal">
                         <div class="form-group">
-                            <label for="editReaderSearchId" class="col-sm-4 control-label">ID</label>
+                            <label for="editReaderSearchId" class="col-sm-4 control-label">Id*:</label>
 
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" id="editReaderSearchId"
@@ -1071,63 +1072,63 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="editReaderFName" class="col-sm-4 control-label">First name</label>
+                            <label for="editReaderFName" class="col-sm-4 control-label">First name:</label>
 
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" id="editReaderFName" placeholder="First name">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="editReaderMName" class="col-sm-4 control-label">Middle name</label>
+                            <label for="editReaderMName" class="col-sm-4 control-label">Middle name:</label>
 
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" id="editReaderMName" placeholder="Middle name">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label" for="editReaderLName">Last name</label>
+                            <label class="col-sm-4 control-label" for="editReaderLName">Last name:</label>
 
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" placeholder="Last name" id="editReaderLName"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label" for="editReaderPhone">Phone</label>
+                            <label class="col-sm-4 control-label" for="editReaderPhone">Phone:</label>
 
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" placeholder="Phone" id="editReaderPhone"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label" for="editReaderCountry">Country</label>
+                            <label class="col-sm-4 control-label" for="editReaderCountry">Country:</label>
 
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" placeholder="Country" id="editReaderCountry"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label" for="editReaderCity">City</label>
+                            <label class="col-sm-4 control-label" for="editReaderCity">City:</label>
 
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" placeholder="City" id="editReaderCity"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label" for="editReaderStreet">Street</label>
+                            <label class="col-sm-4 control-label" for="editReaderStreet">Street:</label>
 
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" placeholder="Street" id="editReaderStreet"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label" for="editReaderHouse">House</label>
+                            <label class="col-sm-4 control-label" for="editReaderHouse">House:</label>
 
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" placeholder="House" id="editReaderHouse"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label" for="editReaderBirth">Date of birth</label>
+                            <label class="col-sm-4 control-label" for="editReaderBirth">Date of birth:</label>
 
                             <div class="col-sm-8">
                                 <input type="date" class="form-control" placeholder="Date of birth"
@@ -1202,7 +1203,7 @@
                 <div class="modal-body">
                     <form class="form-horizontal">
                         <div class="form-group">
-                            <label for="detailsReaderSearchId" class="col-sm-4 control-label">ID</label>
+                            <label for="detailsReaderSearchId" class="col-sm-4 control-label">Id*:</label>
 
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" id="detailsReaderSearchId"
@@ -1210,7 +1211,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="detailsReaderFName" class="col-sm-4 control-label">First name</label>
+                            <label for="detailsReaderFName" class="col-sm-4 control-label">First name:</label>
 
                             <div class="col-sm-8">
                                 <label class="form-control" id="detailsReaderFName"></label>
@@ -1219,7 +1220,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="detailsReaderMName" class="col-sm-4 control-label">Middle name</label>
+                            <label for="detailsReaderMName" class="col-sm-4 control-label">Middle name:</label>
 
                             <div class="col-sm-8">
                                 <label class="form-control" id="detailsReaderMName"></label>
@@ -1228,7 +1229,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label" for="detailsReaderLName">Last name</label>
+                            <label class="col-sm-4 control-label" for="detailsReaderLName">Last name:</label>
 
                             <div class="col-sm-8">
                                 <label class="form-control" id="detailsReaderLName"></label>
@@ -1237,7 +1238,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label" for="detailsReaderPhone">Phone</label>
+                            <label class="col-sm-4 control-label" for="detailsReaderPhone">Phone:</label>
 
                             <div class="col-sm-8">
                                 <label class="form-control" id="detailsReaderPhone"></label>
@@ -1245,7 +1246,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label" for="detailsReaderCountry">Country</label>
+                            <label class="col-sm-4 control-label" for="detailsReaderCountry">Country:</label>
 
                             <div class="col-sm-8">
                                 <label class="form-control" id="detailsReaderCountry"></label>
@@ -1254,7 +1255,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label" for="detailsReaderCity">City</label>
+                            <label class="col-sm-4 control-label" for="detailsReaderCity">City:</label>
 
                             <div class="col-sm-8">
                                 <label class="form-control" id="detailsReaderCity"></label>
@@ -1262,7 +1263,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label" for="detailsReaderStreet">Street</label>
+                            <label class="col-sm-4 control-label" for="detailsReaderStreet">Street:</label>
 
                             <div class="col-sm-8">
                                 <label class="form-control" id="detailsReaderStreet"></label>
@@ -1270,7 +1271,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label" for="detailsReaderHouse">House</label>
+                            <label class="col-sm-4 control-label" for="detailsReaderHouse">House:</label>
 
                             <div class="col-sm-8">
                                 <label class="form-control" id="detailsReaderHouse"></label>
@@ -1278,7 +1279,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label" for="detailsReaderBirth">Date of birth</label>
+                            <label class="col-sm-4 control-label" for="detailsReaderBirth">Date of birth:</label>
 
                             <div class="col-sm-8">
                                 <label class="form-control" id="detailsReaderBirth"></label>
@@ -1288,7 +1289,7 @@
                         </div>
                         <div class="form-group">
                             <label class="col-sm-4 control-label" for="detailsReaderRegistrationDate">Registration
-                                date</label>
+                                date:</label>
 
                             <div class="col-sm-8">
                                 <label class="form-control" id="detailsReaderRegistrationDate"></label>

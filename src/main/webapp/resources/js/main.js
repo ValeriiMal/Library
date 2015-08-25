@@ -29,7 +29,9 @@ function recordsJsonToRows(data) {
             "<td>" + data[i]['id'] + "</td>" +
             "<td>" + data[i]['date'] + "</td>" +
             "<td>" + data[i]['book']['id'] + "</td>" +
+            "<td>" + data[i]['book']['title'] + "</td>" +
             "<td>" + data[i]['reader']['id'] + "</td>" +
+            "<td>" + data[i]['reader']['fName'] + " " + data[i]['reader']['mName'] + " " + data[i]['reader']['lName'] + " " + "</td>" +
             "<td>" + data[i]['checked'] + "</td>" +
             "<td>" + data[i]['returnDate'] + "</td>" +
             "</tr>";
@@ -544,6 +546,26 @@ $('#remove-queue').click(function () {
 //--------------------------------------------------- BOOKS -----------------------------------------------
 
 $('#bookFindScarce').prop('checked', false);
+
+function booksToRows(books){
+    if (books.length != 0) {
+        var rows = "";
+        $.each(books, function (index, value) {
+            rows +=
+                "<tr>" +
+                "<td>" + $(this).attr('id') + "</td>" +
+                "<td>" + $(this).attr('title') + "</td>" +
+                "<td>" + $(this).attr('authors') + "</td>" +
+                "<td>" + $(this).attr('year') + "</td>" +
+                "<td>" + $(this).attr('genre') + "</td>" +
+                "</tr>";
+        });
+        return rows;
+    }
+
+    return "<tr><td>nothing to show</td></tr>";
+}
+
 var booksFindInputs = $('#books-find-input input');
 
 function findBooks() {
@@ -551,7 +573,7 @@ function findBooks() {
         url: 'book/find',
         type: 'POST',
         contentType: 'application/json',
-        dataType: 'text',
+        dataType: 'json',
         data: JSON.stringify({
             id: booksFindInputs.get(0).value,
             title: booksFindInputs.get(1).value,
@@ -561,7 +583,7 @@ function findBooks() {
             isScarce: $('#bookFindScarce').prop('checked')
         }),
         success: function (data, textStatus, jqXHR) {
-            $('#books-table tbody').html(data);
+            $('#books-table tbody').html(booksToRows(data));
         },
         error: function (jqXHR, textStatus, errorThrown) {
             alert(textStatus + "\n" + errorThrown)

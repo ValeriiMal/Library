@@ -36,7 +36,8 @@ public class ReportController {
     @RequestMapping("/get")
     @ResponseBody
     public String getRecords() throws IOException {
-        return new ObjectMapper().writeValueAsString(reportService.getRecords());
+        List<Record> records = reportService.getRecords();
+        return new ObjectMapper().writeValueAsString(records);
     }
 
     @RequestMapping(value = "/find", method = RequestMethod.POST)
@@ -98,12 +99,6 @@ public class ReportController {
                 break;
             }
         }
-//        List<Record> records = reportService.getRecords();
-////         фільтр по айдішкам
-//        if(preRecord.getId() != 0) records.removeIf(r -> r.getId() != preRecord.getId());
-//        if(preRecord.getBook_id() != 0) records.removeIf(r -> r.getBook().getId() != preRecord.getBook_id());
-//        if(preRecord.getReader_id() != 0) records.removeIf(r -> r.getReader().getId() != preRecord.getReader_id());
-//        фільтр по даті запису
         if (preRecord.getDate_from() != null) {
             if (records != null) {
                 records.removeIf(r -> r.getDate().before(preRecord.getDate_from()));
@@ -136,21 +131,6 @@ public class ReportController {
                 records.addAll(reportService.getRecordsToReturnDate(preRecord.getReturn_to()));
             }
         }
-//        if (preRecord.getDate_to() != null) records.removeIf(r -> r.getDate().after(preRecord.getDate_to()));
-//        фільтр по даті повернення книги
-//        if (preRecord.getReturn_from() != null)
-//            records.removeIf(r -> r.getReturnDate().before(preRecord.getReturn_from()));
-//        if (preRecord.getReturn_to() != null) records.removeIf(r -> r.getReturnDate().after(preRecord.getReturn_to()));
-//
-//        switch (preRecord.getReturned()){
-//            case "all" : {}break;
-//            case "returned" : {
-//                records.removeIf(r -> !r.isChecked());
-//            }break;
-//            case "notReturned" : {
-//                records.removeIf(Record::isChecked);
-//            } break;
-//        }
 
         if (records == null) records = new ArrayList<>();
         return new ObjectMapper().writeValueAsString(records);

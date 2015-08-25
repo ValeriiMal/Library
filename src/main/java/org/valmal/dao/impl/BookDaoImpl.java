@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.valmal.bean.Book;
 import org.valmal.dao.BookDao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -54,9 +55,11 @@ public class BookDaoImpl implements BookDao {
     @Override
     public List<Book> getBooks() {
         return sessionFactory.getCurrentSession()
-                .createCriteria(Book.class)
-                .setMaxResults(10)
-                .addOrder(Order.desc("id"))
+                .createSQLQuery("select * from books order by id desc limit 100")
+                .addEntity(Book.class)
+//                .createCriteria(Book.class)
+//                .setMaxResults(10)
+//                .addOrder(Order.desc("id"))
                 .list();
     }
 
@@ -102,25 +105,32 @@ public class BookDaoImpl implements BookDao {
 
     @Override
     public List<Book> findBooksByExample(Book example) {
+        List<Book> books;
+        String query;
         if (example.getId() == 0) {
-            return sessionFactory.getCurrentSession()
-                    .createCriteria(Book.class)
-                    .add(Restrictions.like("title", "%" + example.getTitle() + "%"))
-                    .add(Restrictions.like("authors", "%" + example.getAuthors() + "%"))
-                    .add(Restrictions.like("year", "%" + example.getYear() + "%"))
-                    .add(Restrictions.like("genre", "%" + example.getGenre() + "%"))
-                    .setMaxResults(100)
-                    .list();
+            query =
+                    "select * from books where " +
+                            "title like '%" + example.getTitle() + "%' and " +
+                            "authors like '%" + example.getAuthors() + "%' and " +
+                            "year like '%" + example.getYear() + "%' and " +
+                            "genre like '%" + example.getGenre() + "%' " +
+                            "order by id desc limit 100;";
+        } else {
+            query =
+                    "select * from books where " +
+                            "id = " + example.getId() + " and " +
+                            "title like '%" + example.getTitle() + "%' and " +
+                            "authors like '%" + example.getAuthors() + "%' and " +
+                            "year like '%" + example.getYear() + "%' and " +
+                            "genre like '%" + example.getGenre() + "%' " +
+                            "order by id desc limit 100;";
         }
-        return sessionFactory.getCurrentSession()
-                .createCriteria(Book.class)
-                .add(Restrictions.eq("id", example.getId()))
-                .add(Restrictions.like("title", "%" + example.getTitle() + "%"))
-                .add(Restrictions.like("authors", "%" + example.getAuthors() + "%"))
-                .add(Restrictions.like("year", "%" + example.getYear() + "%"))
-                .add(Restrictions.like("genre", "%" + example.getGenre() + "%"))
-                .setMaxResults(100)
+
+        books = sessionFactory.getCurrentSession()
+                .createSQLQuery(query).addEntity(Book.class)
                 .list();
+
+        return books;
     }
 
     @Override

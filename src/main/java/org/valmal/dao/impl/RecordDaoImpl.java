@@ -28,9 +28,11 @@ public class RecordDaoImpl implements RecordDao {
     @Override
     public List<Record> getRecords() {
         return sessionFactory.getCurrentSession()
-                .createCriteria(Record.class)
-                .addOrder(Order.desc("id"))
-                .setMaxResults(100)
+                .createSQLQuery("select * from records order by id desc limit 100 ;")
+                        .addEntity(Record.class)
+//                .createCriteria(Record.class)
+//                .addOrder(Order.desc("id"))
+//                .setMaxResults(100)
                 .list();
     }
 
@@ -99,10 +101,10 @@ public class RecordDaoImpl implements RecordDao {
 
     @Override
     public List<Record> getRecordsByBook(Book book) {
+        String query = "select * from records where book_id = " + book.getId() + " order by id desc limit 100;";
         return sessionFactory.getCurrentSession()
-                .createCriteria(Record.class)
-                .add(Restrictions.eq("book", book))
-                .setMaxResults(100)
+                .createSQLQuery(query)
+                .addEntity(Record.class)
                 .list();
     }
 

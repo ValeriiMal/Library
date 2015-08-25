@@ -31,11 +31,11 @@ public class BookController {
 
     @RequestMapping(value = "/find", method = RequestMethod.POST)
     @ResponseBody
-    public String findBook( @RequestBody String obj) throws IOException {
+    public String findBook( @RequestBody String obj, HttpServletResponse res) throws IOException {
         Book example = new ObjectMapper().readValue(obj, Book.class);
         List<Book> books = bookService.findBooksByExample(example);
-//        String b = bookService.booksToString(books);
-        return bookService.booksToString(books);
+//        return bookService.booksToString(books);
+        return new ObjectMapper().writeValueAsString(books);
     }
 
 

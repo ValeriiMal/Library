@@ -45,18 +45,6 @@ create table if not exists library.subjects(
     primary key (id)
 );
 
-insert into library.address values
-(1, 'country1', 'City1', 'street1', 'house1'),
-(2, 'country2', 'City2', 'street2', 'house2'),
-(3, 'country3', 'City3', 'street3', 'house3'),
-(4, 'country4', 'City4', 'street4', 'house4'),
-(5, 'country5', 'City5', 'street5', 'house5'),
-(6, 'country6', 'City6', 'street6', 'house6'),
-(7, 'country7', 'City7', 'street7', 'house7'),
-(8, 'country8', 'City8', 'street8', 'house8'),
-(9, 'country9', 'City9', 'street9', 'house9'),
-(10, 'country10', 'City10', 'street10', 'house10');
-
 insert into library.readers values
 (1, 'fName1', 'mName1', 'lName1', cast('1990-01-01' as date), 'phone1', 1, cast('2015-01-01' as date)),
 (2, 'fName2', 'mName2', 'lName2', cast('1990-01-02' as date), 'phone2', 2, cast('2015-01-02' as date)),
