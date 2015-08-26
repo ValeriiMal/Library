@@ -45,7 +45,7 @@ public class ReportController {
     public String findRecords(@RequestBody String json) throws IOException, ParseException {
         PreRecord preRecord = new ObjectMapper().readValue(json, PreRecord.class);
         List<Record> records = null;
-
+        // далі однотипні фільтри
         if (preRecord.getId() != 0) {
             records = new ArrayList<>();
             records.add(reportService.findRecordById(preRecord.getId()));

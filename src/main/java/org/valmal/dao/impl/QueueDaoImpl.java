@@ -39,10 +39,10 @@ public class QueueDaoImpl implements QueueDao {
 
     @Override
     public List<Queue> getQueues() {
+        String query = "select * from queues order by id desc limit 100;";
         return sessionFactory.getCurrentSession()
-                .createCriteria(Queue.class)
-                .addOrder(Order.desc("id"))
-                .setMaxResults(100)
+                .createSQLQuery(query)
+                .addEntity(Queue.class)
                 .list();
     }
 

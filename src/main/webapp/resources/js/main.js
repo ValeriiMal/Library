@@ -1,9 +1,6 @@
-function showReport() {
-    $('#records-table tbody').load("report/load");
-}
-
 //-------------------------------------------------- REPORT -----------------------------------------------
 
+// перетворення масиву json-записів, що приходять з сервера до рядків таблиці
 function recordsJsonToRows(data) {
     var content = "";
 
@@ -39,7 +36,7 @@ function recordsJsonToRows(data) {
 
     return content;
 }
-
+// відправка на сервер екземпляру (PreRecord) для пошуку
 function findRecords() {
     $('#records-table tbody').html('');
 
@@ -54,6 +51,7 @@ function findRecords() {
             contentType: 'application/json',
             dataType: 'json',
             data: JSON.stringify({
+                // об'єкт (PreRecords), поля якого використовуються для пошуку записів
                 id: $('#reportFindId').val(),
                 book_id: $('#reportFindBookId').val(),
                 reader_id: $('#reportFindReaderId').val(),
@@ -64,8 +62,6 @@ function findRecords() {
                 returned: $('#reportFindReturned').val()
             }),
             success: function (data) {
-                // дата до нормального вигляду
-
                 // заповнюємо таблицю
                 $('#records-table tbody').html(recordsJsonToRows(data));
             },
@@ -77,12 +73,13 @@ function findRecords() {
     }
 
 }
-
+// обробник для всіх текстових полів пошуку
 $('#report-find-input input[type=text]').keyup(findRecords);
+// обробник для всіх полів дати для пошуку
 $('#report-find-input input[type=date]').change(findRecords);
-//$('#report-find-input input[type=checkbox]').change(findRecords);
+// обробник для зміни згначення випадаючого списку
 $('#reportFindReturned').change(findRecords);
-
+// обробник для кнопки модального вікна додавання запису
 $('#add_record').click(function () {
     $('#addRecordResult').text('');
     if ($('#inputReturnDate').val() === "") {
@@ -108,7 +105,7 @@ $('#add_record').click(function () {
         })
     }
 });
-
+// обробник для поля Id запису, пошук редагованого запису в модальному вікні
 $('#editRecordSearchId').keyup(function () {
     var id = $('#editRecordSearchId').val();
     if (!!id) {
@@ -140,7 +137,7 @@ $('#editRecordSearchId').keyup(function () {
         })
     }
 });
-
+// обробник для кнопки модального вікна редагування запису
 $('#edit_record').click(function () {
     $.ajax({
         url: 'report/edit',
@@ -162,7 +159,7 @@ $('#edit_record').click(function () {
         }
     })
 });
-
+// вивід інформації в модальне вікно при зміні Id
 $('#detailsRecordSearchId').keyup(function () {
     var id = $('#detailsRecordSearchId').val();
     if (!!id) {
@@ -205,13 +202,14 @@ $('#detailsRecordSearchId').keyup(function () {
 
 //--------------------------------------------------- QUEUE -----------------------------------------------
 
+// перетворення масиву json-записів, що приходять з сервера до рядків таблиці
 function QueuesToRows(queues) {
     if (queues.length != 0) {
         var rows = "";
         $.each(queues, function (index, value) {
             var rName =
-                $(this).attr('reader')['fName'] + '-' +
-                $(this).attr('reader')['mName'] + '-' +
+                $(this).attr('reader')['fName'] + ' ' +
+                $(this).attr('reader')['mName'] + ' ' +
                 $(this).attr('reader')['lName'];
             var date = new Date($(this).attr('date')),
                 year = date.getFullYear(),
@@ -235,7 +233,7 @@ function QueuesToRows(queues) {
 
     return "<tr><td>nothing to show</td></tr>";
 }
-
+// відправка запиту GET по значенням полів пошуку і повернення відповідного масиву json
 function findQueues() {
     var id = $('#queueFindId').val(),
         date = $('#queueFindDate').val(),
@@ -283,10 +281,11 @@ function findQueues() {
         })
     }
 }
-
+// обробник для всіх текстових полів пошуку
 $('#queue-find-input input').keyup(findQueues);
+// обробник для всіх полів дати для пошуку
 $('#queue-find-input input[type=date]').change(findQueues);
-
+// вивід назви книги по Id у модальне вікно для додавання запису черги
 $('#queueAddBookId').keyup(function () {
     var id = $('#queueAddBookId').val();
     if (id != "") {
@@ -313,7 +312,7 @@ $('#queueAddBookId').keyup(function () {
         $('#queueAddBookTitle').val("");
     }
 });
-
+// вивід імені читача по Id у модальне вікно для додавання запису черги
 $('#queueAddReaderId').keyup(function () {
     var id = $('#queueAddReaderId').val();
     if (id != "") {
@@ -340,7 +339,7 @@ $('#queueAddReaderId').keyup(function () {
         $('#queueAddReaderName').val("");
     }
 });
-
+// обробник для кнопки модального вікна додавання запису в чергу
 $('#add-queue').click(function () {
     $('#addQueueResult').text("");
     var book_id = $('#queueAddBookId').val(),
@@ -366,7 +365,7 @@ $('#add-queue').click(function () {
         alert('you must enter both "book_id" and "reader_id" values');
     }
 });
-
+// обробник для поля Id запису черги, пошук редагованого запису в модальному вікні
 $('#queueEditSearchId').keyup(function () {
     var id = $('#queueEditSearchId').val();
     if (id != "") {
@@ -399,7 +398,7 @@ $('#queueEditSearchId').keyup(function () {
         $('#queueEditModal input').val("");
     }
 });
-
+// вивід назви книги по Id у модальне вікно для редагування запису черги
 $('#queueEditBookId').keyup(function () {
     var id = $('#queueEditBookId').val();
     if (id != "") {
@@ -426,7 +425,7 @@ $('#queueEditBookId').keyup(function () {
         $('#queueEditBookTitle').val("");
     }
 });
-
+// вивід імені читача по Id у модальне вікно для редагування запису черги
 $('#queueEditReaderId').keyup(function () {
     var id = $('#queueEditReaderId').val();
     if (id != "") {
@@ -453,7 +452,7 @@ $('#queueEditReaderId').keyup(function () {
         $('#queueEditReaderName').val("");
     }
 });
-
+// обробник для кнопки модального вікна редагування запису черги
 $('#edit-queue').click(function () {
     $('#editQueueResult').text("");
     var id = $('#queueEditSearchId').val(),
@@ -481,7 +480,7 @@ $('#edit-queue').click(function () {
         alert('you must enter "Id" value in order to edit it');
     }
 });
-
+// вивід інформації в модальне вікно при зміні Id
 $('#queueRemoveSearchId').keyup(function () {
     $('#removeQueueResult').val("");
     var id = $('#queueRemoveSearchId').val();
@@ -516,7 +515,7 @@ $('#queueRemoveSearchId').keyup(function () {
         $('#queueRemoveModal input').val("");
     }
 });
-
+// обробник для кнопки модального вікна видалення запису черги
 $('#remove-queue').click(function () {
 
     var id = $('#queueRemoveSearchId').val();
@@ -545,8 +544,9 @@ $('#remove-queue').click(function () {
 
 //--------------------------------------------------- BOOKS -----------------------------------------------
 
+// встановлення початково положення чекбокса
 $('#bookFindScarce').prop('checked', false);
-
+// перетворення масиву json-записів, що приходять з сервера до рядків таблиці
 function booksToRows(books){
     if (books.length != 0) {
         var rows = "";
@@ -565,9 +565,10 @@ function booksToRows(books){
 
     return "<tr><td>nothing to show</td></tr>";
 }
-
+// масив полів пошуку для книг
 var booksFindInputs = $('#books-find-input input');
-
+// відправка запиту POST із json-екземпляром книги і повернення відповідного масиву json
+// обробник для кейап полів пошуку книги
 function findBooks() {
     $.ajax({
         url: 'book/find',
@@ -590,7 +591,7 @@ function findBooks() {
         }
     })
 }
-
+// створення json-книги і відправка його в ПОСТ для додавання в базу нового запису книги
 function addBook() {
     $.ajax({
         url: 'book/add',
@@ -616,7 +617,7 @@ function addBook() {
 
 booksFindInputs.keyup(findBooks);
 $('#bookFindScarce').change(findBooks);
-
+// обробник для кнопки модального вікна додавання нової книги
 $('#add-book').click(function () {
     $('#addBookResult').text('');
     if ($('#inputBookAmount').val() == '' && $('#inputBookAmount').val() == '') {
@@ -626,7 +627,7 @@ $('#add-book').click(function () {
     }
 
 });
-
+// вивід інформації в модальне вікно редагування книги при зміні Id
 $('#editBookSearchId').keyup(function () {
     var id = $('#editBookSearchId').val();
 
@@ -655,7 +656,7 @@ $('#editBookSearchId').keyup(function () {
         })
     }
 });
-
+// обробник для кнопки модального вікна редагування існуючої книги
 $('#edit_book').click(function () {
     $('#editBookResult').text('');
     $.ajax({
@@ -680,7 +681,7 @@ $('#edit_book').click(function () {
         }
     });
 });
-
+// вивід інформації в модальне вікно видалення книги при зміні Id
 $('#removeBookSearchId').keyup(function () {
     var id = $('#removeBookSearchId').val();
     if (!!id) {
@@ -706,11 +707,13 @@ $('#removeBookSearchId').keyup(function () {
         })
     }
 });
-
+// обробник для кнопки модального вікна видалення книги
+// видалити можна лише книгу, яка не додана в запис журналу, інакше вона буде привязана по
+// зовнішньому ключу і видалити неможливо
 $('#remove-book').click(function () {
     $('#removeBookResult').load("book/remove?id=" + $('#removeBookSearchId').val())
 });
-
+// вивід інформації в модальне вікно деталей книги при зміні Id
 $('#detailsBookSearchId').keyup(function () {
     var id = $('#detailsBookSearchId').val();
     if (!!id) {
@@ -748,7 +751,7 @@ $('#detailsBookSearchId').keyup(function () {
         $('#booksDetailsModal input').val("")
     }
 });
-
+// обробник для кнопки рідерс, з модального вікна детаілс для показу читачів, які зараз користуються книгою
 $('#show_book_readers').click(function () {
     $.ajax({
         url: 'book/readers',
@@ -774,7 +777,8 @@ $('#show_book_readers').click(function () {
         }
     })
 });
-
+// ще одна функція для конвертації джейсон в таблицю
+// (не побачив що вже є така)
 function jsonBooksToRows(data) {
     var content = "";
     if (data.length != 0) {
@@ -791,8 +795,8 @@ function jsonBooksToRows(data) {
     $('#booksStatStatus').text('no books');
     return content;
 }
-
 // how = {all/given/taken}
+// достаєм json-масив книг що знаходяться між заданими датами
 function booksByDate(how) {
     if ($('#booksDate1').val() === "") {
         alert("You must enter 'Date from' value")
@@ -822,7 +826,8 @@ function booksByDate(how) {
         })
     }
 }
-
+// обробник для кнопки показу статистики книги
+// виводяться тільки ті книги, які є в записі журналу відповідно
 $('#showBooksStat').click(function () {
     if ($('#booksOnlyGiven').prop('checked')) {
         if ($('#booksOnlyTaken').prop('checked')) {
@@ -843,8 +848,9 @@ $('#showBooksStat').click(function () {
 
 //--------------------------------------------------- READERS -------------------------------------------------
 
+// масив полів пошуку для книг
 var readersFindInputs = $('#readers-find-input input');
-
+// перетворення масиву json-записів, що приходять з сервера до рядків таблиці
 function readersJsonToRow(readers) {
     var content = "";
     var length = readers.length;
@@ -864,7 +870,8 @@ function readersJsonToRow(readers) {
     }
     return content;
 }
-
+// відправка запиту POST із json-екземпляром книги і повернення відповідного масиву json
+// обробник для кейап полів пошуку читача
 function findReaders() {
     $('#reader-table tbody').html('');
     $.ajax({
@@ -891,7 +898,7 @@ function findReaders() {
 }
 
 readersFindInputs.keyup(findReaders);
-
+// обробник для кнопки модального вікна додавання нового користувача
 $('#add-reader').click(function () {
     $('#addReaderResult').text('');
     $.ajax({
@@ -920,7 +927,7 @@ $('#add-reader').click(function () {
         }
     });
 });
-
+// вивід інформації в модальне вікно редагування читача при зміні Id
 $('#editReaderSearchId').keyup(function () {
     var id = $('#editReaderSearchId').val();
 
@@ -958,7 +965,7 @@ $('#editReaderSearchId').keyup(function () {
         })
     }
 });
-
+// обробник для кнопки модального вікна редагування читача
 $('#edit-reader').click(function () {
     $('#editReaderResult').text('');
     $.ajax({
@@ -989,7 +996,7 @@ $('#edit-reader').click(function () {
         }
     });
 });
-
+// вивід інформації в модальне вікно видалення читача при зміні Id
 $('#removeReaderSearchId').keyup(function () {
     var id = $('#removeReaderSearchId').val();
     if (id != '' && id != '0') {
@@ -1014,7 +1021,9 @@ $('#removeReaderSearchId').keyup(function () {
         })
     }
 });
-
+// обробник для кнопки модального вікна видалення читача
+// видалити можна лише читача, який не доданий в запис журналу, інакше він буде привязаний по
+// зовнішньому ключу і видалити неможливо
 $('#remove-reader').click(function () {
     $('#removeReaderResult').text('');
     $.get(
@@ -1027,7 +1036,7 @@ $('#remove-reader').click(function () {
         },
         'text');
 });
-
+// вивід інформації в модальне вікно деталей читача при зміні Id
 $('#detailsReaderSearchId').keyup(function () {
     var id = $('#detailsReaderSearchId').val();
     if (id != '' && id != '0') {
@@ -1079,6 +1088,8 @@ $('#detailsReaderSearchId').keyup(function () {
 
 // ------------------------------------------------ ON DOCUMENT READY -----------------------------------
 
+// функція прокрутки з використанням анімації
+// непрацює в експлорері
 function scroll2(menu_item, section) {
     $(menu_item).click(function () {
         $('html, body').animate({
@@ -1088,11 +1099,12 @@ function scroll2(menu_item, section) {
 }
 
 $(document).ready(function () {
+    // першочергове виведення наявної інформації бази даних на сторінку
     findReaders();
     findBooks();
     findRecords();
     findQueues();
-
+// це і так ясно шо
     scroll2('#menu_item_report', '#report_section');
     scroll2('#menu_item_queue', '#queue-section');
     scroll2('#menu_item_books', '#books-section');
