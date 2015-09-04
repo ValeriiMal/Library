@@ -33,13 +33,13 @@ public class QueueController {
     @Autowired
     ReaderService readerService;
 
-    @RequestMapping("/getQueues")
+    @RequestMapping(value = "/getQueues", produces = { "application/json; charset=UTF-8" })
     @ResponseBody
     public String getQueues() throws IOException {
         return new ObjectMapper().writeValueAsString(queueService.getQueues());
     }
 
-    @RequestMapping("/find")
+    @RequestMapping(value = "/find", produces = { "application/json; charset=UTF-8" })
     @ResponseBody
     public String find(@RequestParam("id") String id,
                        @RequestParam("date") String date,
@@ -104,7 +104,7 @@ public class QueueController {
         return "added";
     }
 
-    @RequestMapping("/findById")
+    @RequestMapping(value = "/findById", produces = { "application/json; charset=UTF-8" })
     @ResponseBody
     public String findById(@RequestParam("id") String id) throws IOException {
         return new ObjectMapper().writeValueAsString(queueService.findQueueById(Integer.parseInt(id)));

@@ -22,7 +22,7 @@ public class ReaderController {
     @Autowired
     BookService bookService;
 
-    @RequestMapping(value = "/findByExample", method = RequestMethod.POST)
+    @RequestMapping(value = "/findByExample", method = RequestMethod.POST, produces = { "application/json; charset=UTF-8" })
     @ResponseBody
     public String findByExample(@RequestBody String example) throws IOException {
         Reader ex = new ObjectMapper().readValue(example, Reader.class);
@@ -40,7 +40,7 @@ public class ReaderController {
         return "reader added";
     }
 
-    @RequestMapping("/findReaderJSON")
+    @RequestMapping(value = "/findReaderJSON", produces = { "application/json; charset=UTF-8" })
     @ResponseBody
     public String findJSONbyId(@RequestParam("id") int id) throws IOException, ParseException {
         Reader reader = readerService.findReaderById(id);

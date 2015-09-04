@@ -29,12 +29,11 @@ public class BookController {
         return bookService.booksToString(bookService.getBooks());
     }
 
-    @RequestMapping(value = "/find", method = RequestMethod.POST)
+    @RequestMapping(value = "/find", method = RequestMethod.POST, produces = { "application/json; charset=UTF-8" })
     @ResponseBody
     public String findBook( @RequestBody String obj, HttpServletResponse res) throws IOException {
         Book example = new ObjectMapper().readValue(obj, Book.class);
         List<Book> books = bookService.findBooksByExample(example);
-//        return bookService.booksToString(books);
         return new ObjectMapper().writeValueAsString(books);
     }
 
@@ -49,20 +48,20 @@ public class BookController {
         return "book added";
     }
 
-    @RequestMapping("/findBookByIdJSON")
+    @RequestMapping(value = "/findBookByIdJSON", produces = { "application/json; charset=UTF-8" })
     @ResponseBody
     public String findBookJSON(@RequestParam("id") String id) throws IOException {
         return new ObjectMapper().writeValueAsString(bookService.findBookById(Integer.parseInt(id)));
     }
 
 
-    @RequestMapping("/getBookById")
+    @RequestMapping(value = "/getBookById", produces = { "application/json; charset=UTF-8" })
     @ResponseBody
     public String getBookById(@RequestParam("id") String id) throws IOException {
         return new ObjectMapper().writeValueAsString(bookService.findBookById(Integer.parseInt(id)));
     }
 
-    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    @RequestMapping(value = "/edit", method = RequestMethod.POST, produces = { "application/json; charset=UTF-8" })
     @ResponseBody
     public String editBook(@RequestBody String obj) throws IOException {
         Book new_book = new ObjectMapper().readValue(obj, Book.class);
@@ -86,7 +85,7 @@ public class BookController {
         return "book removed";
     }
 
-    @RequestMapping("/readers")
+    @RequestMapping(value = "/readers", produces = { "application/json; charset=UTF-8" })
     @ResponseBody
     public String getReaders(@RequestParam("id") String id) throws IOException {
         return new ObjectMapper().writeValueAsString(bookService.findBookById(Integer.parseInt(id)).getReaders());

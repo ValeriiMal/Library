@@ -573,7 +573,7 @@ function findBooks() {
     $.ajax({
         url: 'book/find',
         type: 'POST',
-        contentType: 'application/json',
+        contentType: 'application/json; charset=UTF-8',
         dataType: 'json',
         data: JSON.stringify({
             id: booksFindInputs.get(0).value,
@@ -596,7 +596,7 @@ function addBook() {
     $.ajax({
         url: 'book/add',
         type: 'POST',
-        contentType: 'application/json',
+        contentType: 'application/json; charset=UTF-8',
         dataType: 'text',
         data: JSON.stringify({
             title: $('#inputBookTitle').val(),

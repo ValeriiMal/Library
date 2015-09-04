@@ -33,14 +33,14 @@ public class ReportController {
     @Autowired
     ReaderService readerService;
 
-    @RequestMapping("/get")
+    @RequestMapping(value = "/get", produces = { "application/json; charset=UTF-8" })
     @ResponseBody
     public String getRecords() throws IOException {
         List<Record> records = reportService.getRecords();
         return new ObjectMapper().writeValueAsString(records);
     }
 
-    @RequestMapping(value = "/find", method = RequestMethod.POST)
+    @RequestMapping(value = "/find", method = RequestMethod.POST, produces = { "application/json; charset=UTF-8" })
     @ResponseBody
     public String findRecords(@RequestBody String json) throws IOException, ParseException {
         PreRecord preRecord = new ObjectMapper().readValue(json, PreRecord.class);
@@ -167,7 +167,7 @@ public class ReportController {
 
     }
 
-    @RequestMapping(value = "/findById", method = RequestMethod.GET)
+    @RequestMapping(value = "/findById", method = RequestMethod.GET, produces = { "application/json; charset=UTF-8" })
     @ResponseBody
     public String findRecordById(@RequestParam("id") String id) throws IOException {
         return new ObjectMapper().writeValueAsString(reportService.findRecordById(Integer.parseInt(id)));
@@ -206,7 +206,7 @@ public class ReportController {
         return "edited";
     }
 
-    @RequestMapping("/allBooksByDate")
+    @RequestMapping(value = "/allBooksByDate", produces = { "application/json; charset=UTF-8" })
     @ResponseBody
     public String allBooksByDate(
             @RequestParam("checked") String how,
