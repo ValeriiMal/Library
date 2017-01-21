@@ -1,6 +1,5 @@
 //-------------------------------------------------- REPORT -----------------------------------------------
 
-// перетворення масиву json-записів, що приходять з сервера до рядків таблиці
 function recordsJsonToRows(data) {
     var content = "";
 
@@ -23,20 +22,19 @@ function recordsJsonToRows(data) {
         data[i]['returnDate'] = rYear + '-' + rMonth + '-' + rDay;
         content +=
             "<tr>" +
-            "<td>" + data[i]['id'] + "</td>" +
-            "<td>" + data[i]['date'] + "</td>" +
-            "<td>" + data[i]['book']['id'] + "</td>" +
-            "<td>" + data[i]['book']['title'] + "</td>" +
-            "<td>" + data[i]['reader']['id'] + "</td>" +
-            "<td>" + data[i]['reader']['fName'] + " " + data[i]['reader']['mName'] + " " + data[i]['reader']['lName'] + " " + "</td>" +
-            "<td>" + data[i]['checked'] + "</td>" +
-            "<td>" + data[i]['returnDate'] + "</td>" +
+                "<td>" + data[i]['id'] + "</td>" +
+                "<td>" + data[i]['date'] + "</td>" +
+                "<td>" + data[i]['book']['id'] + "</td>" +
+                "<td>" + data[i]['book']['title'] + "</td>" +
+                "<td>" + data[i]['reader']['id'] + "</td>" +
+                "<td>" + data[i]['reader']['fName'] + " " + data[i]['reader']['mName'] + " " + data[i]['reader']['lName'] + " " + "</td>" +
+                "<td>" + data[i]['checked'] + "</td>" +
+                "<td>" + data[i]['returnDate'] + "</td>" +
             "</tr>";
     }
 
     return content;
 }
-// відправка на сервер екземпляру (PreRecord) для пошуку
 function findRecords() {
     $('#records-table tbody').html('');
 
@@ -51,7 +49,6 @@ function findRecords() {
             contentType: 'application/json',
             dataType: 'json',
             data: JSON.stringify({
-                // об'єкт (PreRecords), поля якого використовуються для пошуку записів
                 id: $('#reportFindId').val(),
                 book_id: $('#reportFindBookId').val(),
                 reader_id: $('#reportFindReaderId').val(),
@@ -62,7 +59,6 @@ function findRecords() {
                 returned: $('#reportFindReturned').val()
             }),
             success: function (data) {
-                // заповнюємо таблицю
                 $('#records-table tbody').html(recordsJsonToRows(data));
             },
             error: function (jqXHR, statusText, errorThrown) {
@@ -73,13 +69,9 @@ function findRecords() {
     }
 
 }
-// обробник для всіх текстових полів пошуку
 $('#report-find-input input[type=text]').keyup(findRecords);
-// обробник для всіх полів дати для пошуку
 $('#report-find-input input[type=date]').change(findRecords);
-// обробник для зміни згначення випадаючого списку
 $('#reportFindReturned').change(findRecords);
-// обробник для кнопки модального вікна додавання запису
 $('#add_record').click(function () {
     $('#addRecordResult').text('');
     if ($('#inputReturnDate').val() === "") {
@@ -105,7 +97,6 @@ $('#add_record').click(function () {
         })
     }
 });
-// обробник для поля Id запису, пошук редагованого запису в модальному вікні
 $('#editRecordSearchId').keyup(function () {
     var id = $('#editRecordSearchId').val();
     if (!!id) {
@@ -137,7 +128,6 @@ $('#editRecordSearchId').keyup(function () {
         })
     }
 });
-// обробник для кнопки модального вікна редагування запису
 $('#edit_record').click(function () {
     $.ajax({
         url: 'report/edit',
@@ -159,7 +149,6 @@ $('#edit_record').click(function () {
         }
     })
 });
-// вивід інформації в модальне вікно при зміні Id
 $('#detailsRecordSearchId').keyup(function () {
     var id = $('#detailsRecordSearchId').val();
     if (!!id) {
@@ -202,7 +191,6 @@ $('#detailsRecordSearchId').keyup(function () {
 
 //--------------------------------------------------- QUEUE -----------------------------------------------
 
-// перетворення масиву json-записів, що приходять з сервера до рядків таблиці
 function QueuesToRows(queues) {
     if (queues.length != 0) {
         var rows = "";
@@ -233,7 +221,6 @@ function QueuesToRows(queues) {
 
     return "<tr><td>nothing to show</td></tr>";
 }
-// відправка запиту GET по значенням полів пошуку і повернення відповідного масиву json
 function findQueues() {
     var id = $('#queueFindId').val(),
         date = $('#queueFindDate').val(),
@@ -260,32 +247,29 @@ function findQueues() {
             }
         });
     } else {
-        $.ajax({
-            url: 'queue/find',
-            type: 'GET',
-            contentType: 'text/html',
-            dataType: 'json',
-            data: {
-                id: id,
-                date: date,
-                book_id: book_id,
-                reader_id: reader_id
-            },
-            success: function (data) {
-                $('#queue-table tbody').html(QueuesToRows(data));
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-                $('#queue-table tbody').text('error');
-                alert(textStatus + "\n" + errorThrown);
-            }
-        })
+        // $.ajax({
+        //     url: 'queue/find',
+        //     type: 'GET',
+        //     contentType: 'text/html',
+        //     dataType: 'json',
+        //     data: {
+        //         id: id,
+        //         date: date,
+        //         book_id: book_id,
+        //         reader_id: reader_id
+        //     },
+        //     success: function (data) {
+        //         $('#queue-table tbody').html(QueuesToRows(data));
+        //     },
+        //     error: function (jqXHR, textStatus, errorThrown) {
+        //         $('#queue-table tbody').text('error');
+        //         alert(textStatus + "\n" + errorThrown);
+        //     }
+        // })
     }
 }
-// обробник для всіх текстових полів пошуку
 $('#queue-find-input input').keyup(findQueues);
-// обробник для всіх полів дати для пошуку
 $('#queue-find-input input[type=date]').change(findQueues);
-// вивід назви книги по Id у модальне вікно для додавання запису черги
 $('#queueAddBookId').keyup(function () {
     var id = $('#queueAddBookId').val();
     if (id != "") {
@@ -312,7 +296,6 @@ $('#queueAddBookId').keyup(function () {
         $('#queueAddBookTitle').val("");
     }
 });
-// вивід імені читача по Id у модальне вікно для додавання запису черги
 $('#queueAddReaderId').keyup(function () {
     var id = $('#queueAddReaderId').val();
     if (id != "") {
@@ -339,7 +322,6 @@ $('#queueAddReaderId').keyup(function () {
         $('#queueAddReaderName').val("");
     }
 });
-// обробник для кнопки модального вікна додавання запису в чергу
 $('#add-queue').click(function () {
     $('#addQueueResult').text("");
     var book_id = $('#queueAddBookId').val(),
@@ -365,7 +347,6 @@ $('#add-queue').click(function () {
         alert('you must enter both "book_id" and "reader_id" values');
     }
 });
-// обробник для поля Id запису черги, пошук редагованого запису в модальному вікні
 $('#queueEditSearchId').keyup(function () {
     var id = $('#queueEditSearchId').val();
     if (id != "") {
@@ -398,7 +379,6 @@ $('#queueEditSearchId').keyup(function () {
         $('#queueEditModal input').val("");
     }
 });
-// вивід назви книги по Id у модальне вікно для редагування запису черги
 $('#queueEditBookId').keyup(function () {
     var id = $('#queueEditBookId').val();
     if (id != "") {
@@ -425,7 +405,6 @@ $('#queueEditBookId').keyup(function () {
         $('#queueEditBookTitle').val("");
     }
 });
-// вивід імені читача по Id у модальне вікно для редагування запису черги
 $('#queueEditReaderId').keyup(function () {
     var id = $('#queueEditReaderId').val();
     if (id != "") {
@@ -452,7 +431,6 @@ $('#queueEditReaderId').keyup(function () {
         $('#queueEditReaderName').val("");
     }
 });
-// обробник для кнопки модального вікна редагування запису черги
 $('#edit-queue').click(function () {
     $('#editQueueResult').text("");
     var id = $('#queueEditSearchId').val(),
@@ -480,7 +458,6 @@ $('#edit-queue').click(function () {
         alert('you must enter "Id" value in order to edit it');
     }
 });
-// вивід інформації в модальне вікно при зміні Id
 $('#queueRemoveSearchId').keyup(function () {
     $('#removeQueueResult').val("");
     var id = $('#queueRemoveSearchId').val();
@@ -515,7 +492,6 @@ $('#queueRemoveSearchId').keyup(function () {
         $('#queueRemoveModal input').val("");
     }
 });
-// обробник для кнопки модального вікна видалення запису черги
 $('#remove-queue').click(function () {
 
     var id = $('#queueRemoveSearchId').val();
@@ -544,9 +520,9 @@ $('#remove-queue').click(function () {
 
 //--------------------------------------------------- BOOKS -----------------------------------------------
 
-// встановлення початково положення чекбокса
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 $('#bookFindScarce').prop('checked', false);
-// перетворення масиву json-записів, що приходять з сервера до рядків таблиці
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ json-пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 function booksToRows(books){
     if (books.length != 0) {
         var rows = "";
@@ -565,10 +541,10 @@ function booksToRows(books){
 
     return "<tr><td>nothing to show</td></tr>";
 }
-// масив полів пошуку для книг
+// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 var booksFindInputs = $('#books-find-input input');
-// відправка запиту POST із json-екземпляром книги і повернення відповідного масиву json
-// обробник для кейап полів пошуку книги
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ POST пїЅпїЅ json-пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ json
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 function findBooks() {
     $.ajax({
         url: 'book/find',
@@ -591,7 +567,7 @@ function findBooks() {
         }
     })
 }
-// створення json-книги і відправка його в ПОСТ для додавання в базу нового запису книги
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ json-пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 function addBook() {
     $.ajax({
         url: 'book/add',
@@ -617,7 +593,7 @@ function addBook() {
 
 booksFindInputs.keyup(findBooks);
 $('#bookFindScarce').change(findBooks);
-// обробник для кнопки модального вікна додавання нової книги
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 $('#add-book').click(function () {
     $('#addBookResult').text('');
     if ($('#inputBookAmount').val() == '' && $('#inputBookAmount').val() == '') {
@@ -627,7 +603,7 @@ $('#add-book').click(function () {
     }
 
 });
-// вивід інформації в модальне вікно редагування книги при зміні Id
+// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ Id
 $('#editBookSearchId').keyup(function () {
     var id = $('#editBookSearchId').val();
 
@@ -656,7 +632,7 @@ $('#editBookSearchId').keyup(function () {
         })
     }
 });
-// обробник для кнопки модального вікна редагування існуючої книги
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 $('#edit_book').click(function () {
     $('#editBookResult').text('');
     $.ajax({
@@ -681,7 +657,7 @@ $('#edit_book').click(function () {
         }
     });
 });
-// вивід інформації в модальне вікно видалення книги при зміні Id
+// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ Id
 $('#removeBookSearchId').keyup(function () {
     var id = $('#removeBookSearchId').val();
     if (!!id) {
@@ -707,13 +683,13 @@ $('#removeBookSearchId').keyup(function () {
         })
     }
 });
-// обробник для кнопки модального вікна видалення книги
-// видалити можна лише книгу, яка не додана в запис журналу, інакше вона буде привязана по
-// зовнішньому ключу і видалити неможливо
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 $('#remove-book').click(function () {
     $('#removeBookResult').load("book/remove?id=" + $('#removeBookSearchId').val())
 });
-// вивід інформації в модальне вікно деталей книги при зміні Id
+// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ Id
 $('#detailsBookSearchId').keyup(function () {
     var id = $('#detailsBookSearchId').val();
     if (!!id) {
@@ -751,7 +727,7 @@ $('#detailsBookSearchId').keyup(function () {
         $('#booksDetailsModal input').val("")
     }
 });
-// обробник для кнопки рідерс, з модального вікна детаілс для показу читачів, які зараз користуються книгою
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 $('#show_book_readers').click(function () {
     $.ajax({
         url: 'book/readers',
@@ -777,8 +753,8 @@ $('#show_book_readers').click(function () {
         }
     })
 });
-// ще одна функція для конвертації джейсон в таблицю
-// (не побачив що вже є така)
+// пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+// (пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ)
 function jsonBooksToRows(data) {
     var content = "";
     if (data.length != 0) {
@@ -796,7 +772,7 @@ function jsonBooksToRows(data) {
     return content;
 }
 // how = {all/given/taken}
-// достаєм json-масив книг що знаходяться між заданими датами
+// пїЅпїЅпїЅпїЅпїЅпїЅ json-пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 function booksByDate(how) {
     if ($('#booksDate1').val() === "") {
         alert("You must enter 'Date from' value")
@@ -826,19 +802,19 @@ function booksByDate(how) {
         })
     }
 }
-// обробник для кнопки показу статистики книги
-// виводяться тільки ті книги, які є в записі журналу відповідно
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 $('#showBooksStat').click(function () {
     if ($('#booksOnlyGiven').prop('checked')) {
         if ($('#booksOnlyTaken').prop('checked')) {
-            //    дія якщо обидва вибрані
+            //    пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
             booksByDate('all');
         } else {
-            //    дія якщо тыльки Given
+            //    пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ Given
             booksByDate('given');
         }
     } else if ($('#booksOnlyTaken').prop('checked')) {
-        //    дія якщо тільки Taken
+        //    пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ Taken
         booksByDate('taken');
     } else {
         $('#booksStatTable tbody').html('');
@@ -848,266 +824,217 @@ $('#showBooksStat').click(function () {
 
 //--------------------------------------------------- READERS -------------------------------------------------
 
-// масив полів пошуку для книг
-var readersFindInputs = $('#readers-find-input input');
-// перетворення масиву json-записів, що приходять з сервера до рядків таблиці
-function readersJsonToRow(readers) {
-    var content = "";
-    var length = readers.length;
-    if (length != 0) {
-        for (var i = 0; i < length; i++) {
-            content +=
-                '<tr>' +
-                '<td>' + readers[i]['id'] + '</td>' +
-                '<td>' + readers[i]['fName'] + '</td>' +
-                '<td>' + readers[i]['mName'] + '</td>' +
-                '<td>' + readers[i]['lName'] + '</td>' +
-                '<td>' + readers[i]['phone'] + '</td>' +
-                '</tr>';
-        }
-    } else {
-        content += '<tr><td>no data to show</td></tr>';
-    }
-    return content;
-}
-// відправка запиту POST із json-екземпляром книги і повернення відповідного масиву json
-// обробник для кейап полів пошуку читача
-function findReaders() {
-    $('#reader-table tbody').html('');
-    $.ajax({
-        url: 'reader/findByExample',
-        type: 'POST',
-        contentType: 'application/json',
-        dataType: 'json',
-        data: JSON.stringify({
-            id: readersFindInputs.get(0).value,
-            fName: readersFindInputs.get(1).value,
-            mName: readersFindInputs.get(2).value,
-            lName: readersFindInputs.get(3).value,
-            phone: readersFindInputs.get(4).value
-        }),
-        success: function (data) {
-            $('#reader-table tbody').html(readersJsonToRow(data));
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            $('#reader-table tbody').text('error');
-            alert(textStatus + "\n" + errorThrown)
-        }
-    });
-
-}
-
-readersFindInputs.keyup(findReaders);
-// обробник для кнопки модального вікна додавання нового користувача
-$('#add-reader').click(function () {
-    $('#addReaderResult').text('');
-    $.ajax({
-        url: 'reader/add',
-        type: 'POST',
-        contentType: 'application/json',
-        dataType: 'text',
-        data: JSON.stringify({
-            fName: $('#inputReaderFName').val(),
-            mName: $('#inputReaderMName').val(),
-            lName: $('#inputReaderLName').val(),
-            phone: $('#inputReaderPhone').val(),
-            address: {
-                country: $('#inputReaderCountry').val(),
-                city: $('#inputReaderCity').val(),
-                street: $('#inputReaderStreet').val(),
-                house: $('#inputReaderHouse').val()
-            },
-            dateOfBirth: $('#inputReaderBirth').val()
-        }),
-        success: function (data) {
-            $('#addReaderResult').text(data);
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            alert(textStatus + '\n' + errorThrown);
-        }
-    });
-});
-// вивід інформації в модальне вікно редагування читача при зміні Id
-$('#editReaderSearchId').keyup(function () {
-    var id = $('#editReaderSearchId').val();
-
-    if (id != '' && id != '0') {
-        $.ajax({
-            url: 'reader/findReaderJSON',
-            type: 'GET',
-            contentType: 'text/html',
-            dataType: 'json',
-            data: {id: id},
-            success: function (data) {
-                var date = new Date(data.dateOfBirth);
-                var year = date.getFullYear();
-                var m = date.getMonth() + 1;
-                var month = m < 10 ? '0' + m : m;
-                var day = date.getDate();
-
-                $('#editReaderFName').val(data.fName);
-                $('#editReaderMName').val(data.mName);
-                $('#editReaderLName').val(data.lName);
-                $('#editReaderPhone').val(data.phone);
-                $('#editReaderCountry').val(data['address']['country']);
-                $('#editReaderCity').val(data['address'].city);
-                $('#editReaderStreet').val(data['address'].street);
-                $('#editReaderHouse').val(data['address'].house);
-                $('#editReaderBirth').val(year + '-' + month + '-' + day);
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-                alert(textStatus + '\n' + errorThrown);
-            }
-        })
-    } else {
-        $('#readersEditModal input').each(function () {
-            $(this).val("");
-        })
-    }
-});
-// обробник для кнопки модального вікна редагування читача
-$('#edit-reader').click(function () {
-    $('#editReaderResult').text('');
-    $.ajax({
-        url: 'reader/edit',
-        type: 'POST',
-        contentType: 'application/json',
-        dataType: 'text',
-        data: JSON.stringify({
-                id: $('#editReaderSearchId').val(),
-                fName: $('#editReaderFName').val(),
-                mName: $('#editReaderMName').val(),
-                lName: $('#editReaderLName').val(),
-                phone: $('#editReaderPhone').val(),
-                address: {
-                    country: $('#editReaderCountry').val(),
-                    city: $('#editReaderCity').val(),
-                    street: $('#editReaderStreet').val(),
-                    house: $('#editReaderHouse').val()
-                },
-                dateOfBirth: $('#editReaderBirth').val()
-            }
-        ),
-        success: function (data) {
-            $('#editReaderResult').text(data);
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            alert(textStatus + '\n' + errorThrown);
-        }
-    });
-});
-// вивід інформації в модальне вікно видалення читача при зміні Id
-$('#removeReaderSearchId').keyup(function () {
-    var id = $('#removeReaderSearchId').val();
-    if (id != '' && id != '0') {
-        $.ajax({
-            url: 'reader/findReaderJSON',
-            type: 'GET',
-            contentType: 'text/html',
-            dataType: 'json',
-            data: {id: id},
-            success: function (data) {
-                $('#removeReaderFName').text(data['fName']);
-                $('#removeReaderMName').text(data['mName']);
-                $('#removeReaderLName').text(data['lName']);
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-                alert(textStatus + '\n' + errorThrown);
-            }
-        })
-    } else {
-        $('#readersRemoveModal input').each(function () {
-            $(this).val("");
-        })
-    }
-});
-// обробник для кнопки модального вікна видалення читача
-// видалити можна лише читача, який не доданий в запис журналу, інакше він буде привязаний по
-// зовнішньому ключу і видалити неможливо
-$('#remove-reader').click(function () {
-    $('#removeReaderResult').text('');
-    $.get(
-        'reader/remove',
-        {
-            id: $('#removeReaderSearchId').val()
-        },
-        function (data) {
-            $('#removeReaderResult').text(data);
-        },
-        'text');
-});
-// вивід інформації в модальне вікно деталей читача при зміні Id
-$('#detailsReaderSearchId').keyup(function () {
-    var id = $('#detailsReaderSearchId').val();
-    if (id != '' && id != '0') {
-        $.get(
-            'reader/findReaderJSON',
-            {
-                id: id
-            },
-            function (data) {
-                var date = new Date(data.dateOfBirth),
-                    year = date.getFullYear(),
-                    m = date.getMonth() + 1,
-                    day = date.getDate(),
-                    month = m < 10 ? '0' + m : m;
-                var rDate = new Date(data.registrationDate),
-                    rYear = rDate.getFullYear(),
-                    rM = rDate.getMonth() + 1,
-                    rDay = rDate.getDate(),
-                    rMonth = rM < 10 ? '0' + rM : rM;
-                //$('#detailsReaderFName').val(data['fName']);
-                //$('#detailsReaderMName').val(data['mName']);
-                //$('#detailsReaderLName').val(data['lName']);
-                //$('#detailsReaderPhone').val(data['phone']);
-                //$('#detailsReaderCountry').val(data['address']['country']);
-                //$('#detailsReaderCity').val(data['address']['city']);
-                //$('#detailsReaderStreet').val(data['address']['street']);
-                //$('#detailsReaderHouse').val(data['address']['house']);
-                //$('#detailsReaderBirth').val(year + '-' + month + '-' + day);
-                //$('#detailsReaderRegistrationDate').val(rYear + '-' + rMonth + '-' + rDay);
-                $('#detailsReaderFName').text(data['fName']);
-                $('#detailsReaderMName').text(data['mName']);
-                $('#detailsReaderLName').text(data['lName']);
-                $('#detailsReaderPhone').text(data['phone']);
-                $('#detailsReaderCountry').text(data['address']['country']);
-                $('#detailsReaderCity').text(data['address']['city']);
-                $('#detailsReaderStreet').text(data['address']['street']);
-                $('#detailsReaderHouse').text(data['address']['house']);
-                $('#detailsReaderBirth').text(year + '-' + month + '-' + day);
-                $('#detailsReaderRegistrationDate').text(rYear + '-' + rMonth + '-' + rDay);
-            },
-            'json'
-        );
-    } else {
-        $('#readersDetailsModal input').each(function () {
-            $(this).val("");
-        })
-    }
-});
-
-// ------------------------------------------------ ON DOCUMENT READY -----------------------------------
-
-// функція прокрутки з використанням анімації
-// непрацює в експлорері
-function scroll2(menu_item, section) {
-    $(menu_item).click(function () {
-        $('html, body').animate({
-            scrollTop: $(section).offset().top - 50
-        }, 1000)
-    })
-}
-
-$(document).ready(function () {
-    // першочергове виведення наявної інформації бази даних на сторінку
-    findReaders();
-    findBooks();
-    findRecords();
-    findQueues();
-// це і так ясно шо
-    scroll2('#menu_item_report', '#report_section');
-    scroll2('#menu_item_queue', '#queue-section');
-    scroll2('#menu_item_books', '#books-section');
-    scroll2('#menu_item_readers', '#readers-section');
-    scroll2('#menu_item_contacts', '#contacts-section');
-});
+// var readersFindInputs = $('#readers-find-input input');
+// function readersJsonToRow(readers) {
+//     var content = "";
+//     var length = readers.length;
+//     if (length != 0) {
+//         for (var i = 0; i < length; i++) {
+//             content +=
+//                 '<tr>' +
+//                 '<td>' + readers[i]['id'] + '</td>' +
+//                 '<td>' + readers[i]['fName'] + '</td>' +
+//                 '<td>' + readers[i]['mName'] + '</td>' +
+//                 '<td>' + readers[i]['lName'] + '</td>' +
+//                 '<td>' + readers[i]['phone'] + '</td>' +
+//                 '</tr>';
+//         }
+//     } else {
+//         content += '<tr><td>no data to show</td></tr>';
+//     }
+//     return content;
+// }
+// function findReaders() {
+//     $('#reader-table tbody').html('');
+//     $.ajax({
+//         url: 'reader/findByExample',
+//         type: 'POST',
+//         contentType: 'application/json',
+//         dataType: 'json',
+//         data: JSON.stringify({
+//             id: readersFindInputs.get(0).value,
+//             fName: readersFindInputs.get(1).value,
+//             mName: readersFindInputs.get(2).value,
+//             lName: readersFindInputs.get(3).value,
+//             phone: readersFindInputs.get(4).value
+//         }),
+//         success: function (data) {
+//             $('#reader-table tbody').html(readersJsonToRow(data));
+//         },
+//         error: function (jqXHR, textStatus, errorThrown) {
+//             $('#reader-table tbody').text('error');
+//             alert(textStatus + "\n" + errorThrown)
+//         }
+//     });
+//
+// }
+// readersFindInputs.keyup(findReaders);
+// $('#add-reader').click(function () {
+//     $('#addReaderResult').text('');
+//     $.ajax({
+//         url: 'reader/add',
+//         type: 'POST',
+//         contentType: 'application/json',
+//         dataType: 'text',
+//         data: JSON.stringify({
+//             fName: $('#inputReaderFName').val(),
+//             mName: $('#inputReaderMName').val(),
+//             lName: $('#inputReaderLName').val(),
+//             phone: $('#inputReaderPhone').val(),
+//             address: {
+//                 country: $('#inputReaderCountry').val(),
+//                 city: $('#inputReaderCity').val(),
+//                 street: $('#inputReaderStreet').val(),
+//                 house: $('#inputReaderHouse').val()
+//             },
+//             dateOfBirth: $('#inputReaderBirth').val()
+//         }),
+//         success: function (data) {
+//             $('#addReaderResult').text(data);
+//         },
+//         error: function (jqXHR, textStatus, errorThrown) {
+//             alert(textStatus + '\n' + errorThrown);
+//         }
+//     });
+// });
+// $('#editReaderSearchId').keyup(function () {
+//     var id = $('#editReaderSearchId').val();
+//
+//     if (id != '' && id != '0') {
+//         $.ajax({
+//             url: 'reader/findReaderJSON',
+//             type: 'GET',
+//             contentType: 'text/html',
+//             dataType: 'json',
+//             data: {id: id},
+//             success: function (data) {
+//                 var date = new Date(data.dateOfBirth);
+//                 var year = date.getFullYear();
+//                 var m = date.getMonth() + 1;
+//                 var month = m < 10 ? '0' + m : m;
+//                 var day = date.getDate();
+//
+//                 $('#editReaderFName').val(data.fName);
+//                 $('#editReaderMName').val(data.mName);
+//                 $('#editReaderLName').val(data.lName);
+//                 $('#editReaderPhone').val(data.phone);
+//                 $('#editReaderCountry').val(data['address']['country']);
+//                 $('#editReaderCity').val(data['address'].city);
+//                 $('#editReaderStreet').val(data['address'].street);
+//                 $('#editReaderHouse').val(data['address'].house);
+//                 $('#editReaderBirth').val(year + '-' + month + '-' + day);
+//             },
+//             error: function (jqXHR, textStatus, errorThrown) {
+//                 alert(textStatus + '\n' + errorThrown);
+//             }
+//         })
+//     } else {
+//         $('#readersEditModal input').each(function () {
+//             $(this).val("");
+//         })
+//     }
+// });
+// $('#edit-reader').click(function () {
+//     $('#editReaderResult').text('');
+//     $.ajax({
+//         url: 'reader/edit',
+//         type: 'POST',
+//         contentType: 'application/json',
+//         dataType: 'text',
+//         data: JSON.stringify({
+//                 id: $('#editReaderSearchId').val(),
+//                 fName: $('#editReaderFName').val(),
+//                 mName: $('#editReaderMName').val(),
+//                 lName: $('#editReaderLName').val(),
+//                 phone: $('#editReaderPhone').val(),
+//                 address: {
+//                     country: $('#editReaderCountry').val(),
+//                     city: $('#editReaderCity').val(),
+//                     street: $('#editReaderStreet').val(),
+//                     house: $('#editReaderHouse').val()
+//                 },
+//                 dateOfBirth: $('#editReaderBirth').val()
+//             }
+//         ),
+//         success: function (data) {
+//             $('#editReaderResult').text(data);
+//         },
+//         error: function (jqXHR, textStatus, errorThrown) {
+//             alert(textStatus + '\n' + errorThrown);
+//         }
+//     });
+// });
+// $('#removeReaderSearchId').keyup(function () {
+//     var id = $('#removeReaderSearchId').val();
+//     if (id != '' && id != '0') {
+//         $.ajax({
+//             url: 'reader/findReaderJSON',
+//             type: 'GET',
+//             contentType: 'text/html',
+//             dataType: 'json',
+//             data: {id: id},
+//             success: function (data) {
+//                 $('#removeReaderFName').text(data['fName']);
+//                 $('#removeReaderMName').text(data['mName']);
+//                 $('#removeReaderLName').text(data['lName']);
+//             },
+//             error: function (jqXHR, textStatus, errorThrown) {
+//                 alert(textStatus + '\n' + errorThrown);
+//             }
+//         })
+//     } else {
+//         $('#readersRemoveModal input').each(function () {
+//             $(this).val("");
+//         })
+//     }
+// });
+// $('#remove-reader').click(function () {
+//     $('#removeReaderResult').text('');
+//     $.get(
+//         'reader/remove',
+//         {
+//             id: $('#removeReaderSearchId').val()
+//         },
+//         function (data) {
+//             $('#removeReaderResult').text(data);
+//         },
+//         'text');
+// });
+// $('#detailsReaderSearchId').keyup(function () {
+//     var id = $('#detailsReaderSearchId').val();
+//     if (id != '' && id != '0') {
+//         $.get(
+//             'reader/findReaderJSON',
+//             {
+//                 id: id
+//             },
+//             function (data) {
+//                 var date = new Date(data.dateOfBirth),
+//                     year = date.getFullYear(),
+//                     m = date.getMonth() + 1,
+//                     day = date.getDate(),
+//                     month = m < 10 ? '0' + m : m;
+//                 var rDate = new Date(data.registrationDate),
+//                     rYear = rDate.getFullYear(),
+//                     rM = rDate.getMonth() + 1,
+//                     rDay = rDate.getDate(),
+//                     rMonth = rM < 10 ? '0' + rM : rM;
+//                 $('#detailsReaderFName').text(data['fName']);
+//                 $('#detailsReaderMName').text(data['mName']);
+//                 $('#detailsReaderLName').text(data['lName']);
+//                 $('#detailsReaderPhone').text(data['phone']);
+//                 $('#detailsReaderCountry').text(data['address']['country']);
+//                 $('#detailsReaderCity').text(data['address']['city']);
+//                 $('#detailsReaderStreet').text(data['address']['street']);
+//                 $('#detailsReaderHouse').text(data['address']['house']);
+//                 $('#detailsReaderBirth').text(year + '-' + month + '-' + day);
+//                 $('#detailsReaderRegistrationDate').text(rYear + '-' + rMonth + '-' + rDay);
+//             },
+//             'json'
+//         );
+//     } else {
+//         $('#readersDetailsModal input').each(function () {
+//             $(this).val("");
+//         })
+//     }
+// });

@@ -45,6 +45,18 @@ create table if not exists library.subjects(
     primary key (id)
 );
 
+insert into library.address values
+  (1, 'fName1', 'mName1', 'lName1', cast('1990-01-01' as date), 'phone1', 1, cast('2015-01-01' as date)),
+  (2, 'fName2', 'mName2', 'lName2', cast('1990-01-02' as date), 'phone2', 2, cast('2015-01-02' as date)),
+  (3, 'fName3', 'mName3', 'lName3', cast('1990-01-03' as date), 'phone3', 3, cast('2015-01-03' as date)),
+  (4, 'fName4', 'mName4', 'lName4', cast('1990-01-04' as date), 'phone4', 4, cast('2015-01-04' as date)),
+  (5, 'fName5', 'mName5', 'lName5', cast('1990-01-05' as date), 'phone5', 5, cast('2015-01-05' as date)),
+  (6, 'fName6', 'mName6', 'lName6', cast('1990-01-06' as date), 'phone6', 6, cast('2015-01-06' as date)),
+  (7, 'fName7', 'mName7', 'lName7', cast('1990-01-07' as date), 'phone7', 7, cast('2015-01-07' as date)),
+  (8, 'fName8', 'mName8', 'lName8', cast('1990-01-08' as date), 'phone8', 8, cast('2015-01-08' as date)),
+  (9, 'fName9', 'mName9', 'lName9', cast('1990-01-09' as date), 'phone9', 9, cast('2015-01-09' as date)),
+  (10, 'fName10', 'mName10', 'lName10', cast('1990-01-10' as date), 'phone10', 10, cast('2015-01-10' as date));
+
 insert into library.readers values
 (1, 'fName1', 'mName1', 'lName1', cast('1990-01-01' as date), 'phone1', 1, cast('2015-01-01' as date)),
 (2, 'fName2', 'mName2', 'lName2', cast('1990-01-02' as date), 'phone2', 2, cast('2015-01-02' as date)),

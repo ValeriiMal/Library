@@ -1,4 +1,4 @@
-/.idea/
-/target/
-/src/main/webapp/resources/vendor
-/*.iml
+target
+.idea
+valmal-library.iml
+src/main/webapp/resources/vendor

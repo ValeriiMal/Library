@@ -1,0 +1,226 @@
+(() => {
+    angular
+        .module('app')
+        .controller('readerController', readerController)
+    ;
+
+    readerController.$inject = ['$uibModal'];
+    function readerController(   $uibModal) {
+        console.log($uibModal);
+
+        var readersFindInputs = $('#readers-find-input input');
+        function readersJsonToRow(readers) {
+            var content = "";
+            var length = readers.length;
+            if (length != 0) {
+                for (var i = 0; i < length; i++) {
+                    content +=
+                        '<tr>' +
+                        '<td>' + readers[i]['id'] + '</td>' +
+                        '<td>' + readers[i]['fName'] + '</td>' +
+                        '<td>' + readers[i]['mName'] + '</td>' +
+                        '<td>' + readers[i]['lName'] + '</td>' +
+                        '<td>' + readers[i]['phone'] + '</td>' +
+                        '</tr>';
+                }
+            } else {
+                content += '<tr><td>no data to show</td></tr>';
+            }
+            return content;
+        }
+        function findReaders() {
+            $('#reader-table tbody').html('');
+            $.ajax({
+                url: 'reader/findByExample',
+                type: 'POST',
+                contentType: 'application/json',
+                dataType: 'json',
+                data: JSON.stringify({
+                    id: readersFindInputs.get(0).value,
+                    fName: readersFindInputs.get(1).value,
+                    mName: readersFindInputs.get(2).value,
+                    lName: readersFindInputs.get(3).value,
+                    phone: readersFindInputs.get(4).value
+                }),
+                success: function (data) {
+                    $('#reader-table tbody').html(readersJsonToRow(data));
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    $('#reader-table tbody').text('error');
+                    alert(textStatus + "\n" + errorThrown)
+                }
+            });
+
+        }
+        readersFindInputs.keyup(findReaders);
+        $('#add-reader').click(function () {
+            $('#addReaderResult').text('');
+            $.ajax({
+                url: 'reader/add',
+                type: 'POST',
+                contentType: 'application/json',
+                dataType: 'text',
+                data: JSON.stringify({
+                    fName: $('#inputReaderFName').val(),
+                    mName: $('#inputReaderMName').val(),
+                    lName: $('#inputReaderLName').val(),
+                    phone: $('#inputReaderPhone').val(),
+                    address: {
+                        country: $('#inputReaderCountry').val(),
+                        city: $('#inputReaderCity').val(),
+                        street: $('#inputReaderStreet').val(),
+                        house: $('#inputReaderHouse').val()
+                    },
+                    dateOfBirth: $('#inputReaderBirth').val()
+                }),
+                success: function (data) {
+                    $('#addReaderResult').text(data);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert(textStatus + '\n' + errorThrown);
+                }
+            });
+        });
+        $('#editReaderSearchId').keyup(function () {
+            var id = $('#editReaderSearchId').val();
+
+            if (id != '' && id != '0') {
+                $.ajax({
+                    url: 'reader/findReaderJSON',
+                    type: 'GET',
+                    contentType: 'text/html',
+                    dataType: 'json',
+                    data: {id: id},
+                    success: function (data) {
+                        var date = new Date(data.dateOfBirth);
+                        var year = date.getFullYear();
+                        var m = date.getMonth() + 1;
+                        var month = m < 10 ? '0' + m : m;
+                        var day = date.getDate();
+
+                        $('#editReaderFName').val(data.fName);
+                        $('#editReaderMName').val(data.mName);
+                        $('#editReaderLName').val(data.lName);
+                        $('#editReaderPhone').val(data.phone);
+                        $('#editReaderCountry').val(data['address']['country']);
+                        $('#editReaderCity').val(data['address'].city);
+                        $('#editReaderStreet').val(data['address'].street);
+                        $('#editReaderHouse').val(data['address'].house);
+                        $('#editReaderBirth').val(year + '-' + month + '-' + day);
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        alert(textStatus + '\n' + errorThrown);
+                    }
+                })
+            } else {
+                $('#readersEditModal input').each(function () {
+                    $(this).val("");
+                })
+            }
+        });
+        $('#edit-reader').click(function () {
+            $('#editReaderResult').text('');
+            $.ajax({
+                url: 'reader/edit',
+                type: 'POST',
+                contentType: 'application/json',
+                dataType: 'text',
+                data: JSON.stringify({
+                        id: $('#editReaderSearchId').val(),
+                        fName: $('#editReaderFName').val(),
+                        mName: $('#editReaderMName').val(),
+                        lName: $('#editReaderLName').val(),
+                        phone: $('#editReaderPhone').val(),
+                        address: {
+                            country: $('#editReaderCountry').val(),
+                            city: $('#editReaderCity').val(),
+                            street: $('#editReaderStreet').val(),
+                            house: $('#editReaderHouse').val()
+                        },
+                        dateOfBirth: $('#editReaderBirth').val()
+                    }
+                ),
+                success: function (data) {
+                    $('#editReaderResult').text(data);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert(textStatus + '\n' + errorThrown);
+                }
+            });
+        });
+        $('#removeReaderSearchId').keyup(function () {
+            var id = $('#removeReaderSearchId').val();
+            if (id != '' && id != '0') {
+                $.ajax({
+                    url: 'reader/findReaderJSON',
+                    type: 'GET',
+                    contentType: 'text/html',
+                    dataType: 'json',
+                    data: {id: id},
+                    success: function (data) {
+                        $('#removeReaderFName').text(data['fName']);
+                        $('#removeReaderMName').text(data['mName']);
+                        $('#removeReaderLName').text(data['lName']);
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        alert(textStatus + '\n' + errorThrown);
+                    }
+                })
+            } else {
+                $('#readersRemoveModal input').each(function () {
+                    $(this).val("");
+                })
+            }
+        });
+        $('#remove-reader').click(function () {
+            $('#removeReaderResult').text('');
+            $.get(
+                'reader/remove',
+                {
+                    id: $('#removeReaderSearchId').val()
+                },
+                function (data) {
+                    $('#removeReaderResult').text(data);
+                },
+                'text');
+        });
+        $('#detailsReaderSearchId').keyup(function () {
+            var id = $('#detailsReaderSearchId').val();
+            if (id != '' && id != '0') {
+                $.get(
+                    'reader/findReaderJSON',
+                    {
+                        id: id
+                    },
+                    function (data) {
+                        var date = new Date(data.dateOfBirth),
+                            year = date.getFullYear(),
+                            m = date.getMonth() + 1,
+                            day = date.getDate(),
+                            month = m < 10 ? '0' + m : m;
+                        var rDate = new Date(data.registrationDate),
+                            rYear = rDate.getFullYear(),
+                            rM = rDate.getMonth() + 1,
+                            rDay = rDate.getDate(),
+                            rMonth = rM < 10 ? '0' + rM : rM;
+                        $('#detailsReaderFName').text(data['fName']);
+                        $('#detailsReaderMName').text(data['mName']);
+                        $('#detailsReaderLName').text(data['lName']);
+                        $('#detailsReaderPhone').text(data['phone']);
+                        $('#detailsReaderCountry').text(data['address']['country']);
+                        $('#detailsReaderCity').text(data['address']['city']);
+                        $('#detailsReaderStreet').text(data['address']['street']);
+                        $('#detailsReaderHouse').text(data['address']['house']);
+                        $('#detailsReaderBirth').text(year + '-' + month + '-' + day);
+                        $('#detailsReaderRegistrationDate').text(rYear + '-' + rMonth + '-' + rDay);
+                    },
+                    'json'
+                );
+            } else {
+                $('#readersDetailsModal input').each(function () {
+                    $(this).val("");
+                })
+            }
+        });
+    }
+})();

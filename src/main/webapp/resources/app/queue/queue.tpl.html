@@ -1,0 +1,189 @@
+<div id="queue-section">
+    <h3>Queue</h3>
+    <div>
+        <button id="queue-add" class="btn btn-info btn-lg" type="button" data-toggle="modal"
+                data-target="#queueAddModal">Add
+        </button>
+        <button id="queue-edit" class="btn btn-info btn-lg" type="button" data-toggle="modal"
+                data-target="#queueEditModal">Edit
+        </button>
+        <button id="queue-remove" class="btn btn-info btn-lg" type="button" data-toggle="modal"
+                data-target="#queueRemoveModal">Remove
+        </button>
+    </div>
+    <br/>
+    <div id="queue-find-input">
+        <form class="form-horizontal">
+            <div class="form-group">
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" id="queueFindId" placeholder="id"/>
+                </div>
+                <div class="col-sm-3">
+                    <input type="date" class="form-control" id="queueFindDate"/>
+                </div>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" id="queueFindBookId" placeholder="book Id"/>
+                </div>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" id="queueFindReaderId" placeholder="reader id"/>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div id="queue-container">
+        <table id="queue-table" class="table table-hover">
+            <thead>
+            <tr>
+                <th class="col-sm-2">Id</th>
+                <th class="col-sm-2">Date</th>
+                <th class="col-sm-2">Book Id</th>
+                <th class="col-sm-2">Book title</th>
+                <th class="col-sm-2">Reader Id</th>
+                <th class="col-sm-2">Reader name</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+
+    <div id="queueAddModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3>Add item</h3>
+                </div>
+                <div class="modal-body">
+                    <form action="" class="form-horizontal">
+                        <div class="form-group">
+                            <label for="queueAddBookId" class="control-label col-sm-4">Book Id: </label>
+
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control" id="queueAddBookId"/>
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="queueAddBookTitle"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="queueAddReaderId" class="control-label col-sm-4">Reader Id: </label>
+
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control" id="queueAddReaderId"/>
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="queueAddReaderName"/>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <div id="addQueueResult" style="display: inline-block;"></div>
+                    <button id="add-queue" class="btn btn-default" type="button">Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="queueEditModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3>Edit item</h3>
+                </div>
+                <div class="modal-body">
+                    <form action="" class="form-horizontal">
+
+                        <div class="form-group">
+                            <label for="queueEditSearchId" class="control-label col-sm-4">Id*: </label>
+
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control" id="queueEditSearchId"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="queueEditBookId" class="control-label col-sm-4">Book Id: </label>
+
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="queueEditBookId"/>
+                            </div>
+                            <div class="col-sm-4">
+                                <input class="form-control" id="queueEditBookTitle" placeholder="Title"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="queueEditReaderId" class="control-label col-sm-4">Reader Id: </label>
+
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="queueEditReaderId"/>
+                            </div>
+                            <div class="col-sm-4">
+                                <input class="form-control" id="queueEditReaderName" placeholder="Name"/>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <div id="editQueueResult" style="display: inline-block;"></div>
+                    <button id="edit-queue" class="btn btn-default" type="button">Edit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="queueRemoveModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3>Remove item</h3>
+                </div>
+                <div class="modal-body">
+                    <form action="" class="form-horizontal">
+
+                        <div class="form-group">
+                            <label for="queueRemoveSearchId" class="control-label col-sm-4">Id*: </label>
+
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control" id="queueRemoveSearchId"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="queueRemoveBookId" class="control-label col-sm-4">Book Id: </label>
+
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="queueRemoveBookId"/>
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="queueRemoveBookTitle"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="queueRemoveReaderId" class="control-label col-sm-4">Reader Id: </label>
+
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="queueRemoveReaderId"/>
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="queueRemoveReaderName"/>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <div id="removeQueueResult" style="display: inline-block;"></div>
+                    <button id="remove-queue" class="btn btn-default" type="button">Remove</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

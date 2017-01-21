@@ -1,0 +1,255 @@
+<div id="report_section">
+    <h3>{{ ctrl.title }}</h3>
+    <div>
+        <button id="report_add" class="btn btn-info btn-lg" type="button" data-toggle="modal"
+                data-target="#recordsAddModal">Add record
+        </button>
+        <button id="report_edit" class="btn btn-info btn-lg" type="button" data-toggle="modal"
+                data-target="#recordsEditModal">Edit record
+        </button>
+        <button id="report_details" class="btn btn-info btn-lg" type="button" data-toggle="modal"
+                data-target="#recordsDetailsModal">Record details
+        </button>
+    </div>
+    <br/>
+    <div id="report-find-input">
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label for="reportFindId" class="col-sm-2 control-label">Record Id: </label>
+
+                <div class="col-sm-1">
+                    <input type="text" class="form-control" placeholder="" id="reportFindId">
+                </div>
+
+                <label for="reportFindBookId" class="control-label col-sm-2">Book Id: </label>
+
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" placeholder="" id="reportFindBookId">
+                </div>
+
+                <label class="col-sm-2 control-label" for="reportFindReaderId">Reader Id: </label>
+
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" placeholder="" id="reportFindReaderId">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="reportFindDateFrom" class="col-sm-2 control-label">Date of record: from </label>
+
+                <div class="col-sm-3">
+                    <input type="date" class="form-control col-sm-3" placeholder="" id="reportFindDateFrom">
+                </div>
+                <label for="reportFindDateTo" class="col-sm-1 control-label">to </label>
+
+                <div class="col-sm-3">
+                    <input type="date" class="form-control col-sm-3" placeholder="" id="reportFindDateTo">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="reportFindReturnDateFrom">Return date: from </label>
+
+                <div class="col-sm-3">
+                    <input type="date" class="form-control" placeholder="" id="reportFindReturnDateFrom">
+                </div>
+
+                <label class="col-sm-1 control-label" for="reportFindReturnDateTo">to </label>
+
+                <div class="col-sm-3">
+                    <input type="date" class="form-control" placeholder="" id="reportFindReturnDateTo">
+                </div>
+
+                <div class="col-sm-3">
+                    <select name="" id="reportFindReturned" class="form-control">
+                        <option value="all">All</option>
+                        <option value="returned">Returned books</option>
+                        <option value="notReturned">Not returned books</option>
+                    </select>
+                </div>
+
+            </div>
+        </form>
+    </div>
+    <br/>
+    <div id="records_container">
+        <table class="table table-hover" id="records-table">
+            <thead>
+            <tr>
+                <th class="col-sm-1">Id</th>
+                <th class="col-sm-2">Date</th>
+                <th class="col-sm-1">Book id</th>
+                <th class="col-sm-2">Book title</th>
+                <th class="col-sm-1">Reader id</th>
+                <th class="col-sm-2">Reader name</th>
+                <th class="col-sm-1">Returned</th>
+                <th class="col-sm-2">Return date</th>
+            </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="recordsAddModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3 class="modal-title">Add record</h3>
+                </div>
+                <div class="modal-body">
+                    <form action="" class="form-horizontal">
+                        <div class="form-group">
+                            <label for="inputBookId" class="col-sm-4 control-label">Book Id:</label>
+
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="inputBookId" placeholder="Book Id"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputReaderId" class="col-sm-4 control-label">Reader Id:</label>
+
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="inputReaderId" placeholder="Reader Id"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputReturnDate" class="col-sm-4 control-label">Return date*:</label>
+
+                            <div class="col-sm-8">
+                                <input type="date" class="form-control" id="inputReturnDate" placeholder=""/>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <div id="addRecordResult" style="display: inline-block"></div>
+                    <button id="add_record" type="button" class="btn btn-default">Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="recordsEditModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3 class="modal-title">Edit</h3>
+                </div>
+                <div class="modal-body">
+                    <form action="" class="form-horizontal">
+                        <div class="form-group">
+                            <label for="editRecordSearchId" class="col-sm-4 control-label">Id*:</label>
+
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="editRecordSearchId" placeholder="Enter id"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="editRecordBookId" class="col-sm-4 control-label">Book Id:</label>
+
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="editRecordBookId" placeholder="Book Id"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="editRecordReaderId" class="col-sm-4 control-label">Reader Id:</label>
+
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="editRecordReaderId"
+                                       placeholder="Reader Id"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="editRecordchecked" class="col-sm-4 control-label">Returned:</label>
+
+                            <div class="col-sm-1">
+                                <input type="checkbox" class="form-control" id="editRecordchecked"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="editRecordReturnDate" class="col-sm-4 control-label">Return date:</label>
+
+                            <div class="col-sm-8">
+                                <input type="date" class="form-control" id="editRecordReturnDate"
+                                       placeholder="Return date"/>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="modal-footer">
+                        <div id="editRecordResult" style="display: inline-block"></div>
+                        <button id="edit_record" type="button" class="btn btn-default">Edit</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="recordsDetailsModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3 class="modal-title">Details</h3>
+                </div>
+                <div class="modal-body">
+                    <form action="" class="form-horizontal">
+                        <div class="form-group">
+                            <label for="detailsRecordSearchId" class="col-sm-4 control-label">Id*: </label>
+
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="detailsRecordSearchId"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="detailsRecordBookId" class="col-sm-4 control-label">Book Id: </label>
+
+                            <div class="col-sm-2">
+                                <label class="form-control" id="detailsRecordBookId"></label>
+                            </div>
+                            <label for="detailsRecordBookTitle" class="col-sm-2 control-label">Title: </label>
+
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="detailsRecordBookTitle"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="detailsRecordReaderId" class="col-sm-4 control-label">Reader Id: </label>
+
+                            <div class="col-sm-2">
+                                <label class="form-control" id="detailsRecordReaderId"></label>
+                            </div>
+
+                            <label for="detailsRecordReaderName" class="col-sm-2 control-label">Name: </label>
+
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="detailsRecordReaderName"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="detailsRecordchecked" class="col-sm-4 control-label">Returned: </label>
+
+                            <div class="col-sm-1">
+                                <input type="checkbox" class="form-control" id="detailsRecordchecked"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="detailsRecordDate" class="col-sm-4 control-label">Record date: </label>
+
+                            <div class="col-sm-8">
+                                <label class="form-control" id="detailsRecordDate"></label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="detailsRecordReturnDate" class="col-sm-4 control-label">Return date: </label>
+
+                            <div class="col-sm-8">
+                                <label class="form-control" id="detailsRecordReturnDate"></label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
