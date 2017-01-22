@@ -7,7 +7,7 @@
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
     <script src="<c:url value="resources/vendor/jquery/dist/jquery.min.js"/> "></script>
-    <script src="<c:url value="resources/vendor/bootstrap/dist/js/bootstrap.js"/> "></script>
+    <%--<script src="<c:url value="resources/vendor/bootstrap/dist/js/bootstrap.js"/> "></script>--%>
 
     <link rel="icon" href="resources/assets/img/favicon.ico"/>
     <link rel="stylesheet" href="<c:url value="resources/vendor/bootstrap-css-only/css/bootstrap.css"/>"/>
@@ -24,7 +24,8 @@
 <%--vendor--%>
 <script src="resources/vendor/angular/angular.js"></script>
 <script src="resources/vendor/angular-ui-router/release/angular-ui-router.js"></script>
-<script src="resources/vendor/angular-bootstrap/ui-bootstrap.js"></script>
+<script src="resources/vendor/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<%--<script src="resources/vendor/angular-bootstrap/ui-bootstrap.js"></script>--%>
 
 <%--scripts--%>
 <script src="resources/app/js/main.js"></script>
@@ -45,6 +46,7 @@
 
 <script src="resources/app/reader/reader.directive.js"></script>
 <script src="resources/app/reader/reader.controller.js"></script>
+<script src="resources/app/reader/add-reader.controller.js"></script>
 
 <script src="resources/app/contact/contact.directive.js"></script>
 
