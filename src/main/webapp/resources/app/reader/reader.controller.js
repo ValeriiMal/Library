@@ -6,9 +6,20 @@
 
     readerController.$inject = ['$uibModal'];
     function readerController(   $uibModal) {
-        console.log($uibModal);
 
-        var readersFindInputs = $('#readers-find-input input');
+        this.readerId = '';
+        this.readerFName = '';
+        this.readerMName = '';
+        this.readerLName = '';
+        this.readerPhone = '';
+
+        this.showAddReaderModal = () => {
+            $uibModal.open({
+                controller: 'addReaderController',
+                controllerAs: 'ctrl',
+                templateUrl: 'resources/app/reader/add-reader.tpl.html',
+            });
+        };
         function readersJsonToRow(readers) {
             var content = "";
             var length = readers.length;
@@ -28,7 +39,8 @@
             }
             return content;
         }
-        function findReaders() {
+
+        this.findReaders = () => {
             $('#reader-table tbody').html('');
             $.ajax({
                 url: 'reader/findByExample',
@@ -36,11 +48,11 @@
                 contentType: 'application/json',
                 dataType: 'json',
                 data: JSON.stringify({
-                    id: readersFindInputs.get(0).value,
-                    fName: readersFindInputs.get(1).value,
-                    mName: readersFindInputs.get(2).value,
-                    lName: readersFindInputs.get(3).value,
-                    phone: readersFindInputs.get(4).value
+                    id: this.readerId,
+                    fName: this.readerFName,
+                    mName: this.readerMName,
+                    lName: this.readerLName,
+                    phone: this.readerPhone
                 }),
                 success: function (data) {
                     $('#reader-table tbody').html(readersJsonToRow(data));
@@ -50,37 +62,8 @@
                     alert(textStatus + "\n" + errorThrown)
                 }
             });
+        };
 
-        }
-        readersFindInputs.keyup(findReaders);
-        $('#add-reader').click(function () {
-            $('#addReaderResult').text('');
-            $.ajax({
-                url: 'reader/add',
-                type: 'POST',
-                contentType: 'application/json',
-                dataType: 'text',
-                data: JSON.stringify({
-                    fName: $('#inputReaderFName').val(),
-                    mName: $('#inputReaderMName').val(),
-                    lName: $('#inputReaderLName').val(),
-                    phone: $('#inputReaderPhone').val(),
-                    address: {
-                        country: $('#inputReaderCountry').val(),
-                        city: $('#inputReaderCity').val(),
-                        street: $('#inputReaderStreet').val(),
-                        house: $('#inputReaderHouse').val()
-                    },
-                    dateOfBirth: $('#inputReaderBirth').val()
-                }),
-                success: function (data) {
-                    $('#addReaderResult').text(data);
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-                    alert(textStatus + '\n' + errorThrown);
-                }
-            });
-        });
         $('#editReaderSearchId').keyup(function () {
             var id = $('#editReaderSearchId').val();
 
