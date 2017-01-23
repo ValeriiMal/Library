@@ -1,67 +1,87 @@
-(() => {
+(({ model }) => {
     angular
         .module('app')
         .controller('readerController', readerController)
     ;
 
-    readerController.$inject = ['$uibModal'];
-    function readerController(   $uibModal) {
+    readerController.$inject = ['$uibModal', '$http'];
+    function readerController(   $uibModal,   $http) {
 
-        this.readerId = '';
-        this.readerFName = '';
-        this.readerMName = '';
-        this.readerLName = '';
-        this.readerPhone = '';
+        this.readers = [];
+        this.filter = new model.Reader();
+        this.showAddReaderModal = () => openAddReaderModal($uibModal);
 
-        this.showAddReaderModal = () => {
-            $uibModal.open({
-                controller: 'addReaderController',
-                controllerAs: 'ctrl',
-                templateUrl: 'resources/app/reader/add-reader.tpl.html',
-            });
-        };
+        function openAddReaderModal(uibModal) {
+            uibModal
+                .open({
+                    controller: 'addReaderController',
+                    controllerAs: 'ctrl',
+                    templateUrl: 'resources/app/reader/add-reader.tpl.html',
+                })
+                .result.then(({ $value }) => addReader($http, $value));
+        }
+
+        function addReader($http, reader) {
+            return $http
+                .post(
+                    'reader/add',
+                    reader
+                )
+                .then(
+                    (response) =>  {
+                        console.log(response);
+                        this.readers = [
+                            ...this.readers,
+                            reader
+                        ];
+                    },
+                    response => console.log(response)
+                )
+            ;
+        }
+
         function readersJsonToRow(readers) {
-            var content = "";
-            var length = readers.length;
-            if (length != 0) {
-                for (var i = 0; i < length; i++) {
-                    content +=
-                        '<tr>' +
-                        '<td>' + readers[i]['id'] + '</td>' +
-                        '<td>' + readers[i]['fName'] + '</td>' +
-                        '<td>' + readers[i]['mName'] + '</td>' +
-                        '<td>' + readers[i]['lName'] + '</td>' +
-                        '<td>' + readers[i]['phone'] + '</td>' +
-                        '</tr>';
-                }
-            } else {
-                content += '<tr><td>no data to show</td></tr>';
-            }
-            return content;
+            // var content = "";
+            // var length = readers.length;
+            // if (length != 0) {
+            //     for (var i = 0; i < length; i++) {
+            //         content +=
+            //             '<tr>' +
+            //             '<td>' + readers[i]['id'] + '</td>' +
+            //             '<td>' + readers[i]['fName'] + '</td>' +
+            //             '<td>' + readers[i]['mName'] + '</td>' +
+            //             '<td>' + readers[i]['lName'] + '</td>' +
+            //             '<td>' + readers[i]['phone'] + '</td>' +
+            //             '</tr>';
+            //     }
+            // } else {
+            //     content += '<tr><td>no data to show</td></tr>';
+            // }
+            // return content;
         }
 
         this.findReaders = () => {
-            $('#reader-table tbody').html('');
-            $.ajax({
-                url: 'reader/findByExample',
-                type: 'POST',
-                contentType: 'application/json',
-                dataType: 'json',
-                data: JSON.stringify({
-                    id: this.readerId,
-                    fName: this.readerFName,
-                    mName: this.readerMName,
-                    lName: this.readerLName,
-                    phone: this.readerPhone
-                }),
-                success: function (data) {
-                    $('#reader-table tbody').html(readersJsonToRow(data));
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-                    $('#reader-table tbody').text('error');
-                    alert(textStatus + "\n" + errorThrown)
-                }
-            });
+            // $('#reader-table tbody').html('');
+            // $.ajax({
+            //     url: 'reader/findByExample',
+            //     type: 'POST',
+            //     contentType: 'application/json',
+            //     dataType: 'json',
+            //     data: JSON.stringify({
+            //         id: this.filter.id,
+            //         fName: this.filter.fName,
+            //         mName: this.filter.mName,
+            //         lName: this.filter.lName,
+            //         phone: this.filter.phone
+            //     }),
+            //     success: function (data) {
+            //         $('#reader-table tbody').html(readersJsonToRow(data));
+            //     },
+            //     error: function (jqXHR, textStatus, errorThrown) {
+            //         $('#reader-table tbody').text('error');
+            //         alert(textStatus + "\n" + errorThrown)
+            //     }
+            // });
         };
 
         $('#editReaderSearchId').keyup(function () {
@@ -206,4 +226,4 @@
             }
         });
     }
-})();
+})(window.app);

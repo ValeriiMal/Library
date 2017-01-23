@@ -30,6 +30,11 @@
 <%--scripts--%>
 <script src="resources/app/js/main.js"></script>
 
+
+<script src="resources/app/core/core.module.js"></script>
+<script src="resources/app/core/model/address.js"></script>
+<script src="resources/app/core/model/reader.js"></script>
+
 <%--app--%>
 <script src="resources/app/app.js"></script>
 <script src="resources/app/app.config.js"></script>

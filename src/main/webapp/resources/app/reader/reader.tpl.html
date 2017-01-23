@@ -22,36 +22,36 @@
                     <input type="text"
                            class="form-control"
                            placeholder="ID"
-                           ng-model="ctrl.readerId"
-                           ng-keyup="ctrl.findReaders()">
+                           ng-model="ctrl.filter.id"
+                           ng-change="ctrl.findReaders()">
                 </div>
                 <div class="col-sm-2">
                     <input type="text"
                            class="form-control"
                            placeholder="First name"
-                           ng-model="ctrl.readerFName"
-                           ng-keyup="ctrl.findReaders()">
+                           ng-model="ctrl.filter.fName"
+                           ng-change="ctrl.findReaders()">
                 </div>
                 <div class="col-sm-2">
                     <input type="text"
                            class="form-control"
                            placeholder="Middle name"
-                           ng-model="ctrl.readerMName"
-                           ng-keyup="ctrl.findReaders()">
+                           ng-model="ctrl.filter.mName"
+                           ng-change="ctrl.findReaders()">
                 </div>
                 <div class="col-sm-2">
                     <input type="text"
                            class="form-control"
                            placeholder="Last name"
-                           ng-model="ctrl.readerLName"
-                           ng-keyup="ctrl.findReaders()">
+                           ng-model="ctrl.filter.lName"
+                           ng-change="ctrl.findReaders()">
                 </div>
                 <div class="col-sm-2">
                     <input type="text"
                            class="form-control"
                            placeholder="Phone"
-                           ng-model="ctrl.readerPhone"
-                           ng-keyup="ctrl.findReaders()">
+                           ng-model="ctrl.filter.phone"
+                           ng-change="ctrl.findReaders()">
                 </div>
             </div>
         </form>
@@ -68,91 +68,17 @@
             </tr>
             </thead>
             <tbody>
+            <tr ng-repeat="reader in ctrl.readers">
+                <td>{{ reader.id }}</td>
+                <td>{{ reader.fName }}</td>
+                <td>{{ reader.mName }}</td>
+                <td>{{ reader.lName }}</td>
+                <td>{{ reader.phone }}</td>
+            </tr>
             </tbody>
         </table>
     </div>
-    <!--<div id="readersAddModal" class="modal fade" role="dialog">-->
-        <!--<div class="modal-dialog">-->
-            <!--<div class="modal-content">-->
-                <!--<div class="modal-header">-->
-                    <!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
-                    <!--<h4 class="modal-title">Add reader </h4>-->
-                <!--</div>-->
-                <!--<div class="modal-body">-->
-                    <!--<form class="form-horizontal">-->
-                        <!--<div class="form-group">-->
-                            <!--<label for="inputReaderFName" class="col-sm-4 control-label">First name:</label>-->
 
-                            <!--<div class="col-sm-8">-->
-                                <!--<input type="text" class="form-control" id="inputReaderFName" placeholder="First name">-->
-                            <!--</div>-->
-                        <!--</div>-->
-                        <!--<div class="form-group">-->
-                            <!--<label for="inputReaderMName" class="col-sm-4 control-label">Middle name:</label>-->
-
-                            <!--<div class="col-sm-8">-->
-                                <!--<input type="text" class="form-control" id="inputReaderMName" placeholder="Middle name">-->
-                            <!--</div>-->
-                        <!--</div>-->
-                        <!--<div class="form-group">-->
-                            <!--<label class="col-sm-4 control-label" for="inputReaderLName">Last name:</label>-->
-
-                            <!--<div class="col-sm-8">-->
-                                <!--<input type="text" class="form-control" placeholder="Last name" id="inputReaderLName"/>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                        <!--<div class="form-group">-->
-                            <!--<label class="col-sm-4 control-label" for="inputReaderPhone">Phone:</label>-->
-
-                            <!--<div class="col-sm-8">-->
-                                <!--<input type="text" class="form-control" placeholder="Phone" id="inputReaderPhone"/>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                        <!--<div class="form-group">-->
-                            <!--<label class="col-sm-4 control-label" for="inputReaderCountry">Country:</label>-->
-
-                            <!--<div class="col-sm-8">-->
-                                <!--<input type="text" class="form-control" placeholder="Country" id="inputReaderCountry"/>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                        <!--<div class="form-group">-->
-                            <!--<label class="col-sm-4 control-label" for="inputReaderCity">City:</label>-->
-
-                            <!--<div class="col-sm-8">-->
-                                <!--<input type="text" class="form-control" placeholder="City" id="inputReaderCity"/>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                        <!--<div class="form-group">-->
-                            <!--<label class="col-sm-4 control-label" for="inputReaderStreet">Street:</label>-->
-
-                            <!--<div class="col-sm-8">-->
-                                <!--<input type="text" class="form-control" placeholder="Street" id="inputReaderStreet"/>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                        <!--<div class="form-group">-->
-                            <!--<label class="col-sm-4 control-label" for="inputReaderHouse">House:</label>-->
-
-                            <!--<div class="col-sm-8">-->
-                                <!--<input type="text" class="form-control" placeholder="House" id="inputReaderHouse"/>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                        <!--<div class="form-group">-->
-                            <!--<label class="col-sm-4 control-label" for="inputReaderBirth">Date of birth:</label>-->
-
-                            <!--<div class="col-sm-8">-->
-                                <!--<input type="date" class="form-control" placeholder="Date of birth"-->
-                                       <!--id="inputReaderBirth"/>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</form>-->
-                <!--</div>-->
-                <!--<div class="modal-footer">-->
-                    <!--<div id="addReaderResult" style="display: inline-block"></div>-->
-                    <!--<button id="add-reader" type="button" class="btn btn-default">Add</button>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
     <div id="readersEditModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
